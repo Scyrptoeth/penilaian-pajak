@@ -1,0 +1,161 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Perpustakaan digital peraturan Penilaian Pajak Indonesia untuk Penilai Pajak — dengan pencarian full-text ke dalam isi peraturan.' } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'Beranda' },
+  { href: '/pencarian', label: 'Pencarian' },
+  { href: '/perpustakaan', label: 'Perpustakaan' },
+  { href: '/mind-map', label: 'Mind Map' },
+  { href: '/tentang', label: 'Tentang' },
+];
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title} | Penilaian Pajak</title>
+  </head>
+  <body class="min-h-dvh flex flex-col bg-surface-light text-navy-900 dark:bg-surface-dark dark:text-stone-100 antialiased">
+    <header class="sticky top-0 z-50 border-b border-navy-100 bg-white/80 backdrop-blur-md dark:border-navy-800 dark:bg-navy-900/80">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="/" class="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-navy-800 dark:text-gold-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-gold-400">
+            <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
+          </svg>
+          Penilaian Pajak
+        </a>
+
+        <!-- Desktop nav -->
+        <ul class="hidden items-center gap-1 md:flex">
+          {navItems.map(({ href, label }) => {
+            const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+            return (
+              <li>
+                <a
+                  href={href}
+                  class:list={[
+                    'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    isActive
+                      ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                      : 'text-navy-600 hover:bg-navy-50 hover:text-navy-900 dark:text-stone-400 dark:hover:bg-navy-800 dark:hover:text-stone-100',
+                  ]}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <!-- Dark mode toggle -->
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle dark mode"
+            class="rounded-md p-2 text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2"
+          >
+            <svg class="h-5 w-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" />
+            </svg>
+            <svg class="hidden h-5 w-5 dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zm8-5a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zm11.952-4.95a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 01-1.061-1.06l1.06-1.061a.75.75 0 011.06 0zm-14.844 9.9a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 11-1.061-1.06l1.06-1.06a.75.75 0 011.061 0zM16.952 14.95a.75.75 0 01-1.06 0l-1.061-1.06a.75.75 0 011.06-1.061l1.061 1.06a.75.75 0 010 1.06zM5.108 6.168a.75.75 0 01-1.06 0L2.987 5.108a.75.75 0 011.06-1.06l1.06 1.06a.75.75 0 010 1.06zM10 6a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
+          </button>
+
+          <!-- Mobile menu toggle -->
+          <button
+            id="mobile-menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            class="rounded-md p-2 text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800 md:hidden focus-visible:ring-2 focus-visible:ring-gold-400"
+          >
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 012 10z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden border-t border-navy-100 dark:border-navy-800 md:hidden">
+        <ul class="space-y-1 px-4 py-3">
+          {navItems.map(({ href, label }) => {
+            const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+            return (
+              <li>
+                <a
+                  href={href}
+                  class:list={[
+                    'block rounded-md px-3 py-2 text-sm font-medium',
+                    isActive
+                      ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                      : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800',
+                  ]}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-navy-100 bg-white dark:border-navy-800 dark:bg-navy-900">
+      <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center gap-2 text-center text-sm text-navy-500 dark:text-stone-500">
+          <p>Perpustakaan Digital Peraturan Penilaian Pajak Indonesia</p>
+          <p>Bukan website resmi Direktorat Jenderal Pajak.</p>
+          <p class="font-mono text-xs">&copy; {new Date().getFullYear()} Penilaian Pajak</p>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      // Dark mode: check localStorage then system preference
+      const theme = (() => {
+        const stored = localStorage.getItem('theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      })();
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+
+      // Theme toggle
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu')?.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>

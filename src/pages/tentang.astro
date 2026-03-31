@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Tentang" description="Tentang website Perpustakaan Digital Peraturan Penilaian Pajak Indonesia.">
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <h1 class="font-heading text-3xl font-bold tracking-tight text-navy-800 dark:text-stone-100 sm:text-4xl">
+      Tentang Penilaian Pajak
+    </h1>
+
+    <div class="mt-8 space-y-8 text-navy-600 dark:text-stone-300 leading-relaxed">
+      <div>
+        <h2 class="font-heading text-xl font-semibold text-navy-800 dark:text-stone-100">Apa ini?</h2>
+        <p class="mt-3">
+          <strong class="text-navy-800 dark:text-stone-100">Penilaian Pajak</strong> adalah perpustakaan digital yang mengumpulkan seluruh peraturan terkait Penilaian Pajak di Indonesia dalam satu platform. Seluruh teks peraturan ditampilkan langsung di website dalam format terstruktur yang sepenuhnya <em>searchable</em>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading text-xl font-semibold text-navy-800 dark:text-stone-100">Untuk siapa?</h2>
+        <p class="mt-3">
+          Website ini ditujukan untuk <strong class="text-navy-800 dark:text-stone-100">Penilai Pajak</strong> di lingkungan Direktorat Jenderal Pajak (DJP) Kementerian Keuangan Republik Indonesia, serta pihak manapun yang membutuhkan akses cepat ke peraturan penilaian pajak.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading text-xl font-semibold text-navy-800 dark:text-stone-100">Cakupan peraturan</h2>
+        <ul class="mt-3 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 bg-gold-400"></span>
+            <span><strong class="text-navy-800 dark:text-stone-100">PBB Sektor P5L</strong> — Perkebunan, Perhutanan, Pertambangan (Minerba &amp; Migas), Perikanan, Panas Bumi, dan Sektor Lainnya</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 bg-gold-400"></span>
+            <span><strong class="text-navy-800 dark:text-stone-100">Penilaian untuk Tujuan Perpajakan</strong> — PMK 79/2023 dan turunannya</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 bg-gold-400"></span>
+            <span>Hierarki lengkap: UU, PP, PMK, PER, SE, KEP, KMK</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-heading text-xl font-semibold text-navy-800 dark:text-stone-100">Fitur utama</h2>
+        <dl class="mt-3 space-y-4">
+          <div class="border-l-2 border-gold-400 pl-4">
+            <dt class="font-heading font-semibold text-navy-800 dark:text-stone-100">Full-Text Search</dt>
+            <dd class="mt-1 text-sm">Cari kata kunci, frasa, atau kalimat langsung di dalam isi peraturan — bukan hanya judul.</dd>
+          </div>
+          <div class="border-l-2 border-gold-400 pl-4">
+            <dt class="font-heading font-semibold text-navy-800 dark:text-stone-100">Mind Map Interaktif</dt>
+            <dd class="mt-1 text-sm">Visualisasi hubungan antar peraturan: mencabut, mengubah, dan dasar hukum.</dd>
+          </div>
+          <div class="border-l-2 border-gold-400 pl-4">
+            <dt class="font-heading font-semibold text-navy-800 dark:text-stone-100">Perpustakaan Terstruktur</dt>
+            <dd class="mt-1 text-sm">Filter dan sorting berdasarkan jenis peraturan, tahun, status, dan topik.</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="border-2 border-amber-200 bg-amber-50 p-5 dark:border-amber-800/50 dark:bg-amber-900/10">
+        <p class="text-sm font-medium text-amber-800 dark:text-amber-400">
+          <strong>Disclaimer:</strong> Website ini bukan website resmi Direktorat Jenderal Pajak. Informasi disajikan sebagai referensi. Untuk keperluan resmi, selalu rujuk ke sumber asli di <a href="https://jdih.kemenkeu.go.id" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">JDIH Kemenkeu</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

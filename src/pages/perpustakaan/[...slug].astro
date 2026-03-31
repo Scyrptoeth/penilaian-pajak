@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const regulations = await getCollection('regulations');
+  return regulations.map((reg) => ({
+    params: { slug: reg.id },
+    props: { regulation: reg },
+  }));
+}
+
+const { regulation } = Astro.props;
+const { Content } = await render(regulation);
+const { data } = regulation;
+
+// Find related regulations
+const allRegulations = await getCollection('regulations');
+const relatedMap = new Map(allRegulations.map((r) => [r.data.nomor, r]));
+
+const statusColors: Record<string, string> = {
+  berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  diubah: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+};
+
+interface RelatedItem {
+  label: string;
+  items: string[];
+}
+
+const relations: RelatedItem[] = [
+  { label: 'Mencabut', items: data.mencabut || [] },
+  { label: 'Dicabut oleh', items: data.dicabut_oleh ? [data.dicabut_oleh] : [] },
+  { label: 'Mengubah', items: data.mengubah ? [data.mengubah] : [] },
+  { label: 'Diubah oleh', items: data.diubah_oleh || [] },
+  { label: 'Dasar hukum', items: data.dasar_hukum ? [data.dasar_hukum] : [] },
+].filter((r) => r.items.length > 0);
+---
+
+<BaseLayout title={`${data.nomor} — ${data.title}`} description={data.ringkasan}>
+  <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Back -->
+    <a href="/perpustakaan" class="inline-flex items-center gap-1.5 text-sm font-medium text-navy-500 transition-colors hover:text-navy-800 dark:text-stone-400 dark:hover:text-stone-100">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4">
+        <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 010 1.06L7.06 8l2.72 2.72a.75.75 0 11-1.06 1.06L5.47 8.53a.75.75 0 010-1.06l3.25-3.25a.75.75 0 011.06 0z" clip-rule="evenodd" />
+      </svg>
+      Kembali ke Perpustakaan
+    </a>
+
+    <div class="mt-6 flex flex-col gap-8 lg:flex-row">
+      <!-- Main content -->
+      <div class="min-w-0 flex-1">
+        <header>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-navy-100 px-2 py-0.5 font-mono text-xs font-medium text-navy-800 dark:bg-navy-800 dark:text-navy-200">
+              {data.jenis}
+            </span>
+            <span class={`px-2 py-0.5 text-xs font-medium capitalize ${statusColors[data.status]}`}>
+              {data.status}
+            </span>
+          </div>
+          <h1 class="mt-3 font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100 sm:text-3xl">
+            {data.nomor}
+          </h1>
+          <p class="mt-2 text-lg text-navy-600 dark:text-stone-300">{data.title}</p>
+        </header>
+
+        <!-- Metadata -->
+        <dl class="mt-6 grid grid-cols-2 gap-4 border-y-2 border-navy-100 py-6 dark:border-navy-800 sm:grid-cols-3">
+          <div>
+            <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Diundangkan</dt>
+            <dd class="mt-1 font-mono text-sm text-navy-700 dark:text-stone-300">{data.tanggal_diundangkan}</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Berlaku</dt>
+            <dd class="mt-1 font-mono text-sm text-navy-700 dark:text-stone-300">{data.tanggal_berlaku}</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Tahun</dt>
+            <dd class="mt-1 font-mono text-sm text-navy-700 dark:text-stone-300">{data.tahun}</dd>
+          </div>
+          {data.berlaku_untuk && data.berlaku_untuk.length > 0 && (
+            <div class="col-span-2 sm:col-span-3">
+              <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Berlaku Untuk</dt>
+              <dd class="mt-1 flex flex-wrap gap-1.5">
+                {data.berlaku_untuk.map((t: string) => (
+                  <span class="bg-navy-50 px-2 py-0.5 font-mono text-xs text-navy-600 dark:bg-navy-800 dark:text-stone-400">{t}</span>
+                ))}
+              </dd>
+            </div>
+          )}
+        </dl>
+
+        <!-- Topics -->
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          {data.topik.map((t: string) => (
+            <span class="border border-navy-200 px-2 py-0.5 text-xs text-navy-500 dark:border-navy-700 dark:text-stone-400">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <!-- Body content -->
+        <div class="prose prose-navy mt-8 max-w-none dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
+          <Content />
+        </div>
+
+        {data.sumber_pdf && (
+          <div class="mt-8 border-t-2 border-navy-100 pt-6 dark:border-navy-800">
+            <a
+              href={data.sumber_pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-sm font-medium text-gold-600 hover:text-gold-500 dark:text-gold-400 dark:hover:text-gold-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+              </svg>
+              Download PDF asli
+            </a>
+          </div>
+        )}
+      </div>
+
+      <!-- Sidebar -->
+      {relations.length > 0 && (
+        <aside class="w-full shrink-0 lg:w-72">
+          <div class="sticky top-20 border-2 border-navy-100 p-5 dark:border-navy-800">
+            <h2 class="font-heading text-sm font-semibold tracking-widest text-navy-800 uppercase dark:text-stone-100">
+              Peraturan Terkait
+            </h2>
+            <div class="mt-4 space-y-4">
+              {relations.map(({ label, items }) => (
+                <div>
+                  <p class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">{label}</p>
+                  <ul class="mt-1.5 space-y-1">
+                    {items.map((nomor) => {
+                      const related = relatedMap.get(nomor);
+                      return (
+                        <li>
+                          {related ? (
+                            <a
+                              href={`/perpustakaan/${related.id}`}
+                              class="block text-sm font-medium text-gold-600 hover:text-gold-500 dark:text-gold-400 dark:hover:text-gold-300"
+                            >
+                              {nomor}
+                            </a>
+                          ) : (
+                            <span class="block font-mono text-sm text-navy-500 dark:text-stone-400">{nomor}</span>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+      )}
+    </div>
+  </article>
+</BaseLayout>

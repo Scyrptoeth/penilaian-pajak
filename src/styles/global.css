@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-50: #e8edf4;
+  --color-navy-100: #c5d0e3;
+  --color-navy-200: #9eb1cf;
+  --color-navy-300: #7792bb;
+  --color-navy-400: #597aac;
+  --color-navy-500: #3b639d;
+  --color-navy-600: #345895;
+  --color-navy-700: #2b4c89;
+  --color-navy-800: #1e3a5f;
+  --color-navy-900: #0a1628;
+
+  --color-gold-50: #fdf8ed;
+  --color-gold-100: #f9ecd1;
+  --color-gold-200: #f3d9a3;
+  --color-gold-300: #edc575;
+  --color-gold-400: #c9a84c;
+  --color-gold-500: #b5923a;
+  --color-gold-600: #9a7a2e;
+  --color-gold-700: #7f6224;
+  --color-gold-800: #644b1a;
+  --color-gold-900: #493510;
+
+  --color-surface-light: #fafaf9;
+  --color-surface-dark: #0f1117;
+
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

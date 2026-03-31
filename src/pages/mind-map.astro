@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MindMap from '../components/MindMap';
+import { getCollection } from 'astro:content';
+
+const regulations = await getCollection('regulations');
+
+// Auto-generate nodes and edges from frontmatter
+const nodes = regulations.map((reg, i) => {
+  const col = i % 4;
+  const row = Math.floor(i / 4);
+  return {
+    id: reg.data.nomor,
+    type: 'regulation',
+    position: { x: col * 300, y: row * 150 },
+    data: {
+      label: reg.data.nomor,
+      title: reg.data.title,
+      jenis: reg.data.jenis,
+      status: reg.data.status,
+      slug: reg.id,
+    },
+  };
+});
+
+// Generate edges from relations
+const edges: Array<{ id: string; source: string; target: string; label: string; type: string }> = [];
+const nomorSet = new Set(regulations.map((r) => r.data.nomor));
+
+for (const reg of regulations) {
+  const { nomor, mencabut, dicabut_oleh, mengubah, diubah_oleh, dasar_hukum } = reg.data;
+
+  if (mencabut) {
+    for (const target of mencabut) {
+      if (nomorSet.has(target)) {
+        edges.push({ id: `${nomor}-mencabut-${target}`, source: nomor, target, label: 'mencabut', type: 'smoothstep' });
+      }
+    }
+  }
+  if (dicabut_oleh && nomorSet.has(dicabut_oleh)) {
+    edges.push({ id: `${nomor}-dicabut-${dicabut_oleh}`, source: dicabut_oleh, target: nomor, label: 'mencabut', type: 'smoothstep' });
+  }
+  if (mengubah && nomorSet.has(mengubah)) {
+    edges.push({ id: `${nomor}-mengubah-${mengubah}`, source: nomor, target: mengubah, label: 'mengubah', type: 'smoothstep' });
+  }
+  if (diubah_oleh) {
+    for (const source of diubah_oleh) {
+      if (nomorSet.has(source)) {
+        edges.push({ id: `${nomor}-diubah-${source}`, source, target: nomor, label: 'mengubah', type: 'smoothstep' });
+      }
+    }
+  }
+  if (dasar_hukum && nomorSet.has(dasar_hukum)) {
+    edges.push({ id: `${nomor}-dasar-${dasar_hukum}`, source: dasar_hukum, target: nomor, label: 'dasar hukum', type: 'smoothstep' });
+  }
+}
+
+// Deduplicate edges by id
+const uniqueEdges = [...new Map(edges.map((e) => [e.id, e])).values()];
+---
+
+<BaseLayout title="Peta Peraturan" description="Visualisasi hubungan antar peraturan penilaian pajak dalam bentuk mind map interaktif.">
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <h1 class="font-heading text-3xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
+      Peta Peraturan
+    </h1>
+    <p class="mt-2 text-navy-500 dark:text-stone-400">
+      Visualisasi hubungan antar peraturan. Klik node untuk membuka detail peraturan.
+    </p>
+
+    <!-- Legend -->
+    <div class="mt-6 flex flex-wrap gap-4 text-sm">
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-3 bg-green-500"></span>
+        <span class="text-navy-600 dark:text-stone-400">Berlaku</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-3 bg-red-500"></span>
+        <span class="text-navy-600 dark:text-stone-400">Dicabut</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-3 bg-amber-500"></span>
+        <span class="text-navy-600 dark:text-stone-400">Diubah</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-t-2 border-navy-100 dark:border-navy-800" style="height: 600px;">
+    <MindMap
+      client:only="react"
+      initialNodes={nodes}
+      initialEdges={uniqueEdges}
+    />
+  </div>
+</BaseLayout>

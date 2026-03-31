@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const regulations = await getCollection('regulations');
+const activeCount = regulations.filter((r) => r.data.status === 'berlaku').length;
+const jenisSet = new Set(regulations.map((r) => r.data.jenis));
+const tahunSet = new Set(regulations.map((r) => r.data.tahun));
+const minTahun = tahunSet.size > 0 ? Math.min(...tahunSet) : 0;
+const maxTahun = tahunSet.size > 0 ? Math.max(...tahunSet) : 0;
+---
+
+<BaseLayout title="Beranda">
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-navy-900 text-white">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-navy-700)_0%,_transparent_50%)] opacity-60"></div>
+    <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+      <div class="max-w-3xl">
+        <p class="mb-3 font-mono text-sm tracking-widest text-gold-400 uppercase">Perpustakaan Digital</p>
+        <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+          Peraturan Penilaian Pajak
+          <span class="text-gold-400">Indonesia</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-navy-200">
+          Sumber referensi lengkap bagi Penilai Pajak &mdash; dengan pencarian full-text ke dalam isi peraturan.
+        </p>
+      </div>
+
+      <!-- Search bar -->
+      <div class="mt-10 max-w-2xl">
+        <form action="/pencarian" method="get" class="flex gap-2">
+          <div class="relative flex-1">
+            <svg class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+            </svg>
+            <input
+              type="search"
+              name="q"
+              placeholder="Cari peraturan... contoh: 'nilai jual objek pajak'"
+              class="w-full rounded-none border-2 border-navy-600 bg-navy-800/50 py-3.5 pl-12 pr-4 text-white placeholder:text-navy-400 focus:border-gold-400 focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-gold-400 px-6 py-3.5 font-heading text-sm font-semibold tracking-widest text-navy-900 uppercase transition-colors hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+          >
+            Cari
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-b border-navy-100 bg-white dark:border-navy-800 dark:bg-navy-900/50">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px sm:grid-cols-4">
+      {[
+        { value: regulations.length.toString(), label: 'Total Peraturan' },
+        { value: activeCount.toString(), label: 'Masih Berlaku' },
+        { value: jenisSet.size.toString(), label: 'Jenis Peraturan' },
+        { value: tahunSet.size > 0 ? `${minTahun}\u2013${maxTahun}` : '-', label: 'Rentang Tahun' },
+      ].map(({ value, label }) => (
+        <div class="px-6 py-8 text-center">
+          <p class="font-heading text-3xl font-bold text-navy-800 dark:text-gold-400">{value}</p>
+          <p class="mt-1 text-sm text-navy-500 dark:text-stone-400">{label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2 class="font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
+      Kategori Peraturan
+    </h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+      <a href="/perpustakaan?topik=pbb" class="group border-2 border-navy-100 p-6 transition-all hover:border-gold-400 dark:border-navy-800 dark:hover:border-gold-400">
+        <div class="flex items-start gap-4">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center bg-navy-800 text-gold-400 dark:bg-gold-400/10">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6">
+              <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h16.5a.75.75 0 010 1.5H18v8.75A2.75 2.75 0 0115.25 15h-1.072l.798 3.06a.75.75 0 01-1.452.38L13.41 18H6.59l-.114.44a.75.75 0 01-1.452-.38L5.822 15H4.75A2.75 2.75 0 012 12.25V3.5h-.25A.75.75 0 011 2.75z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading text-lg font-semibold text-navy-800 group-hover:text-gold-600 dark:text-stone-100 dark:group-hover:text-gold-400">
+              PBB Sektor P5L
+            </h3>
+            <p class="mt-1 text-sm leading-relaxed text-navy-500 dark:text-stone-400">
+              Perkebunan, Perhutanan, Pertambangan (Minerba &amp; Migas), Perikanan, Panas Bumi, dan Sektor Lainnya.
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <a href="/perpustakaan?topik=penilaian" class="group border-2 border-navy-100 p-6 transition-all hover:border-gold-400 dark:border-navy-800 dark:hover:border-gold-400">
+        <div class="flex items-start gap-4">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center bg-navy-800 text-gold-400 dark:bg-gold-400/10">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6">
+              <path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading text-lg font-semibold text-navy-800 group-hover:text-gold-600 dark:text-stone-100 dark:group-hover:text-gold-400">
+              Penilaian untuk Tujuan Perpajakan
+            </h3>
+            <p class="mt-1 text-sm leading-relaxed text-navy-500 dark:text-stone-400">
+              PMK 79/2023 dan turunannya &mdash; penilaian harta berwujud, tidak berwujud, dan bisnis untuk PPh, PPN, PBB, PPSP.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-navy-100 bg-navy-50 dark:border-navy-800 dark:bg-navy-900/30">
+    <div class="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-16 text-center sm:flex-row sm:justify-center sm:px-6 sm:text-left lg:px-8">
+      <a
+        href="/perpustakaan"
+        class="inline-block bg-navy-800 px-8 py-3.5 font-heading text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-navy-700 dark:bg-gold-400 dark:text-navy-900 dark:hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400"
+      >
+        Jelajahi Perpustakaan
+      </a>
+      <a
+        href="/mind-map"
+        class="inline-block border-2 border-navy-800 px-8 py-3.5 font-heading text-sm font-semibold tracking-widest text-navy-800 uppercase transition-colors hover:bg-navy-800 hover:text-white dark:border-gold-400 dark:text-gold-400 dark:hover:bg-gold-400 dark:hover:text-navy-900 focus-visible:ring-2 focus-visible:ring-gold-400"
+      >
+        Lihat Mind Map
+      </a>
+    </div>
+  </section>
+</BaseLayout>
