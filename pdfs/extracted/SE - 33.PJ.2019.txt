@@ -1,0 +1,616 @@
+                  KEMENTERIAN KEUANGAN REPUBLIK INDONESIA
+                        DIREKTORAT JENDERAL PAJAK
+
+
+
+                                   SURAT EDARAN
+                                NOMOR SE- 33 /PJ/2019
+
+                                         TENTANG
+
+     PETUNJUK PELAKSANAAN PERATURAN DIREKTUR JENDERAL PAJAK
+  NOMOR PER-08/PJ/2019 TENTANG TATA CARA PEMBERIAN, PENYESUAIAN, DAN
+      PENGHAPUSAN NOMOR OBJEK PAJAK PAJAK BUMI DAN BANGUNAN
+
+
+
+Yth.    1. Pejabat Eselon II di Lingkungan Kantor Pusat Direktorat Jenderal Pajak;
+        2. Kepala Kantor Wilayah di Lingkungan Direktorat Jenderal Pajak; dan
+        3. Kepala Kantor Pelayanan Pajak di Lingkungan Direktorat Jenderal Pajak.
+
+
+A. Umum
+   Sehubungan dengan telah diterbitkannya Peraturan Direktur Jenderal Pajak
+   Nomor PER-08/PJ/2019 tentang Tata Cara Pemberian, Penyesuaian, dan Penghapusan
+   Nomor Objek Pajak Pajak Bumi dan Bangunan, perlu diterbitkan Surat Edaran Direktur
+   Jenderal Pajak mengenai ketentuan Nomor Objek Pajak (NOP) dengan maksud sebagai
+   pedoman bagi unit di lingkungan Direktorat Jenderal Pajak dalam melaksanakan
+   Peraturan Direktur Jenderal Pajak Nomor PER-08/PJ/2019.
+
+B. Maksud dan Tujuan
+   1. Maksud
+      Surat Edaran Direktur Jenderal ini dimaksudkan untuk memberikan pedoman bagi
+      Kantor Pelayanan Pajak (KPP) dan Kantor Wilayah Direktorat Jenderal Pajak
+      (Kanwil DJP) dalam melaksanakan Peraturan Direktur Jenderal Pajak Nomor
+      PER-08/PJ/2019 tentang Tata Cara Pemberian, Penyesuaian, dan Penghapusan
+      Nomor Objek Pajak Pajak Bumi dan Bangunan.
+   2. Tujuan
+      Surat Edaran Direktur Jenderal ini bertujuan untuk memberikan penjelasan
+      mengenai ketentuan umum pemberian NOP, struktur NOP, kode dalam struktur
+      NOP, contoh NOP, ketentuan mengenai penyesuaian, dan penghapusan NOP, serta
+      tindak lanjut yang harus dilaksanakan oleh Kepala KPP sehubungan dengan
+      pelaksanaan Peraturan Direktur Jenderal Pajak Nomor PER-08/PJ/2019.
+
+
+
+                                                                        ,?e C. Ruang
+
+Kp. :PJ.024/PJ.0201/2019
+                                                -2
+
+
+C. Ruang Lingkup
+    Ruang lingkup Surat Edaran Direktur Jenderal ini meliputi:
+    1. Ketentuan Umum Pemberian NOP;
+    2. Struktur NOP;
+    3. Kode Struktur NOP;
+    4. Penyesuaian NOP; dan
+    5. Penghapusan NOR
+
+D. Dasar
+    1. Undang-Undang Nomor 12 Tahun 1985 tentang Pajak Bumi dan Bangunan
+       sebagaimana telah diubah dengan Undang-Undang Nomor 12 Tahun 1994 tentang
+       Perubahan atas Undang-Undang Nomor 12 Tahun 1985 tentang Pajak Bumi dan
+       Bangunan;
+    2. Peraturan Menteri Keuangan Nomor 254/PMK.03/2014 tentang Tata Cara
+       Pendaftaran dan Pendataan Objek Pajak dan Subjek Pajak atau Wajib Pajak
+       Pajak Bumi dan Bangunan;
+    3. Keputusan Menteri Keuangan Nomor 381/KMK.03/2018 tentang Kode Kantor
+       Wilayah Direktorat Jenderal Pajak dan Kantor Pelayanan Pajak;
+    4. Peraturan Direktur Jenderal Pajak Nomor PER-08/PJ/2019 tentang Tata Cara
+       Pemberian, Penyesuaian, dan Penghapusan Nomor Objek Pajak Pajak Bumi dan
+       Bangunan; dan
+    5. Keputusan Direktur Jenderal Pajak Nomor KEP-288/PJ/2018 tentang Referensi
+       Wilayah dan Wilayah Kerja Kantor Pelayanan Pajak Pratama di Lingkungan
+       Direktorat Jenderal Pajak.
+
+E. Materi
+   1. Ketentuan Umum Pemberian NOP
+       a. Kepala Kantor Pelayanan Pajak (KPP) memberikan NOP untuk setiap objek pajak
+          Pajak Bumi dan Bangunan (PBB) dengan ketentuan sebagai berikut:
+          1) objek pajak PBB Sektor Perkebunan meliputi permukaan bumi dan/atau
+              bangunan;
+          2) objek pajak PBB Sektor Perhutanan meliputi permukaan bumi dan/atau
+              bangunan;
+          3) objek pajak PBB Sektor Pertambangan Minyak dan Gas Bumi meliputi:
+              a) permukaan bumi onshore dan/atau bangunan;
+              b) permukaan bumi offshore dan/atau bangunan; dan
+              c) tubuh bumi.
+          4) objek pajak PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi
+              meliputi:
+              a) permukaan bumi onshore dan/atau bangunan;
+              b) permukaan bumi offshore dan/atau bangunan; dan
+              c) tubuh bumi.
+          5) objek pajak PBB Sektor Pertambangan Mineral atau Batubara meliputi:
+              a) permukaan bumi onshore dan/atau bangunan;
+              b) permukaan bumi offshore dan/atau bangunan; dan
+              c) tubuh bumi.
+          6) objek pajak PBB Sektor Lainnya meliputi permukaan bumi berupa perairan
+              (offshore) dan/atau bangunan
+
+                                                                  r.    b. Dalam
+Kp .PJ 024/P10201/2019
+                                                -3
+
+
+          b. Dalam hal Kepala KPP telah memberikan NOP atas objek pajak pada saat
+             pelaksanaan pendaftaran atau pemutakhiran objek pajak sebelum Surat Edaran
+             Direktur Jenderal ini berlaku, NOP tersebut tetap berlaku sepanjang tidak
+             bertentangan dengan ketentuan dalam Surat Edaran Direktur Jenderal ini.
+          c. Dalam hal Kepala KPP telah memberikan NOP atas objek pajak pada saat
+             pelaksanaan pendaftaran atau pemutakhiran objek pajak sebelum Surat Edaran
+             Direktur Jenderal ini berlaku tetapi tidak sesuai dengan ketentuan dalam Surat
+             Edaran Direktur Jenderal ini, Kepala KPP memberikan NOP bare sesuai dengan
+             ketentuan dalam Surat Edaran Direktur Jenderal ini.
+
+    2. Struktur NOP
+         a. NOP disusun sedemikian rupa dalam suatu struktur NOP, sehingga dapat
+            diidentifikasi:
+            1) provinsi, kabupaten/kota, dan kecamatan objek pajak berada;
+            2) KPP yang wilayah kerjanya meliputi objek pajak atau KPP yang ditunjuk untuk
+                mengadministrasikan objek pajak; dan
+            3)  sektor  objek pajak.
+         b. Struktur NOP sebagaimana dimaksud pada huruf a terdiri atas 18 (delapan belas)
+            digit, dengan ketentuan sebagai berikut:
+            1) digit ke-1 sampai dengan digit ke-7 merupakan kode wilayah, dengan rincian:
+                 a) digit ke-1 dan ke-2 merupakan kode wilayah provinsi;
+                 b) digit ke-3 dan ke-4 merupakan kode wilayah kabupaten/kota; dan
+                 c) digit ke-5 sampai dengan digit ke-7 merupakan kode wilayah kecamatan.
+            2) digit ke-8 sampai dengan digit ke-10 merupakan kode KPP;
+            3) digit ke-11 sampai dengan digit ke-18 merupakan kode objek pajak, dengan
+                rincian:
+                a) digit ke-11 merupakan kode subsektor objek pajak;
+                b) digit ke-12 merupakan kode jenis bumi;
+                c) digit ke-13 merupakan kode rincian objek pajak;
+                d) digit ke-14 sampai dengan digit ke-17 merupakan kode nomor urut
+                     objek pajak; dan
+                 e) digit ke-18 merupakan kode sektor objek pajak.
+         c. Struktur NOP dalam 18 digit sebagaimana dimaksud pada huruf b dapat
+            digambarkan pada bagan struktur NOP sebagai berikut:
+
+
+
+
+                                                                         re.     3) Kode .
+Kp. PJ.024/13.1 0201/2019
+                                                4
+
+
+                                                              Kode
+                                                            Jenis Bumi
+
+                                                                                        Kode
+                                                                                        Nomor
+                                              Kode                                       Urut   Kode
+                                              KPP                                       Ob'ek   Sektor
+                                  Kode wil.                                             Pa'ak   Objek
+                      Kode       Kecamatan              Kode                                    Pajak
+                      Kab/Kota                           Sub
+          Kode wil.                                     Sektor     Kode Rindan ;
+          Provinsi                                                 ONO Paiak
+
+
+
+
+                        Kode                  Kode
+                                                                                    r
+                                                                                  Kode
+                       Wilayah                KPP                              Objek Pajak
+
+
+
+    3. Kode Struktur NOP
+        a. Kode wilayah provinsi sebagaimana dimaksud pada angka 2 huruf b angka 1)
+           huruf a) ditentukan sebagai berikut:
+           1) digit ke-1 menunjukkan kode pulau/kepulauan; dan
+           2) digit ke-2 menunjukkan kode provinsi dalam satu pulau/kepulauan dimulai dari
+                angka 1 sampai dengan angka 9 pada setiap pulau/kepulauan.
+        b. Kode wilayah kabupaten/kota yaitu digit ke-3 dan digit ke-4 sebagaimana
+           dimaksud pada angka 2 huruf b angka 1) huruf b) ditentukan sebagai berikut:
+           1) kode wilayah kabupaten menggunakan angka 01 sampai dengan angka 69
+                pada setiap provinsi; dan
+           2) kode wilayah kota menggunakan angka 71 sampai dengan angka 99 pada
+                setiap provinsi.
+        c. Kode wilayah kecamatan yaitu digit ke-5, digit ke-6, dan digit ke-7 sebagaimana
+           dimaksud pada angka 2 huruf b angka 1) huruf c) ditentukan sebagai berikut:
+            1) dua digit pertama, yaitu digit ke-5 dan digit ke-6 menggunakan angka 01
+                sampai dengan angka 99 pada setiap kabupaten/kota; dan
+            2) satu digit terakhir, yaitu digit ke-7, menggunakan angka 0.
+        d. Kode wilayah sebagaimana dimaksud pada huruf a, huruf b, dan huruf c
+            ditentukan oleh unit di lingkungan Direktorat Jenderal Pajak yang mempunyai
+           tugas merumuskan serta melaksanakan kebijakan dan standardisasi teknis di
+            bidang informasi perpajakan.
+        e. Dalam hal luas objek pajak melebihi batas wilayah administratif provinsi, kode
+            wilayah provinsi sebagaimana dimaksud pada huruf a diberikan untuk masing-
+           masing provinsi objek pajak tersebut berada.
+        f. Dalam hal luas objek pajak melebihi batas wilayah administratif kabupaten/kota,
+            kode wilayah kabupaten/kota sebagaimana dimaksud pada huruf b diberikan
+            untuk masing-masing kabupaten/kota objek pajak tersebut berada.
+        g. Dalam hal luas objek pajak melebihi batas wilayah administratif kecamatan, kode
+            wilayah kecamatan sebagaimana dimaksud pada huruf c diberikan untuk
+            kecamatan yang wilayahnya meliputi areal terluas objek pajak.
+        h. Dalam hal objek pajak berupa:
+            1) permukaan bumi offshore dan/atau bangunan, untuk PBB Sektor
+                Pertambangan Minyak dan Gas Bumi;
+
+                                                                                   ' 2) tubuh
+Kp. :PJ 024/PJ.0201/2019
+                                               -5
+
+
+             2) tubuh bumi, untuk PBB Sektor Pertambangan Minyak dan Gas Bumi;
+             3) permukaan bumi offshore dan/atau bangunan, untuk PBB Sektor
+                Pertambangan untuk Pengusahaan Panas Bumi;
+             4) tubuh bumi, untuk PBB Sektor Pertambangan untuk Pengusahaan Panas
+                Bumi; dan
+             5) PBB Sektor Lainnya,
+             kode wilayah provinsi sebagaimana dimaksud pada huruf a menggunakan angka
+             00 dan kode wilayah kabupaten/kota sebagaimana dimaksud pada huruf b
+             menggunakan angka 00.
+         i. Dalam hal objek pajak berupa:
+             1) objek pajak PBB Sektor Pertambangan Minyak dan Gas Bumi;
+             2) objek pajak PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi;
+             3) objek pajak PBB Sektor Pertambangan Mineral atau Batubara; dan
+             4) objek pajak PBB Sektor Lainnya,
+             kode wilayah kecamatan sebagaimana dimaksud pada huruf c menggunakan
+             angka 000.
+         j. Kode KPP yaitu digit ke-8 sampai dengan digit ke-10 sebagaimana dimaksud
+             pada angka 2 huruf b angka 2) merupakan kode KPP tern pat objek pajak terdaftar
+             sesuai ketentuan peraturan perundang-undangan di bidang perpajakan yang
+             mengatur mengenai kode KPP.
+         k. Kode subsektor objek pajak yaitu digit ke-11 sebagaimana dimaksud pada
+             angka 2 huruf b angka 3) huruf a) ditentukan sebagai berikut:
+             1) PBB Sektor Perkebunan menggunakan angka 1;
+             2) PBB Sektor Perhutanan:
+                  a) hutan alam menggunakan angka 1; dan
+                  b) hutan tanaman menggunakan angka 2.
+             3) PBB Sektor Pertambangan Minyak dan Gas Bumi menggunakan angka 1;
+             4) PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi menggunakan
+                 angka 1
+             5) PBB Sektor Pertambangan Mineral atau Batubara menggunakan angka 1;
+             6) PBB Sektor Lainnya:
+                  a) usaha perikanan tangkap menggunakan angka 1;
+                  b) usaha pembudidayaan ikan menggunakan angka 2;
+                  c) jaringan pipa menggunakan angka 3;
+                  d) jaringan kabel menggunakan angka 4;
+                  e) ruas jalan tol menggunakan angka 5; dan
+                  f) fasilitas penyimpanan dan pengolahan menggunakan angka 6.
+         I. Kode jenis bumi yaitu digit ke-12 sebagaimana dimaksud pada angka 2
+             huruf b angka 3) huruf b) ditentukan sebagai berikut:
+             1) permukaan bumi onshore menggunakan angka 1;
+             2) tubuh bumi menggunakan angka 2; dan
+             3) permukaan bumi offshore menggunakan angka 3.
+         m. Kode rincian yaitu digit ke-13 sebagaimana dimaksud pada angka 2 huruf b
+             angka 3) huruf c) ditentukan sebagai berikut:
+             1) untuk objek pajak PBB Pertambangan Mineral atau Batubara berlaku
+                 ketentuan sebagai berikut:
+                 a) mineral logam menggunakan angka 1;
+
+
+                                                                               b) mineral ...
+Kp .PJ.024/PJ 0201/2019
+                                             -6
+
+
+                b) mineral bukan logam menggunakan angka 2;
+                c) batuan menggunakan angka 3; dan
+                d) batubara menggunakan angka 4.
+            2) untuk objek pajak PBB Sektor Lainnya atas masing-masing fasilitas
+                penyimpanan dan pengolahan berlaku ketentuan sebagai berikut:
+                a) Floating Storage and Offloading (FSO) menggunakan angka 1;
+                b) Floating Production System (FPS) menggunakan angka 2;
+                c) Floating Processing Unit (FPU) menggunakan angka 3;
+                d) Floating Storage Unit (FSU) menggunakan angka 4;
+                e) Floating Production Storage and Offloading (FPSO) menggunakan
+                      angka 5; dan
+                f)    Floating Storage Regasification Unit (FSRU) menggunakan angka 6;
+            3) untuk objek pajak selain objek pajak sebagaimana dimaksud pada
+                angka 1) dan angka 2) menggunakan angka 0.
+         n. Kode nomor urut objek pajak yaitu digit ke-14 sampai dengan digit ke-17
+            sebagaimana dimaksud pada angka 2 huruf b angka 3) huruf d) ditentukan
+            sebagai berikut:
+            1) menggunakan angka 0001 sampai dengan angka 9999 secara berurutan
+                untuk masing-masing subsektor objek pajak pada setiap wilayah dalam KPP;
+                dan
+            2) dalam hal terdapat penambahan objek pajak baru pada subsektor objek
+                 pajak yang sama, objek pajak baru menggunakan nomor urut setelah nomor
+                urut terakhir yang sudah digunakan untuk masing-masing subsektor objek
+                 pajak pada setiap wilayah dalam KPP.
+         o. Kode sektor objek pajak yaitu digit ke-18 sebagaimana dimaksud pada
+            angka 2 huruf b angka 3) huruf e) ditentukan sebagai berikut:
+            1) PBB Sektor Perkebunan menggunakan angka 1;
+            2) PBB Sektor Perhutanan menggunakan angka 2;
+            3) PBB Sektor Pertambangan Minyak dan Gas Bumi menggunakan angka 3;
+            4) PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi menggunakan
+                 angka 4;
+            5) PBB Sektor Pertambangan Mineral atau Batubara menggunakan angka 5;
+                 dan
+            6) PBB Sektor Lainnya menggunakan angka 6.
+         p. Contoh pemberian kode wilayah provinsi, kode wilayah kabupaten/kota, kode
+            wilayah kecamatan, kode subsektor objek pajak, kode jenis bumi,
+            kode rincian objek dan pemberian NOP untuk suatu objek pajak sebagaimana
+            tercantum dalam Lampiran yang merupakan bagian tidak terpisahkan dari Surat
+            Edaran Direktur Jenderal ini.
+
+    4. Penyesuaian NOP
+        a. Penyesuaian NOP dilakukan dalam hal terjadi beberapa sebab sebagai berikut:
+           1) mutasi objek pajak;
+           2) pembentukan atau penyesuaian daerah; dan
+           3) perubahan KPP yang mengadministrasikan objek pajak.
+        b. Mutasi objek pajak sebagaimana dimaksud pada huruf a angka 1) merupakan
+           mutasi seluruh objek pajak dari satu subjek pajak kepada satu atau beberapa
+           subjek pajak baru dengan jenis sektor dan subsektor objek pajak yang sama.
+
+                                                                 /9. c. Penyesuaian
+Kp. :PJ.024/PJ.0201/2019
+                                               -7-
+
+
+          c. Penyesuaian NOP karena mutasi objek pajak dilakukan dengan ketentuan
+              sebagai berikut:
+             1) objek pajak yang dilakukan mutasi kepada satu subjek pajak baru tetap
+                  menggunakan NOP asal.
+              2) objek pajak yang dilakukan mutasi kepada beberapa subjek pajak baru
+                  berlaku ketentuan:
+                  a) salah satu objek pajak hasil mutasi menggunakan NOP asal; dan
+                  b) seluruh objek pajak hasil mutasi selain objek pajak sebagaimana
+                      dimaksud pada huruf a) menggunakan NOP baru.
+          d. Penyesuaian NOP karena pembentukan atau penyesuaian daerah sebagaimana
+              dimaksud pada huruf a angka 2) dilakukan dalam hal terjadi pemekaran daerah,
+              penggabungan daerah dalam satuan wilayah administratif tertentu, dan
+              perubahan kode wilayah.
+          e. Pemekaran daerah merupakan pemecahan daerah provinsi atau daerah
+              kabupaten/kota untuk menjadi dua atau lebih daerah baru atau penggabungan
+              dua atau lebih kecamatan dalam kabupaten/kota yang berbeda dalam 1 (satu)
+              provinsi menjadi satu daerah baru.
+          f. Penggabungan daerah merupakan penggabungan dua daerah kabupaten/kota
+              atau lebih yang bersanding dalam 1 (satu) daerah provinsi menjadi daerah
+              kabupaten/kota yang baru, atau penggabungan dua daerah provinsi atau lebih
+              yang bersanding menjadi daerah provinsi yang baru.
+          g. Perubahan kode wilayah merupakan perubahan angka pada tabel kode wilayah
+              yang ditentukan oleh unit di lingkungan Direktorat Jenderal Pajak yang
+              mempunyai tugas merumuskan serta melaksanakan kebijakan dan standardisasi
+              teknis di bidang informasi perpajakan sebagaimana dimaksud pada angka 3
+              huruf d.
+          h. Penyesuaian NOP karena pemekaran daerah sebagaimana dimaksud pada
+              huruf e sehingga mengakibatkan objek pajak berada di dua daerah atau lebih
+              dilakukan dengan ketentuan sebagai berikut:
+              1) objek pajak yang berada di daerah asal tetap menggunakan NOP asal; dan
+              2) objek pajak yang berada di daerah hasil pemekaran, menggunakan NOP baru
+                  sesuai ketentuan pemberian NOP.
+          i. Penyesuaian NOP karena penggabungan daerah sebagaimana dimaksud pada
+             huruf f berlaku ketentuan sebagai berikut:
+             1) dalam hal kode wilayah daerah hasil penggabungan menggunakan salah satu
+                  kode wilayah daerah yang digabung, berlaku ketentuan sebagai berikut:
+                  a) objek pajak yang kode wilayah dalam NOP asalnya sudah sesuai dengan
+                       kode wilayah daerah hasil penggabungan, menggunakan NOP asal; dan
+                  b)   objek pajak yang kode wilayah dalam NOP asalnya tidak sesuai dengan
+                       kode wilayah daerah hasil penggabungan, menggunakan NOP baru
+                       sesuai ketentuan pemberian NOP; dan
+              2) dalam hal kode wilayah hasil penggabungan menggunakan kode wilayah
+                  baru, objek pajak diberikan NOP baru sesuai ketentuan pemberian NOP.
+          j. Perubahan KPP yang mengadministrasikan objek pajak sebagaimana dimaksud
+             pada huruf a angka 3) merupakan perubahan kode KPP tempat objek pajak
+             terdaftar sebagai akibat pemecahan KPP, penggabungan KPP, perubahan
+
+
+                                                                        /111    wilayah
+
+Kp .PJ .024/PJ.0201 /2019
+                                             -8
+
+
+             wilayah kerja KPP, dan perubahan kode KPP sesuai ketentuan peraturan
+             perundang-undangan di bidang perpajakan.
+          k. Penyesuaian NOP karena perubahan KPP yang mengadministrasikan objek pajak
+             dilakukan dengan ketentuan kode KPP pada NOP asal menggunakan kode KPP
+             baru.
+
+    5. Penghapusan NOP
+        Penghapusan NOP merupakan proses penonaktifan NOP dalam basis data PBB
+        karena tidak memenuhi ketentuan sebagai objek pajak berdasarkan keadaan yang
+        sebenarnya sesuai ketentuan peraturan perundang-undangan di bidang perpajakan.
+
+    Demikian untuk diketahui dan dilaksanakan sebagaimana mestinya.
+
+
+
+
+                                                  Ditetapkan di Jakarta
+                                                  pada tanggal Z6 NCetty,e
+
+                                                  DIREKTUR JENDERAL,
+                                           DIREKTU,"
+                                           JENDE
+
+
+
+                                            4r JENDt07,
+                                                       RYO UTOMO/
+
+
+
+
+Kp. :PJ.024/PJ.0201/2019
+                                              LAMPIRAN
+                                              Surat Edaran Direktur Jenderal Pajak
+                                              Nomor           SE-33 /PJ/2019
+                                              Tanggal             Noverliwe 2019
+
+
+
+A. Contoh Pemberian Kode Wilayah Provinsi
+
+
+
+
+                                                        Kaillirnentan
+                                                  r-5 utaralf:'‘
+
+
+
+                                                      Kalimantan
+                     Kalimantan                         TiMt"
+                       Barat
+                                                                           1;
+                                   Kalimantan
+                                    Tengah
+
+                                               alim- ntan
+                                              1. Selatan
+
+
+
+                                       Gambar 1
+                     Contoh Kode Wilayah Provinsi di Pulau Kalimantan
+   Berdasarkan Gambar 1 tersebut, apabila kode Pulau Kalimantan adalah 6, maka kode
+   wilayah masing-masing provinsi adalah sebagai berikut.
+   1. Kalimantan Barat             : 61
+   2. Kalimantan Tengah            : 62
+   3. Kalimantan Selatan           : 63
+   4. Kalimantan Timur             : 64
+   5. Kalimantan Utara             : 65
+
+
+
+
+KP. :PJ.024/PJ.0201/2019
+                                           2
+
+
+
+B. Contoh Pemberian Kode Wilayah Kabupaten/Kota
+
+
+
+
+                                       Gambar 2
+                           Contoh Kode Wilayah Kabupaten/Kota
+
+   Berdasarkan Gambar 2 tersebut, kode wilayah kabupaten/kota untuk Provinsi
+   Kalimantan Barat adalah sebagai berikut.
+   1. Kabupaten Sambas            : 01
+   2. Kabupaten Mempawah          : 02
+   3. Kota Pontianak              : 71
+   4. Kota Singkawang             : 72
+
+C. Contoh Pemberian Kode Wilayah Kecamatan
+
+
+
+
+                                       PALOH
+
+
+
+
+                                                       KABUPATEN
+                                                       BENGKAYANG
+
+
+
+
+                     KOTA
+                     SINGKAWANG
+
+                                       Gambar 3
+                              Contoh Kode Wilayah Kecamatan
+
+
+
+
+KP. :PJ.024/PJ.0201/2019
+                                        3
+
+
+
+   Berdasarkan Gambar 3 tersebut, kode wilayah kecamatan untuk Kabupaten Sambas
+   adalah sebagai berikut:
+   1. Kecamatan Pemangkat        : 010
+   2. Kecamatan Salatiga         : 020
+   3. Kecamatan Selakau          : 030
+   4. Kecamatan Selakau Timur : 040
+D. Contoh Pemberian Kode Subsektor Objek Pajak, Kode Jenis Bumi dan Kode Rincian
+   Objek Pajak.
+                                                             Digit Digit Digit
+                             Objek Pajak
+                                                             ke-11 ke-12 ke-13
+    PBB Sektor Perkebunan                                      1     1     0
+    PBB Sektor Perhutanan hutan alam                           1     1     0
+     PBB Sektor Perhutanan hutan tanaman                       2     1     0
+     PBB Sektor Pertambangan Minyak dan Gas Bumi untuk         1
+                                                                     3     0
+     permukaan bumi offshore
+     PBB Sektor Pertambangan Minyak dan Gas Bumi untuk         1
+                                                                     2     0
+     tubuh bumi
+     PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi
+                                                               1     1     0
+     untuk permukaan bumi onshore
+     PBB Sektor Pertambangan untuk Pengusahaan Panas Bumi
+                                                               1     2     0
+     untuk tubuh bumi
+     PBB Sektor Pertambangan Mineral atau Batubara untuk       1
+                                                                     1     4
+     permukaan bumi onshore, jenis galian tambang batubara
+     PBB Sektor Pertambangan Mineral atau Batubara untuk       1
+                                                                     2     1
+     tubuh bumi, jenis galian tambang timah
+     PBB Sektor Lainnya fasilitas penyimpanan dan pengolahan   6
+                                                                     3     4
+     dengan jenis bangunan FSU
+
+E. Contoh Pemberian NOP
+   KPP Z (dengan kode KPP 999) yang berada di Provinsi Kalimantan Barat (lihat kode
+   wilayah provinsi, kode wilayah kabupaten/kota, dan kode wilayah kecamatan pada
+   contoh sebelumnya), memiliki objek pajak dengan keterangan sebagai berikut.
+
+
+
+
+KP. :PJ.024/PJ.0201/2019
+                                           -4
+
+
+
+                            Contoh Kode dalam Struktur NOP
+                                                                                   Jumlah
+                                         Jenis                 Wajib
+     No        Sektor      Subsektor                Kab/Kota           Kecamatan    Objek
+                                         Bumi                  Pajak
+                                                                                    Pajak
+                                                                        Selakau
+      1     Perkebunan         -         tanah      Sambas      A                    3
+                                                                         Timur
+      2      Perhutanan    Hutan Alam     tanah     Sambas      B       Salatiga     1
+                                        onshore,
+           Pertambangan
+                                        offshore,                       Selakau
+      3     Minyak dan                              Sambas      F                    3
+                                        dan tubuh                        Timur
+             Gas Bumi
+                                           bumi
+           Pertambangan                                                 Selakau
+                                         onshore                C                    2
+            Mineral atau                                                 Timur
+      4                        -        dan tubuh   Sambas
+             Batubara
+                                          bumi                  D      Pemangkat     2
+               (intan)
+           Pertambangan
+                                         offshore
+            Mineral atau
+      5                        -        dan tubuh   Sambas      E       Selakau      4
+             Batubara
+                                           bumi
+               (timah)
+
+   NOP atas objek pajak tersebut disusun sebagai berikut.
+   1. 3 (tiga) objek pajak PBB Sektor Perkebunan diberikan NOP:
+         a) 61.01.040.999.110.0001.1 (WP A);
+         b) 61.01.040.999.110.0002.1 (WP A); dan
+         c) 61.01.040.999.110.0003.1 (WP A).
+   2. 1 (satu) objek pajak PBB Sektor Perhutanan subsektor hutan alam diberikan NOP
+        61.01.020.999.110.0001.2 (WP B).
+   3. 3 (tiga) objek pajak PBB Sektor Pertambangan Minyak dan Gas Bumi diberikan
+        NOP:
+         a) 61.01.000.999.110.0001.3 (WP F);
+         b) 00.00.000.081.120.0001.3 (WP F); dan
+         c) 00.00.000.081.130.0002.3 (WP F).
+   4. 4 (empat) objek pajak PBB Sektor Pertambangan Mineral atau Batubara untuk
+        jenis galian tambang intan (mineral bukan logam) diberikan NOP:
+         a) 61.01.000.999.112.0001.5 (WP C);
+         b) 61.01.000.999.122.0002.5 (WP C);
+         c) 61.01.000.999.112.0003.5 (WP D); dan
+         d) 61.01.000.999.122.0004.5 (WP D).
+   5. 4 (empat) objek pajak PBB Sektor Pertambangan Mineral atau Batubara untuk
+        jenis galian tambang timah (mineral logam) diberikan NOP:
+         a) 61.01.000.999.131.0005.5 (WP E);
+         b) 61.01.000.999.121.0006.5 (WP E);
+         c) 61.01.000.999.131.0007.5 (WP E); dan
+         d) 61.01.000.999.121.0008.5 (WP E).
+
+
+
+                                                     DIREKTUR JENDERAL,
+
+
+
+
+                                                     S_UR.Y0 UTOM'Ci
+
+
+
+
+KP. :PJ.024/PJ.0201/2019
+
