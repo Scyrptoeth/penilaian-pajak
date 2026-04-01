@@ -98,12 +98,48 @@
   max-width: 75ch;
   font-size: 1rem;
   line-height: 1.8;
+  text-align: justify;
 }
 
 .legal-prose p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
+/* Ortax HTML structure support */
+.legal-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.25em 0;
+}
+
+.legal-prose table td {
+  vertical-align: top;
+  padding: 0.15em 0.3em;
+  text-align: justify;
+  white-space: normal;
+}
+
+.legal-prose ol {
+  padding-left: 2.5em;
+  margin: 0.5em 0;
+}
+
+.legal-prose ol li {
+  margin-bottom: 0.5em;
+  text-align: justify;
+}
+
+.legal-prose strong {
+  font-weight: 700;
+}
+
+.legal-prose br + br {
+  display: block;
+  content: "";
+  margin-top: 0.5em;
+}
+
+/* Legacy JS-based formatting (for non-Ortax content) */
 .legal-prose .legal-bab {
   text-align: center;
   font-weight: 700;
@@ -235,32 +271,15 @@ aside,
 }
 
 /* =============================================
-   Legal prose table responsive (mobile)
+   Legal prose dark mode overrides for Ortax HTML
    ============================================= */
 
-.legal-prose table {
-  display: block;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  max-width: 100%;
+.dark .legal-prose table td,
+.dark .legal-prose div,
+.dark .legal-prose span {
+  color: inherit;
 }
 
-.legal-prose table th,
-.legal-prose table td {
-  white-space: nowrap;
-}
-
-/* =============================================
-   Regulation image attachments (Phase 2)
-   ============================================= */
-
-.regulation-image {
-  margin: 1.5em 0;
-  max-width: 100%;
-}
-
-.regulation-image img {
-  display: block;
-  width: 100%;
-  height: auto;
+.dark .legal-prose strong {
+  color: var(--color-stone-100, #f5f5f4);
 }
