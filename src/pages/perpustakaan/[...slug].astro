@@ -46,6 +46,7 @@ const searchKeywords = [
   'pajak', 'penilaian', 'penilai', 'nilai', 'menilai',
   'peraturan', 'menteri', 'keuangan',
 ].join(', ');
+const images = data.lampiran_images || [];
 ---
 
 <BaseLayout title={`${data.nomor} — ${data.title}`} description={data.ringkasan}>
@@ -115,6 +116,37 @@ const searchKeywords = [
         <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
           <span data-pagefind-meta={`keywords[${searchKeywords}]`} style="display:none;"></span>
           <Content />
+
+          {images.length > 0 && (
+            <section class="mt-12 border-t-2 border-navy-100 pt-8 dark:border-navy-800">
+              <h2 class="font-heading text-xl font-bold text-navy-800 dark:text-stone-100">
+                Lampiran (Halaman Scan)
+              </h2>
+              <p class="mt-2 text-sm text-navy-500 dark:text-stone-400">
+                Halaman berikut ditampilkan sebagai image dari dokumen PDF asli untuk menjaga keutuhan format tabel, formulir, dan grafik.
+              </p>
+              <div class="mt-6 space-y-8">
+                {images.map((img) => (
+                  <figure class="regulation-image overflow-hidden border-2 border-navy-100 dark:border-navy-800">
+                    <img
+                      src={`/images/regulations/${regulation.id.split('/').pop()}/${img.file}`}
+                      alt={img.caption}
+                      loading="lazy"
+                      class="w-full"
+                    />
+                    <figcaption class="border-t border-navy-100 bg-navy-50 px-4 py-3 text-center text-sm text-navy-500 dark:border-navy-800 dark:bg-navy-900/50 dark:text-stone-400">
+                      {img.caption}
+                    </figcaption>
+                    {img.ocr_text && (
+                      <div class="sr-only">
+                        {img.ocr_text}
+                      </div>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         {data.sumber_pdf && (

@@ -21,6 +21,14 @@ const regulations = defineCollection({
     berlaku_untuk: z.array(z.string()).optional(),
     ringkasan: z.string(),
     sumber_pdf: z.string().optional(),
+    // Phase 2: Hybrid content fields
+    bentuk: z.enum(['1', '2', '3', '4']).optional(),
+    lampiran_images: z.array(z.object({
+      halaman: z.number(),
+      file: z.string(),
+      caption: z.string(),
+      ocr_text: z.string().optional(),
+    })).optional(),
   }),
 });
 
