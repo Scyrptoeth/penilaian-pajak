@@ -46,7 +46,6 @@ const searchKeywords = [
   'pajak', 'penilaian', 'penilai', 'nilai', 'menilai',
   'peraturan', 'menteri', 'keuangan',
 ].join(', ');
-const images = data.lampiran_images || [];
 ---
 
 <BaseLayout title={`${data.nomor} — ${data.title}`} description={data.ringkasan}>
@@ -150,53 +149,37 @@ const images = data.lampiran_images || [];
         <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
           <span data-pagefind-meta={`keywords[${searchKeywords}]`} style="display:none;"></span>
           <Content />
-
-          {images.length > 0 && (
-            <section class="mt-12 border-t-2 border-navy-100 pt-8 dark:border-navy-800">
-              <h2 class="font-heading text-xl font-bold text-navy-800 dark:text-stone-100">
-                Lampiran (Halaman Scan)
-              </h2>
-              <p class="mt-2 text-sm text-navy-500 dark:text-stone-400">
-                Halaman berikut ditampilkan sebagai image dari dokumen PDF asli untuk menjaga keutuhan format tabel, formulir, dan grafik.
-              </p>
-              <div class="mt-6 space-y-8">
-                {images.map((img) => (
-                  <figure class="regulation-image overflow-hidden border-2 border-navy-100 dark:border-navy-800">
-                    <img
-                      src={`/images/regulations/${regulation.id.split('/').pop()}/${img.file}`}
-                      alt={img.caption}
-                      loading="lazy"
-                      class="w-full"
-                    />
-                    <figcaption class="border-t border-navy-100 bg-navy-50 px-4 py-3 text-center text-sm text-navy-500 dark:border-navy-800 dark:bg-navy-900/50 dark:text-stone-400">
-                      {img.caption}
-                    </figcaption>
-                    {img.ocr_text && (
-                      <div class="sr-only">
-                        {img.ocr_text}
-                      </div>
-                    )}
-                  </figure>
-                ))}
-              </div>
-            </section>
-          )}
         </div>
 
-        {data.sumber_pdf && (
-          <div class="mt-8 border-t-2 border-navy-100 pt-6 dark:border-navy-800">
-            <a
-              href={data.sumber_pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-sm font-medium text-gold-600 hover:text-gold-500 dark:text-gold-400 dark:hover:text-gold-300"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-                <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
-                <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
-              </svg>
-              Download PDF asli
-            </a>
+        {(data.sumber_pdf || data.lampiran_pdf) && (
+          <div class="mt-8 flex flex-wrap gap-4 border-t-2 border-navy-100 pt-6 dark:border-navy-800">
+            {data.lampiran_pdf && (
+              <a
+                href={data.lampiran_pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 border-2 border-gold-400 bg-gold-400/10 px-5 py-2.5 font-heading text-sm font-semibold text-gold-700 transition-colors hover:bg-gold-400 hover:text-navy-900 dark:text-gold-400 dark:hover:bg-gold-400 dark:hover:text-navy-900"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                  <path d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm4.75 11.25a.75.75 0 01-1.5 0V8.636L6.295 10.09a.75.75 0 01-1.09-1.03l3.25-3.5a.75.75 0 011.09 0l3.25 3.5a.75.75 0 11-1.09 1.03L10.25 8.636v4.614z" />
+                </svg>
+                Lihat Lampiran PDF
+              </a>
+            )}
+            {data.sumber_pdf && (
+              <a
+                href={data.sumber_pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-sm font-medium text-gold-600 hover:text-gold-500 dark:text-gold-400 dark:hover:text-gold-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                  <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                  <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+                </svg>
+                Download PDF Asli
+              </a>
+            )}
           </div>
         )}
       </div>
