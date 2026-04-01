@@ -66,11 +66,13 @@ function computeNoiseScore(body) {
     }
 
     // 3. Consonant-only sequences > 4 chars (no vowels — likely OCR garbage)
+    // Known legitimate Indonesian tax abbreviations (consonant-heavy)
+    const TAX_ABBREVS = /^(SKPKPP|SPMKP|PPnBM|SKPLB|SKPPKP|SKTPBB|NPWPj?|KPPNy?|LHPdK|NJOPTKP|NJKP|SPPT|STTS|DHKP|RKPPBB|BPHTB|PPHTB|SKBKB|SKBKBT|SKBLB|SKKP|SKPKB|SKPKBT|STB|STPD|BBNKB|STPBB|STRP|SSPBB|SPPTPBB|SKPBB|SKPPBB|SPMBB|SPMKP|SPMPKP)$/i;
     const consonantRuns = trimmed.match(/[bcdfghjklmnpqrstvwxyz]{5,}/gi);
     if (consonantRuns) {
       for (const run of consonantRuns) {
-        // Allow common Indonesian consonant clusters
-        if (!/^(ngk|ngg|str|mpr|ntr)/i.test(run)) {
+        // Allow common Indonesian consonant clusters and tax abbreviations
+        if (!/^(ngk|ngg|str|mpr|ntr)/i.test(run) && !TAX_ABBREVS.test(run)) {
           noiseChars += run.length;
         }
       }

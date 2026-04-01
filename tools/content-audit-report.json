@@ -1,445 +1,75 @@
 [
   {
-    "file": "src/content/regulations/pmk/pmk-256-2014.md",
-    "nomor": "PMK-256/PMK.03/2014",
-    "totalChars": 536020,
-    "totalLines": 9754,
+    "file": "src/content/regulations/se/se-16-2025.md",
+    "nomor": "SE-16/PJ/2025",
+    "totalChars": 241462,
+    "totalLines": 5153,
     "hasLampiran": true,
-    "noiseScore": 46.11,
+    "noiseScore": 1.82,
     "indicators": [
       "high-noise-lines"
     ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-23-2011.md",
-    "nomor": "SE-23/PJ/2011",
-    "totalChars": 2914,
-    "totalLines": 88,
-    "hasLampiran": false,
-    "noiseScore": 36.58,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-253-2014.md",
-    "nomor": "PMK-253/PMK.03/2014",
-    "totalChars": 138481,
-    "totalLines": 2917,
-    "hasLampiran": true,
-    "noiseScore": 32.88,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-82-2017.md",
-    "nomor": "PMK-82/PMK.03/2017",
-    "totalChars": 68181,
-    "totalLines": 1513,
-    "hasLampiran": true,
-    "noiseScore": 28.07,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-48-2021.md",
-    "nomor": "PMK-48/PMK.03/2021",
-    "totalChars": 102035,
-    "totalLines": 2596,
-    "hasLampiran": true,
-    "noiseScore": 26.24,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-36-2014.md",
-    "nomor": "SE-36/PJ/2014",
-    "totalChars": 90310,
-    "totalLines": 2412,
-    "hasLampiran": true,
-    "noiseScore": 24.84,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-02-2022.md",
-    "nomor": "SE-02/PJ/2022",
-    "totalChars": 363069,
-    "totalLines": 12894,
-    "hasLampiran": true,
-    "noiseScore": 24.45,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
+    "bentuk": 3
   },
   {
     "file": "src/content/regulations/pmk/pmk-81-2017.md",
     "nomor": "PMK-81/PMK.03/2017",
-    "totalChars": 239894,
-    "totalLines": 5508,
+    "totalChars": 177589,
+    "totalLines": 4831,
     "hasLampiran": true,
-    "noiseScore": 21.25,
+    "noiseScore": 1.57,
     "indicators": [
       "high-noise-lines"
     ],
-    "bentuk": 4
+    "bentuk": 3
   },
   {
-    "file": "src/content/regulations/se/se-16-2025.md",
-    "nomor": "SE-16/PJ/2025",
-    "totalChars": 318767,
-    "totalLines": 6037,
+    "file": "src/content/regulations/pmk/pmk-48-2021.md",
+    "nomor": "PMK-48/PMK.03/2021",
+    "totalChars": 77891,
+    "totalLines": 2160,
     "hasLampiran": true,
-    "noiseScore": 19.91,
+    "noiseScore": 1.49,
     "indicators": [
       "high-noise-lines"
     ],
-    "bentuk": 4
+    "bentuk": 3
   },
   {
-    "file": "src/content/regulations/per/per-19-2019.md",
-    "nomor": "PER-19/PJ/2019",
-    "totalChars": 465830,
-    "totalLines": 21626,
+    "file": "src/content/regulations/pmk/pmk-82-2017.md",
+    "nomor": "PMK-82/PMK.03/2017",
+    "totalChars": 46218,
+    "totalLines": 1237,
     "hasLampiran": true,
-    "noiseScore": 19.12,
+    "noiseScore": 1.38,
     "indicators": [
       "high-noise-lines"
     ],
-    "bentuk": 4
+    "bentuk": 3
   },
   {
-    "file": "src/content/regulations/pmk/pmk-254-2014.md",
-    "nomor": "PMK-254/PMK.03/2014",
-    "totalChars": 33155,
-    "totalLines": 842,
+    "file": "src/content/regulations/se/se-02-2022.md",
+    "nomor": "SE-02/PJ/2022",
+    "totalChars": 225238,
+    "totalLines": 11141,
     "hasLampiran": true,
-    "noiseScore": 17.02,
+    "noiseScore": 1.35,
     "indicators": [
       "high-noise-lines"
     ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-64-2013.md",
-    "nomor": "SE-64/PJ/2013",
-    "totalChars": 174591,
-    "totalLines": 4174,
-    "hasLampiran": true,
-    "noiseScore": 16.79,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-15-2025.md",
-    "nomor": "PMK-15/PMK.03/2025",
-    "totalChars": 358076,
-    "totalLines": 9266,
-    "hasLampiran": true,
-    "noiseScore": 16.13,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-129-2023.md",
-    "nomor": "PMK-129/PMK.03/2023",
-    "totalChars": 122940,
-    "totalLines": 3114,
-    "hasLampiran": true,
-    "noiseScore": 14.7,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-33-2015.md",
-    "nomor": "SE-33/PJ/2015",
-    "totalChars": 54955,
-    "totalLines": 1327,
-    "hasLampiran": true,
-    "noiseScore": 14.43,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-242-2014.md",
-    "nomor": "PMK-242/PMK.03/2014",
-    "totalChars": 137238,
-    "totalLines": 3264,
-    "hasLampiran": true,
-    "noiseScore": 11.91,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/per/per-31-2014.md",
-    "nomor": "PER-31/PJ/2014",
-    "totalChars": 53612,
-    "totalLines": 1825,
-    "hasLampiran": true,
-    "noiseScore": 11.83,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-118-2024.md",
-    "nomor": "PMK-118/PMK.03/2024",
-    "totalChars": 804605,
-    "totalLines": 19827,
-    "hasLampiran": true,
-    "noiseScore": 11.62,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-53-2016.md",
-    "nomor": "SE-53/PJ/2016",
-    "totalChars": 71225,
-    "totalLines": 1790,
-    "hasLampiran": true,
-    "noiseScore": 10.6,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-42-2014.md",
-    "nomor": "SE-42/PJ/2014",
-    "totalChars": 140010,
-    "totalLines": 3385,
-    "hasLampiran": true,
-    "noiseScore": 10.07,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-44-2017.md",
-    "nomor": "SE-44/PJ/2017",
-    "totalChars": 143408,
-    "totalLines": 3525,
-    "hasLampiran": true,
-    "noiseScore": 9.77,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
+    "bentuk": 3
   },
   {
     "file": "src/content/regulations/pmk/pmk-11-2013.md",
     "nomor": "PMK-11/PMK.03/2013",
-    "totalChars": 45754,
-    "totalLines": 1175,
+    "totalChars": 39085,
+    "totalLines": 1074,
     "hasLampiran": true,
-    "noiseScore": 9.46,
+    "noiseScore": 0.91,
     "indicators": [
       "high-noise-lines"
     ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-25-2015.md",
-    "nomor": "SE-25/PJ/2015",
-    "totalChars": 244879,
-    "totalLines": 6000,
-    "hasLampiran": true,
-    "noiseScore": 9.22,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-244-2015.md",
-    "nomor": "PMK-244/PMK.03/2015",
-    "totalChars": 85403,
-    "totalLines": 1715,
-    "hasLampiran": true,
-    "noiseScore": 9.07,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-43-2017.md",
-    "nomor": "SE-43/PJ/2017",
-    "totalChars": 442204,
-    "totalLines": 10628,
-    "hasLampiran": true,
-    "noiseScore": 6.82,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-02-2021.md",
-    "nomor": "SE-02/PJ/2021",
-    "totalChars": 63408,
-    "totalLines": 1455,
-    "hasLampiran": true,
-    "noiseScore": 6.3,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/se/se-25-2020.md",
-    "nomor": "SE-25/PJ/2020",
-    "totalChars": 34772,
-    "totalLines": 884,
-    "hasLampiran": true,
-    "noiseScore": 5.59,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-79-2023.md",
-    "nomor": "PMK-79/PMK.03/2023",
-    "totalChars": 92704,
-    "totalLines": 2570,
-    "hasLampiran": true,
-    "noiseScore": 5.4,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 4
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-81-2024.md",
-    "nomor": "PMK-81/PMK.03/2024",
-    "totalChars": 1494273,
-    "totalLines": 38064,
-    "hasLampiran": true,
-    "noiseScore": 4.01,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-234-2022.md",
-    "nomor": "PMK-234/PMK.03/2022",
-    "totalChars": 35638,
-    "totalLines": 1045,
-    "hasLampiran": true,
-    "noiseScore": 3.51,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/per/per-42-2015.md",
-    "nomor": "PER-42/PJ/2015",
-    "totalChars": 51897,
-    "totalLines": 1603,
-    "hasLampiran": true,
-    "noiseScore": 3.12,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/kep/kep-59-2023.md",
-    "nomor": "KEP-59/PJ/2023",
-    "totalChars": 529733,
-    "totalLines": 18927,
-    "hasLampiran": true,
-    "noiseScore": 2.5,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/kep/kep-126-2015.md",
-    "nomor": "KEP-126/PJ/2015",
-    "totalChars": 5139,
-    "totalLines": 141,
-    "hasLampiran": true,
-    "noiseScore": 2.46,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-67-2020.md",
-    "nomor": "PMK-67/PMK.03/2020",
-    "totalChars": 31876,
-    "totalLines": 841,
-    "hasLampiran": true,
-    "noiseScore": 2.17,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/pmk/pmk-122-2019.md",
-    "nomor": "PMK-122/PMK.03/2019",
-    "totalChars": 59583,
-    "totalLines": 1514,
-    "hasLampiran": true,
-    "noiseScore": 1.88,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/per/per-02-2015.md",
-    "nomor": "PER-02/PJ/2015",
-    "totalChars": 21744,
-    "totalLines": 682,
-    "hasLampiran": true,
-    "noiseScore": 1.34,
-    "indicators": [],
-    "bentuk": 3
-  },
-  {
-    "file": "src/content/regulations/se/se-15-2018.md",
-    "nomor": "SE-15/PJ/2018",
-    "totalChars": 284579,
-    "totalLines": 5596,
-    "hasLampiran": true,
-    "noiseScore": 1.05,
-    "indicators": [
-      "high-noise-lines"
-    ],
-    "bentuk": 3
+    "bentuk": 2
   },
   {
     "file": "src/content/regulations/per/per-25-2020.md",
@@ -478,6 +108,28 @@
     "bentuk": 2
   },
   {
+    "file": "src/content/regulations/per/per-19-2019.md",
+    "nomor": "PER-19/PJ/2019",
+    "totalChars": 322075,
+    "totalLines": 19697,
+    "hasLampiran": true,
+    "noiseScore": 0.75,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/kep/kep-59-2023.md",
+    "nomor": "KEP-59/PJ/2023",
+    "totalChars": 49125,
+    "totalLines": 2932,
+    "hasLampiran": true,
+    "noiseScore": 0.72,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/se/se-05-2016.md",
     "nomor": "SE-05/PJ/2016",
     "totalChars": 128055,
@@ -488,12 +140,12 @@
     "bentuk": 2
   },
   {
-    "file": "src/content/regulations/se/se-41-2014.md",
-    "nomor": "SE-41/PJ/2014",
-    "totalChars": 63899,
-    "totalLines": 1089,
+    "file": "src/content/regulations/pmk/pmk-129-2023.md",
+    "nomor": "PMK-129/PMK.03/2023",
+    "totalChars": 103615,
+    "totalLines": 2798,
     "hasLampiran": true,
-    "noiseScore": 0.45,
+    "noiseScore": 0.51,
     "indicators": [
       "high-noise-lines"
     ],
@@ -507,6 +159,18 @@
     "hasLampiran": true,
     "noiseScore": 0.44,
     "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-242-2014.md",
+    "nomor": "PMK-242/PMK.03/2014",
+    "totalChars": 114389,
+    "totalLines": 2970,
+    "hasLampiran": true,
+    "noiseScore": 0.42,
+    "indicators": [
+      "high-noise-lines"
+    ],
     "bentuk": 2
   },
   {
@@ -568,13 +232,49 @@
     "bentuk": 2
   },
   {
-    "file": "src/content/regulations/se/se-04-2021.md",
-    "nomor": "SE-04/PJ/2021",
-    "totalChars": 38825,
-    "totalLines": 1254,
+    "file": "src/content/regulations/se/se-64-2013.md",
+    "nomor": "SE-64/PJ/2013",
+    "totalChars": 118939,
+    "totalLines": 3634,
+    "hasLampiran": true,
+    "noiseScore": 0.25,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-45-2015.md",
+    "nomor": "SE-45/PJ/2015",
+    "totalChars": 133747,
+    "totalLines": 3802,
     "hasLampiran": true,
     "noiseScore": 0.24,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/per/per-02-2015.md",
+    "nomor": "PER-02/PJ/2015",
+    "totalChars": 21032,
+    "totalLines": 657,
+    "hasLampiran": true,
+    "noiseScore": 0.21,
     "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-118-2024.md",
+    "nomor": "PMK-118/PMK.03/2024",
+    "totalChars": 699261,
+    "totalLines": 17510,
+    "hasLampiran": true,
+    "noiseScore": 0.21,
+    "indicators": [
+      "high-noise-lines"
+    ],
     "bentuk": 2
   },
   {
@@ -590,24 +290,32 @@
     "bentuk": 1
   },
   {
-    "file": "src/content/regulations/se/se-45-2015.md",
-    "nomor": "SE-45/PJ/2015",
-    "totalChars": 134346,
-    "totalLines": 3859,
+    "file": "src/content/regulations/se/se-02-2021.md",
+    "nomor": "SE-02/PJ/2021",
+    "totalChars": 52312,
+    "totalLines": 1254,
     "hasLampiran": true,
-    "noiseScore": 0.18,
-    "indicators": [
-      "high-noise-lines"
-    ],
+    "noiseScore": 0.19,
+    "indicators": [],
     "bentuk": 2
   },
   {
     "file": "src/content/regulations/se/se-41-2015.md",
     "nomor": "SE-41/PJ/2015",
-    "totalChars": 108422,
-    "totalLines": 2777,
+    "totalChars": 107867,
+    "totalLines": 2751,
     "hasLampiran": true,
-    "noiseScore": 0.16,
+    "noiseScore": 0.15,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-53-2016.md",
+    "nomor": "SE-53/PJ/2016",
+    "totalChars": 52110,
+    "totalLines": 1604,
+    "hasLampiran": true,
+    "noiseScore": 0.15,
     "indicators": [],
     "bentuk": 2
   },
@@ -624,6 +332,18 @@
     "bentuk": 1
   },
   {
+    "file": "src/content/regulations/se/se-41-2014.md",
+    "nomor": "SE-41/PJ/2014",
+    "totalChars": 63823,
+    "totalLines": 1089,
+    "hasLampiran": true,
+    "noiseScore": 0.14,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/pmk/pmk-17-2011.md",
     "nomor": "PMK-17/PMK.03/2011",
     "totalChars": 8368,
@@ -632,6 +352,28 @@
     "noiseScore": 0.12,
     "indicators": [],
     "bentuk": 1
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-254-2014.md",
+    "nomor": "PMK-254/PMK.03/2014",
+    "totalChars": 25628,
+    "totalLines": 683,
+    "hasLampiran": true,
+    "noiseScore": 0.12,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-04-2021.md",
+    "nomor": "SE-04/PJ/2021",
+    "totalChars": 36231,
+    "totalLines": 999,
+    "hasLampiran": true,
+    "noiseScore": 0.12,
+    "indicators": [],
+    "bentuk": 2
   },
   {
     "file": "src/content/regulations/pmk/pmk-186-2019.md",
@@ -646,13 +388,15 @@
     "bentuk": 1
   },
   {
-    "file": "src/content/regulations/se/se-51-2016.md",
-    "nomor": "SE-51/PJ/2016",
-    "totalChars": 26365,
-    "totalLines": 675,
+    "file": "src/content/regulations/pmk/pmk-253-2014.md",
+    "nomor": "PMK-253/PMK.03/2014",
+    "totalChars": 76750,
+    "totalLines": 2106,
     "hasLampiran": true,
     "noiseScore": 0.11,
-    "indicators": [],
+    "indicators": [
+      "high-noise-lines"
+    ],
     "bentuk": 2
   },
   {
@@ -666,6 +410,16 @@
     "bentuk": 1
   },
   {
+    "file": "src/content/regulations/se/se-36-2014.md",
+    "nomor": "SE-36/PJ/2014",
+    "totalChars": 49228,
+    "totalLines": 1028,
+    "hasLampiran": true,
+    "noiseScore": 0.09,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/pp/pp-79-2010.md",
     "nomor": "PP-79/2010",
     "totalChars": 56890,
@@ -675,6 +429,16 @@
     "indicators": [
       "high-noise-lines"
     ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-33-2015.md",
+    "nomor": "SE-33/PJ/2015",
+    "totalChars": 39537,
+    "totalLines": 1179,
+    "hasLampiran": true,
+    "noiseScore": 0.07,
+    "indicators": [],
     "bentuk": 2
   },
   {
@@ -708,10 +472,74 @@
     "bentuk": 1
   },
   {
+    "file": "src/content/regulations/se/se-23-2011.md",
+    "nomor": "SE-23/PJ/2011",
+    "totalChars": 1575,
+    "totalLines": 37,
+    "hasLampiran": false,
+    "noiseScore": 0.06,
+    "indicators": [],
+    "bentuk": 1
+  },
+  {
+    "file": "src/content/regulations/se/se-44-2017.md",
+    "nomor": "SE-44/PJ/2017",
+    "totalChars": 114954,
+    "totalLines": 3058,
+    "hasLampiran": true,
+    "noiseScore": 0.06,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/per/per-45-2013.md",
     "nomor": "PER-45/PJ/2013",
-    "totalChars": 26928,
-    "totalLines": 729,
+    "totalChars": 26896,
+    "totalLines": 721,
+    "hasLampiran": true,
+    "noiseScore": 0.05,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-15-2025.md",
+    "nomor": "PMK-15/PMK.03/2025",
+    "totalChars": 299879,
+    "totalLines": 8248,
+    "hasLampiran": true,
+    "noiseScore": 0.05,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-25-2015.md",
+    "nomor": "SE-25/PJ/2015",
+    "totalChars": 214084,
+    "totalLines": 5554,
+    "hasLampiran": true,
+    "noiseScore": 0.05,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-25-2020.md",
+    "nomor": "SE-25/PJ/2020",
+    "totalChars": 30816,
+    "totalLines": 808,
+    "hasLampiran": true,
+    "noiseScore": 0.05,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-51-2016.md",
+    "nomor": "SE-51/PJ/2016",
+    "totalChars": 24623,
+    "totalLines": 607,
     "hasLampiran": true,
     "noiseScore": 0.05,
     "indicators": [],
@@ -728,6 +556,16 @@
     "bentuk": 1
   },
   {
+    "file": "src/content/regulations/per/per-42-2015.md",
+    "nomor": "PER-42/PJ/2015",
+    "totalChars": 44071,
+    "totalLines": 1355,
+    "hasLampiran": true,
+    "noiseScore": 0.04,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/pmk/pmk-26-2015.md",
     "nomor": "PMK-26/PMK.03/2015",
     "totalChars": 17397,
@@ -738,14 +576,26 @@
     "bentuk": 1
   },
   {
-    "file": "src/content/regulations/pmk/pmk-267-2014.md",
-    "nomor": "PMK-267/PMK.011/2014",
-    "totalChars": 6987,
-    "totalLines": 209,
-    "hasLampiran": false,
+    "file": "src/content/regulations/pmk/pmk-81-2024.md",
+    "nomor": "PMK-81/PMK.03/2024",
+    "totalChars": 1276182,
+    "totalLines": 35811,
+    "hasLampiran": true,
+    "noiseScore": 0.04,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-43-2017.md",
+    "nomor": "SE-43/PJ/2017",
+    "totalChars": 368651,
+    "totalLines": 9313,
+    "hasLampiran": true,
     "noiseScore": 0.04,
     "indicators": [],
-    "bentuk": 1
+    "bentuk": 2
   },
   {
     "file": "src/content/regulations/kep/kep-46-2021.md",
@@ -778,6 +628,38 @@
     "bentuk": 1
   },
   {
+    "file": "src/content/regulations/pmk/pmk-234-2022.md",
+    "nomor": "PMK-234/PMK.03/2022",
+    "totalChars": 33019,
+    "totalLines": 1005,
+    "hasLampiran": true,
+    "noiseScore": 0.03,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-256-2014.md",
+    "nomor": "PMK-256/PMK.03/2014",
+    "totalChars": 251205,
+    "totalLines": 7058,
+    "hasLampiran": true,
+    "noiseScore": 0.03,
+    "indicators": [
+      "high-noise-lines"
+    ],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/se/se-15-2018.md",
+    "nomor": "SE-15/PJ/2018",
+    "totalChars": 274252,
+    "totalLines": 5413,
+    "hasLampiran": true,
+    "noiseScore": 0.03,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/kep/kep-93-2019.md",
     "nomor": "KEP-93/PJ/2019",
     "totalChars": 4999,
@@ -788,20 +670,30 @@
     "bentuk": 1
   },
   {
-    "file": "src/content/regulations/pmk/pmk-76-2013.md",
-    "nomor": "PMK-76/PMK.03/2013",
-    "totalChars": 30184,
-    "totalLines": 862,
+    "file": "src/content/regulations/pmk/pmk-122-2019.md",
+    "nomor": "PMK-122/PMK.03/2019",
+    "totalChars": 55649,
+    "totalLines": 1457,
     "hasLampiran": true,
-    "noiseScore": 0.01,
+    "noiseScore": 0.02,
     "indicators": [],
     "bentuk": 2
   },
   {
-    "file": "src/content/regulations/se/se-37-2017.md",
-    "nomor": "SE-37/PJ/2017",
-    "totalChars": 6969,
-    "totalLines": 190,
+    "file": "src/content/regulations/se/se-42-2014.md",
+    "nomor": "SE-42/PJ/2014",
+    "totalChars": 86026,
+    "totalLines": 2316,
+    "hasLampiran": true,
+    "noiseScore": 0.02,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-76-2013.md",
+    "nomor": "PMK-76/PMK.03/2013",
+    "totalChars": 30184,
+    "totalLines": 862,
     "hasLampiran": true,
     "noiseScore": 0.01,
     "indicators": [],
@@ -816,6 +708,16 @@
     "noiseScore": 0.01,
     "indicators": [],
     "bentuk": 1
+  },
+  {
+    "file": "src/content/regulations/kep/kep-126-2015.md",
+    "nomor": "KEP-126/PJ/2015",
+    "totalChars": 4065,
+    "totalLines": 126,
+    "hasLampiran": true,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 2
   },
   {
     "file": "src/content/regulations/kep/kep-185-2020.md",
@@ -878,6 +780,16 @@
     "bentuk": 1
   },
   {
+    "file": "src/content/regulations/per/per-31-2014.md",
+    "nomor": "PER-31/PJ/2014",
+    "totalChars": 40750,
+    "totalLines": 1314,
+    "hasLampiran": true,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/pmk/pmk-23-2014.md",
     "nomor": "PMK-23/PMK.03/2014",
     "totalChars": 4049,
@@ -886,6 +798,46 @@
     "noiseScore": 0,
     "indicators": [],
     "bentuk": 1
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-244-2015.md",
+    "nomor": "PMK-244/PMK.03/2015",
+    "totalChars": 54042,
+    "totalLines": 1548,
+    "hasLampiran": true,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-267-2014.md",
+    "nomor": "PMK-267/PMK.011/2014",
+    "totalChars": 6792,
+    "totalLines": 191,
+    "hasLampiran": false,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 1
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-67-2020.md",
+    "nomor": "PMK-67/PMK.03/2020",
+    "totalChars": 29938,
+    "totalLines": 803,
+    "hasLampiran": true,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
+    "file": "src/content/regulations/pmk/pmk-79-2023.md",
+    "nomor": "PMK-79/PMK.03/2023",
+    "totalChars": 81029,
+    "totalLines": 2447,
+    "hasLampiran": true,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 2
   },
   {
     "file": "src/content/regulations/pmk/pmk-80-2023.md",
@@ -948,10 +900,20 @@
     "bentuk": 2
   },
   {
+    "file": "src/content/regulations/se/se-37-2017.md",
+    "nomor": "SE-37/PJ/2017",
+    "totalChars": 6795,
+    "totalLines": 178,
+    "hasLampiran": true,
+    "noiseScore": 0,
+    "indicators": [],
+    "bentuk": 2
+  },
+  {
     "file": "src/content/regulations/se/se-48-2015.md",
     "nomor": "SE-48/PJ/2015",
-    "totalChars": 10815,
-    "totalLines": 293,
+    "totalChars": 10637,
+    "totalLines": 280,
     "hasLampiran": false,
     "noiseScore": 0,
     "indicators": [],
