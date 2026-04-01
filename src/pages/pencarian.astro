@@ -70,45 +70,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           },
         });
 
-        // Indonesian stemmer with nasal prefix awareness
-        var noStemWords = ['menteri', 'mentari', 'mental', 'menu', 'mereka',
-          'bersama', 'perlu', 'termasuk', 'setiap', 'berdasarkan'];
+        // === GOOGLE-LIKE SEARCH BEHAVIOR ===
+        // 1. "exact phrase" in quotes → never stem
+        // 2. plain words → stem only on zero results, show as suggestion (not replace)
+        // 3. Strip punctuation before stemming
+        // 4. Expanded noStemWords for common Indonesian tax/legal terms
 
-        // Ordered prefix rules: [pattern, replacement]
-        // Longer/more-specific patterns first to avoid greedy mismatch
-        var prefixRules = [
-          [/^meny/, 's'],    // menyapu → sapu
-          [/^mem([bp])/, '$1'], // membawa → bawa, memproses → proses
-          [/^mem/, 'm'],     // memuat → muat
-          [/^meng([gkh])/, '$1'], // menggali → gali
-          [/^meng([aiueo])/, 'k$1'], // pengurang → kurang (k dropped by nasal)
-          [/^meng/, ''],     // mengatur → atur (non-k root)
-          [/^men([cdjtz])/, '$1'], // mendata → data, mencari → cari
-          [/^men/, 'n'],     // menilai → nilai
-          [/^me/, ''],       // melawan → lawan
-          [/^peny/, 's'],    // penyebab → sebab
-          [/^pem([bp])/, '$1'], // pembayar → bayar
-          [/^pem/, 'm'],     // pemuat → muat
-          [/^peng([gkh])/, '$1'], // pengguna → guna
-          [/^peng([aiueo])/, 'k$1'], // pengurang → kurang (k dropped by nasal)
-          [/^peng/, ''],     // non-k root
-          [/^pen([cdjtz])/, '$1'], // pendaftar → daftar
-          [/^pen/, 'n'],     // penilai → nilai
-          [/^pe/, ''],       // pelaku → laku
-          [/^ber/, ''],      // berlaku → laku
-          [/^per/, ''],      // perkara → kara
-          [/^ter/, ''],      // terbuka → buka
-          [/^di/, ''],       // dibuat → buat
-          [/^ke/, ''],       // ketua → tua
-          [/^se/, ''],       // semua → mua
+        // --- No-stem word list ---
+        // Words that should NEVER be stemmed because stemming changes their meaning
+        var noStemWords = [
+          // Common Indonesian words that break when stemmed
+          'menteri', 'mentari', 'mental', 'menu', 'mereka',
+          'bersama', 'perlu', 'termasuk', 'setiap', 'berdasarkan',
+          // Tax/legal terms - stemming changes meaning significantly
+          'pendekatan',   // approach ≠ dekat (near)
+          'penilaian',    // assessment ≠ nilai (value)
+          'peraturan',    // regulation ≠ atur (arrange)
+          'pemerintah',   // government ≠ perintah (command)
+          'pembangunan',  // development ≠ bangun (build)
+          'pendapatan',   // income ≠ dapat (get)
+          'pengelolaan',  // management ≠ kelola (manage) — actually similar but keep for precision
+          'penghasilan',  // income ≠ hasil (result)
+          'keputusan',    // decision ≠ putus (break)
+          'penetapan',    // determination ≠ tetap (fixed)
+          'perhitungan',  // calculation ≠ hitung (count)
+          'persyaratan',  // requirement ≠ syarat (condition) — similar but keep
+          'pelaksanaan',  // implementation ≠ laksana (manner)
+          'pengurangan',  // reduction/deduction ≠ kurang (less)
+          'perpajakan',   // taxation ≠ pajak (tax) — similar but keep for precision
+          'pembayaran',   // payment ≠ bayar (pay) — similar but keep
+          'pengembalian',  // return/refund ≠ kembali (return verb)
+          'pemeriksaan',  // examination ≠ periksa (check)
+          'pemanfaatan',  // utilization
+          'pengenaan',    // imposition
+          'penentuan',    // determination
+          'ketentuan',    // provision
+          'kewajiban',    // obligation
+          'wewenang',     // authority
+          'kewenangan',   // authority (noun)
         ];
 
-        function indonesianStem(word) {
-          var s = word.toLowerCase();
-          if (s.length < 4) return s;
-          if (noStemWords.indexOf(s) !== -1) return s;
+        // --- Prefix rules (unchanged logic) ---
+        var prefixRules = [
+          [/^meny/, 's'],
+          [/^mem([bp])/, '$1'],
+          [/^mem/, 'm'],
+          [/^meng([gkh])/, '$1'],
+          [/^meng([aiueo])/, 'k$1'],
+          [/^meng/, ''],
+          [/^men([cdjtz])/, '$1'],
+          [/^men/, 'n'],
+          [/^me/, ''],
+          [/^peny/, 's'],
+          [/^pem([bp])/, '$1'],
+          [/^pem/, 'm'],
+          [/^peng([gkh])/, '$1'],
+          [/^peng([aiueo])/, 'k$1'],
+          [/^peng/, ''],
+          [/^pen([cdjtz])/, '$1'],
+          [/^pen/, 'n'],
+          [/^pe/, ''],
+          [/^ber/, ''],
+          [/^per/, ''],
+          [/^ter/, ''],
+          [/^di/, ''],
+          [/^ke/, ''],
+          [/^se/, ''],
+        ];
 
-          // Step 1: remove suffix first (no standalone -i, causes over-stripping)
+        // --- Stem function (with punctuation stripping) ---
+        function indonesianStem(word) {
+          // Strip all non-letter characters (quotes, commas, etc.)
+          var cleaned = word.toLowerCase().replace(/[^a-z]/g, '');
+          if (cleaned.length < 4) return cleaned;
+          if (noStemWords.indexOf(cleaned) !== -1) return cleaned;
+
+          var s = cleaned;
+
+          // Step 1: remove suffix (no standalone -i, causes over-stripping)
           s = s.replace(/(kan|an)$/, '');
 
           // Step 2: remove ONE prefix (first match wins)
@@ -120,41 +159,187 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             }
           }
 
-          return s.length > 2 ? s : word.toLowerCase();
+          return s.length > 2 ? s : cleaned;
         }
 
-        // Watch for zero results and retry with stemmed query
-        var stemNote = document.createElement('div');
-        stemNote.id = 'stem-note';
-        stemNote.style.cssText = 'padding:12px 16px;margin-top:8px;font-size:14px;display:none;border-radius:0;';
-        stemNote.className = 'bg-amber-50 border border-amber-500 text-amber-800 dark:bg-amber-900/20 dark:border-amber-600 dark:text-amber-300';
-        el.parentNode.insertBefore(stemNote, el.nextSibling);
+        // --- Query parser: separate quoted phrases from plain words ---
+        function parseQuery(query) {
+          var quoted = [];
+          var plain = [];
+          // Extract "exact phrases" first
+          var withoutQuoted = query.replace(/"([^"]+)"/g, function(match, phrase) {
+            quoted.push(phrase);
+            return '';
+          });
+          // Remaining words are plain (unquoted)
+          var remaining = withoutQuoted.trim().split(/\s+/).filter(function(w) {
+            return w.length > 0;
+          });
+          // Clean any stray quotes from remaining words
+          plain = remaining.map(function(w) {
+            return w.replace(/"/g, '');
+          }).filter(function(w) {
+            return w.length > 0;
+          });
+          return { quoted: quoted, plain: plain };
+        }
 
-        var lastRawQuery = '';
+        // --- Suggestion UI (Google-like "Showing results for X. Search instead for Y") ---
+        var stemContainer = document.createElement('div');
+        stemContainer.id = 'stem-container';
+        stemContainer.style.cssText = 'margin-top:8px;display:none;';
+        el.parentNode.insertBefore(stemContainer, el.nextSibling);
+
+        var isStemmedSearch = false;
+        var originalQuery = '';
+        var lastProcessedQuery = '';
+
         var observer = new MutationObserver(function() {
           var zeroEl = el.querySelector('.pagefind-ui__message');
           var input = el.querySelector('input');
           if (!input) return;
           var currentQuery = input.value.trim();
 
-          if (zeroEl && currentQuery && currentQuery === lastRawQuery) return;
-          lastRawQuery = '';
-          stemNote.style.display = 'none';
+          // Skip if we already processed this exact query
+          if (currentQuery === lastProcessedQuery) return;
 
-          if (!zeroEl || !currentQuery) return;
-          if (zeroEl.textContent.indexOf('Tidak ditemukan') === -1) return;
+          // If user is viewing stemmed results and types new query, reset
+          if (isStemmedSearch && currentQuery !== lastProcessedQuery) {
+            isStemmedSearch = false;
+            originalQuery = '';
+            stemContainer.style.display = 'none';
+            stemContainer.innerHTML = '';
+          }
 
-          // Stem each word and retry
-          var words = currentQuery.split(/\s+/);
-          var stemmed = words.map(indonesianStem).filter(function(w) { return w.length > 2; });
-          var stemmedQuery = stemmed.join(' ');
+          // Only act on zero results
+          if (!zeroEl || !currentQuery) {
+            stemContainer.style.display = 'none';
+            stemContainer.innerHTML = '';
+            lastProcessedQuery = '';
+            return;
+          }
+          if (zeroEl.textContent.indexOf('Tidak ditemukan') === -1) {
+            stemContainer.style.display = 'none';
+            stemContainer.innerHTML = '';
+            lastProcessedQuery = '';
+            return;
+          }
 
-          if (stemmedQuery && stemmedQuery !== currentQuery.toLowerCase()) {
-            lastRawQuery = currentQuery;
-            stemNote.textContent = 'Menampilkan hasil untuk "' + stemmedQuery + '" (dari "' + currentQuery + '")';
-            stemNote.style.display = 'block';
-            input.value = stemmedQuery;
-            input.dispatchEvent(new Event('input'));
+          // Don't stem if this is already a stemmed retry
+          if (isStemmedSearch) return;
+
+          // Parse query for quoted phrases vs plain words
+          var parsed = parseQuery(currentQuery);
+
+          // If entire query is a quoted phrase → DON'T stem at all
+          // (User explicitly wants exact match)
+          if (parsed.quoted.length > 0 && parsed.plain.length === 0) {
+            // Show helpful tip instead
+            stemContainer.innerHTML = '<div class="bg-blue-50 border border-blue-300 text-blue-800 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-300" style="padding:12px 16px;font-size:14px;">'
+              + '<strong>Tip:</strong> Pencarian dengan tanda kutip mencari frasa persis. '
+              + 'Coba tanpa tanda kutip untuk hasil lebih luas: '
+              + '<a href="#" id="stem-remove-quotes" style="text-decoration:underline;font-weight:600;">'
+              + parsed.quoted.join(' ')
+              + '</a>'
+              + '</div>';
+            stemContainer.style.display = 'block';
+            lastProcessedQuery = currentQuery;
+
+            // Handle click: search without quotes
+            var removeQuotesLink = document.getElementById('stem-remove-quotes');
+            if (removeQuotesLink) {
+              removeQuotesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                var unquoted = parsed.quoted.join(' ');
+                input.value = unquoted;
+                input.dispatchEvent(new Event('input'));
+                stemContainer.style.display = 'none';
+                stemContainer.innerHTML = '';
+                lastProcessedQuery = '';
+              });
+            }
+            return;
+          }
+
+          // For unquoted queries: try stemmed version
+          // Only stem the plain (unquoted) words
+          var wordsToStem = parsed.plain;
+          var stemmedWords = wordsToStem.map(indonesianStem).filter(function(w) {
+            return w.length > 2;
+          });
+
+          // Reconstruct: quoted phrases stay as-is + stemmed plain words
+          var stemmedParts = [];
+          parsed.quoted.forEach(function(q) {
+            stemmedParts.push('"' + q + '"');
+          });
+          stemmedWords.forEach(function(w) {
+            stemmedParts.push(w);
+          });
+          var stemmedQuery = stemmedParts.join(' ');
+
+          // Only suggest if stemmed version is actually different
+          if (!stemmedQuery || stemmedQuery.toLowerCase() === currentQuery.toLowerCase()) {
+            lastProcessedQuery = currentQuery;
+            return;
+          }
+
+          // Show Google-like suggestion WITHOUT overwriting input
+          originalQuery = currentQuery;
+          lastProcessedQuery = currentQuery;
+
+          stemContainer.innerHTML = '<div class="bg-amber-50 border border-amber-500 text-amber-800 dark:bg-amber-900/20 dark:border-amber-600 dark:text-amber-300" style="padding:12px 16px;font-size:14px;">'
+            + 'Tidak ditemukan hasil. Menampilkan hasil untuk '
+            + '<a href="#" id="stem-try-link" style="font-weight:700;text-decoration:underline;">' + stemmedQuery + '</a>'
+            + '<br><span style="font-size:13px;opacity:0.8;">Cari persis: '
+            + '<a href="#" id="stem-revert-link" style="font-weight:600;text-decoration:underline;">' + currentQuery + '</a>'
+            + '</span>'
+            + '</div>';
+          stemContainer.style.display = 'block';
+
+          // Handle click: try stemmed query
+          var tryLink = document.getElementById('stem-try-link');
+          if (tryLink) {
+            tryLink.addEventListener('click', function(e) {
+              e.preventDefault();
+              isStemmedSearch = true;
+              originalQuery = currentQuery;
+              input.value = stemmedQuery;
+              lastProcessedQuery = stemmedQuery;
+              input.dispatchEvent(new Event('input'));
+
+              // Update suggestion to show revert option
+              stemContainer.innerHTML = '<div class="bg-amber-50 border border-amber-500 text-amber-800 dark:bg-amber-900/20 dark:border-amber-600 dark:text-amber-300" style="padding:12px 16px;font-size:14px;">'
+                + 'Menampilkan hasil untuk <strong>' + stemmedQuery + '</strong>'
+                + '<br><span style="font-size:13px;opacity:0.8;">Cari persis: '
+                + '<a href="#" id="stem-revert-link-2" style="font-weight:600;text-decoration:underline;">' + originalQuery + '</a>'
+                + '</span>'
+                + '</div>';
+
+              var revertLink2 = document.getElementById('stem-revert-link-2');
+              if (revertLink2) {
+                revertLink2.addEventListener('click', function(e2) {
+                  e2.preventDefault();
+                  isStemmedSearch = false;
+                  input.value = originalQuery;
+                  lastProcessedQuery = '';
+                  input.dispatchEvent(new Event('input'));
+                  stemContainer.style.display = 'none';
+                  stemContainer.innerHTML = '';
+                });
+              }
+            });
+          }
+
+          // Handle click: revert to original
+          var revertLink = document.getElementById('stem-revert-link');
+          if (revertLink) {
+            revertLink.addEventListener('click', function(e) {
+              e.preventDefault();
+              stemContainer.style.display = 'none';
+              stemContainer.innerHTML = '';
+              lastProcessedQuery = '';
+            });
           }
         });
         observer.observe(el, { childList: true, subtree: true });
