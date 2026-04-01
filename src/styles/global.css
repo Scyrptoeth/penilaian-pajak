@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-navy-50: #e8edf4;
@@ -51,4 +53,73 @@
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Legal document prose styling */
+.legal-prose {
+  max-width: 75ch;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.legal-prose p {
+  margin-bottom: 1.5em;
+}
+
+.legal-prose .legal-bab {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  margin-top: 2.5em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.025em;
+}
+
+.legal-prose .legal-bab-title {
+  text-align: center;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
+.legal-prose .legal-bagian {
+  text-align: center;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.legal-prose .legal-pasal {
+  text-align: center;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.legal-prose .legal-keyword {
+  font-weight: 700;
+  margin-top: 2em;
+}
+
+.legal-prose .legal-memutuskan {
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  letter-spacing: 0.05em;
+}
+
+.legal-prose .legal-indent-1 {
+  padding-left: 2em;
+}
+
+.legal-prose .legal-indent-2 {
+  padding-left: 4em;
 }

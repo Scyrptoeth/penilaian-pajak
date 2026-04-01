@@ -5,58 +5,241 @@ import { getCollection } from 'astro:content';
 
 const regulations = await getCollection('regulations');
 
-// Auto-generate nodes and edges from frontmatter
-const nodes = regulations.map((reg, i) => {
-  const col = i % 4;
-  const row = Math.floor(i / 4);
-  return {
-    id: reg.data.nomor,
-    type: 'regulation',
-    position: { x: col * 300, y: row * 150 },
-    data: {
-      label: reg.data.nomor,
-      title: reg.data.title,
-      jenis: reg.data.jenis,
-      status: reg.data.status,
-      slug: reg.id,
-    },
-  };
-});
+// --- Category mapping ---
 
-// Generate edges from relations
-const edges: Array<{ id: string; source: string; target: string; label: string; type: string }> = [];
+interface Category {
+  id: string;
+  label: string;
+  match: (topik: string[], jenis: string) => boolean;
+}
+
+const categories: Category[] = [
+  {
+    id: 'klasifikasi',
+    label: 'Klasifikasi Objek Pajak',
+    match: (topik) => topik.some((t) => /klasifikasi|NJOP|NJKP|NJOPTKP|nilai bumi|permukaan bumi|tubuh bumi|dasar pengenaan/i.test(t)),
+  },
+  {
+    id: 'pendaftaran',
+    label: 'Pendaftaran & Pendataan',
+    match: (topik) => topik.some((t) => /pendaftaran|pendataan|SPOP|NOP|nomor objek pajak|pemetaan|geotagging/i.test(t)),
+  },
+  {
+    id: 'penilaian',
+    label: 'Penilaian',
+    match: (topik, jenis) =>
+      topik.some((t) => /^penilaian$/i.test(t)) && !(jenis === 'PMK' && topik.some((t) => /perpajakan/i.test(t))),
+  },
+  {
+    id: 'pembayaran',
+    label: 'Pembayaran',
+    match: (topik) => topik.some((t) => /pembayaran|penyetoran|restitusi|kelebihan pembayaran|pengembalian|SPPT|SKP|SKPLB/i.test(t)),
+  },
+  {
+    id: 'penagihan',
+    label: 'Penagihan',
+    match: (topik) => topik.some((t) => /penagihan|STP|surat tagihan|surat paksa|denda|PPSP/i.test(t)),
+  },
+  {
+    id: 'pemeriksaan',
+    label: 'Pemeriksaan',
+    match: (topik) => topik.some((t) => /pemeriksaan|penelitian/i.test(t)),
+  },
+  {
+    id: 'keberatan',
+    label: 'Keberatan & Pengurangan',
+    match: (topik) => topik.some((t) => /keberatan|pengurangan|pembetulan|pembatalan|banding|gugatan|peninjauan kembali/i.test(t)),
+  },
+  {
+    id: 'fasilitas',
+    label: 'Fasilitas',
+    match: (topik) => topik.some((t) => /fasilitas/i.test(t)),
+  },
+  {
+    id: 'perpajakan',
+    label: 'Penilaian Tujuan Perpajakan',
+    match: (topik, jenis) =>
+      (jenis === 'PMK' && topik.some((t) => /perpajakan/i.test(t))) ||
+      topik.some((t) => /harta berwujud|harta tidak berwujud|bisnis/i.test(t)),
+  },
+];
+
+// Assign each regulation to a category
+const regCategoryMap = new Map<string, string>();
+const categoryRegMap = new Map<string, typeof regulations>();
+
+for (const cat of categories) {
+  categoryRegMap.set(cat.id, []);
+}
+categoryRegMap.set('lainnya', []);
+
+for (const reg of regulations) {
+  const topik = reg.data.topik || [];
+  const jenis = reg.data.jenis;
+  let assigned = false;
+
+  for (const cat of categories) {
+    if (cat.match(topik, jenis)) {
+      regCategoryMap.set(reg.data.nomor, cat.id);
+      categoryRegMap.get(cat.id)!.push(reg);
+      assigned = true;
+      break;
+    }
+  }
+
+  if (!assigned) {
+    regCategoryMap.set(reg.data.nomor, 'lainnya');
+    categoryRegMap.get('lainnya')!.push(reg);
+  }
+}
+
+// Build categorized data for mobile view
+const categorizedData = [
+  ...categories.map((cat) => ({
+    id: cat.id,
+    label: cat.label,
+    regulations: categoryRegMap.get(cat.id) || [],
+  })),
+  {
+    id: 'lainnya',
+    label: 'Lainnya',
+    regulations: categoryRegMap.get('lainnya') || [],
+  },
+].filter((cat) => cat.regulations.length > 0);
+
+// --- Build nodes and edges for React Flow ---
+
+const ROOT_ID = '__root__';
+
+// Root node
+const nodes: Array<{
+  id: string;
+  type: string;
+  position: { x: number; y: number };
+  data: Record<string, unknown>;
+}> = [
+  {
+    id: ROOT_ID,
+    type: 'root',
+    position: { x: 0, y: 0 },
+    data: { label: 'Peraturan Penilaian Pajak', nodeType: 'root' },
+  },
+];
+
+const edges: Array<{
+  id: string;
+  source: string;
+  target: string;
+  label?: string;
+  type: string;
+  style?: Record<string, unknown>;
+  animated?: boolean;
+}> = [];
+
+// Category nodes + edges from root
+for (const cat of categorizedData) {
+  const catNodeId = `cat-${cat.id}`;
+  nodes.push({
+    id: catNodeId,
+    type: 'category',
+    position: { x: 0, y: 0 },
+    data: { label: cat.label, count: cat.regulations.length, nodeType: 'category' },
+  });
+  edges.push({
+    id: `${ROOT_ID}-${catNodeId}`,
+    source: ROOT_ID,
+    target: catNodeId,
+    type: 'smoothstep',
+    style: { stroke: '#3b639d', strokeWidth: 2 },
+  });
+}
+
+// Regulation nodes + edges from category
+for (const cat of categorizedData) {
+  const catNodeId = `cat-${cat.id}`;
+  for (const reg of cat.regulations) {
+    const regNodeId = `reg-${reg.data.nomor}`;
+    nodes.push({
+      id: regNodeId,
+      type: 'regulation',
+      position: { x: 0, y: 0 },
+      data: {
+        label: reg.data.nomor,
+        title: reg.data.title,
+        jenis: reg.data.jenis,
+        status: reg.data.status,
+        slug: reg.id,
+        nodeType: 'regulation',
+      },
+    });
+    edges.push({
+      id: `${catNodeId}-${regNodeId}`,
+      source: catNodeId,
+      target: regNodeId,
+      type: 'smoothstep',
+      style: { stroke: '#94a3b8' },
+    });
+  }
+}
+
+// Relation edges between regulations
 const nomorSet = new Set(regulations.map((r) => r.data.nomor));
 
 for (const reg of regulations) {
-  const { nomor, mencabut, dicabut_oleh, mengubah, diubah_oleh, dasar_hukum } = reg.data;
+  const { nomor, mencabut, mengubah, diubah_oleh } = reg.data;
+  const sourceId = `reg-${nomor}`;
 
   if (mencabut) {
     for (const target of mencabut) {
       if (nomorSet.has(target)) {
-        edges.push({ id: `${nomor}-mencabut-${target}`, source: nomor, target, label: 'mencabut', type: 'smoothstep' });
+        edges.push({
+          id: `rel-${nomor}-mencabut-${target}`,
+          source: sourceId,
+          target: `reg-${target}`,
+          label: 'mencabut',
+          type: 'smoothstep',
+          style: { stroke: '#dc2626', strokeWidth: 1.5, strokeDasharray: '5 3' },
+          animated: true,
+        });
       }
     }
   }
-  if (dicabut_oleh && nomorSet.has(dicabut_oleh)) {
-    edges.push({ id: `${nomor}-dicabut-${dicabut_oleh}`, source: dicabut_oleh, target: nomor, label: 'mencabut', type: 'smoothstep' });
-  }
   if (mengubah && nomorSet.has(mengubah)) {
-    edges.push({ id: `${nomor}-mengubah-${mengubah}`, source: nomor, target: mengubah, label: 'mengubah', type: 'smoothstep' });
+    edges.push({
+      id: `rel-${nomor}-mengubah-${mengubah}`,
+      source: sourceId,
+      target: `reg-${mengubah}`,
+      label: 'mengubah',
+      type: 'smoothstep',
+      style: { stroke: '#d97706', strokeWidth: 1.5, strokeDasharray: '5 3' },
+      animated: true,
+    });
   }
   if (diubah_oleh) {
     for (const source of diubah_oleh) {
       if (nomorSet.has(source)) {
-        edges.push({ id: `${nomor}-diubah-${source}`, source, target: nomor, label: 'mengubah', type: 'smoothstep' });
+        const edgeId = `rel-${source}-mengubah-${nomor}`;
+        if (!edges.some((e) => e.id === edgeId)) {
+          edges.push({
+            id: edgeId,
+            source: `reg-${source}`,
+            target: sourceId,
+            label: 'mengubah',
+            type: 'smoothstep',
+            style: { stroke: '#d97706', strokeWidth: 1.5, strokeDasharray: '5 3' },
+            animated: true,
+          });
+        }
       }
     }
   }
-  if (dasar_hukum && nomorSet.has(dasar_hukum)) {
-    edges.push({ id: `${nomor}-dasar-${dasar_hukum}`, source: dasar_hukum, target: nomor, label: 'dasar hukum', type: 'smoothstep' });
-  }
 }
 
-// Deduplicate edges by id
-const uniqueEdges = [...new Map(edges.map((e) => [e.id, e])).values()];
+const statusColors: Record<string, string> = {
+  berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  diubah: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+};
 ---
 
 <BaseLayout title="Peta Peraturan" description="Visualisasi hubungan antar peraturan penilaian pajak dalam bentuk mind map interaktif.">
@@ -82,14 +265,55 @@ const uniqueEdges = [...new Map(edges.map((e) => [e.id, e])).values()];
         <span class="h-3 w-3 bg-amber-500"></span>
         <span class="text-navy-600 dark:text-stone-400">Diubah</span>
       </div>
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-6 border-t-2 border-dashed border-red-500"></span>
+        <span class="text-navy-600 dark:text-stone-400">Mencabut</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-6 border-t-2 border-dashed border-amber-500"></span>
+        <span class="text-navy-600 dark:text-stone-400">Mengubah</span>
+      </div>
     </div>
   </section>
 
-  <div class="border-t-2 border-navy-100 dark:border-navy-800" style="height: 600px;">
+  <!-- Desktop: React Flow mind map -->
+  <div class="hidden border-t-2 border-navy-100 dark:border-navy-800 md:block" style="height: 700px;">
     <MindMap
       client:only="react"
       initialNodes={nodes}
-      initialEdges={uniqueEdges}
+      initialEdges={edges}
     />
+  </div>
+
+  <!-- Mobile: Accordion fallback -->
+  <div class="border-t-2 border-navy-100 dark:border-navy-800 md:hidden">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+      <p class="mb-4 text-sm text-navy-500 dark:text-stone-400">
+        Gunakan perangkat desktop untuk melihat mind map interaktif. Di bawah ini daftar peraturan per kategori.
+      </p>
+      {categorizedData.map((cat) => (
+        <details class="group border-b border-navy-100 dark:border-navy-800">
+          <summary class="flex cursor-pointer items-center justify-between py-4 font-heading font-semibold text-navy-800 dark:text-stone-100">
+            <span>{cat.label} <span class="ml-2 text-sm font-normal text-navy-400 dark:text-stone-500">({cat.regulations.length})</span></span>
+            <svg class="h-5 w-5 shrink-0 text-navy-400 transition-transform group-open:rotate-180 dark:text-stone-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+            </svg>
+          </summary>
+          <ul class="space-y-2 pb-4 pl-2">
+            {cat.regulations.map((reg) => (
+              <li>
+                <a href={`/perpustakaan/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                  <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>
+                    {reg.data.status}
+                  </span>
+                  <span class="font-mono text-xs font-medium text-navy-700 dark:text-stone-300">{reg.data.nomor}</span>
+                  <span class="truncate text-navy-500 dark:text-stone-400">{reg.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ))}
+    </div>
   </div>
 </BaseLayout>

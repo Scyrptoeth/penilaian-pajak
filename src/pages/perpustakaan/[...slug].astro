@@ -102,7 +102,7 @@ const relations: RelatedItem[] = [
         </div>
 
         <!-- Body content -->
-        <div class="prose prose-navy mt-8 max-w-none dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
+        <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
           <Content />
         </div>
 
@@ -162,4 +162,74 @@ const relations: RelatedItem[] = [
       )}
     </div>
   </article>
+
+  <script is:inline>
+    // Format legal document keywords in rendered content
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('legal-content');
+      if (!container) return;
+
+      const paragraphs = container.querySelectorAll('p');
+      paragraphs.forEach((p) => {
+        const text = p.textContent?.trim() || '';
+
+        // BAB headings (e.g., "BAB I", "BAB II", "BAB XIV")
+        if (/^BAB\s+[IVXLCDM\d]+$/i.test(text)) {
+          p.classList.add('legal-bab');
+          // Next sibling might be the BAB title
+          const next = p.nextElementSibling;
+          if (next && next.tagName === 'P') {
+            const nextText = next.textContent?.trim() || '';
+            if (nextText.length < 100 && nextText === nextText.toUpperCase()) {
+              next.classList.add('legal-bab-title');
+            }
+          }
+          return;
+        }
+
+        // Bagian headings
+        if (/^Bagian\s+(Ke(satu|dua|tiga|empat|lima|enam|tujuh|delapan|sembilan|sepuluh)|Pertama)/i.test(text)) {
+          p.classList.add('legal-bagian');
+          const next = p.nextElementSibling;
+          if (next && next.tagName === 'P') {
+            const nextText = next.textContent?.trim() || '';
+            if (nextText.length < 100) {
+              next.classList.add('legal-bagian');
+            }
+          }
+          return;
+        }
+
+        // Pasal headings (e.g., "Pasal 1", "Pasal 23")
+        if (/^Pasal\s+\d+[A-Z]?$/i.test(text)) {
+          p.classList.add('legal-pasal');
+          return;
+        }
+
+        // MEMUTUSKAN:
+        if (/^MEMUTUSKAN\s*:?$/i.test(text)) {
+          p.classList.add('legal-memutuskan');
+          return;
+        }
+
+        // Menimbang, Mengingat, Menetapkan
+        if (/^(Menimbang|Mengingat|Menetapkan)\s/i.test(text)) {
+          p.classList.add('legal-keyword');
+          return;
+        }
+
+        // Indent ayat-level content: (1), (2), etc.
+        if (/^\(\d+\)/.test(text)) {
+          p.classList.add('legal-indent-1');
+          return;
+        }
+
+        // Indent letter-level content: a., b., c., etc.
+        if (/^[a-z]\.\s/.test(text)) {
+          p.classList.add('legal-indent-2');
+          return;
+        }
+      });
+    });
+  </script>
 </BaseLayout>
