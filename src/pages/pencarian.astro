@@ -70,12 +70,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           },
         });
 
-        // Indonesian stemmer for fallback search
+        // Indonesian stemmer with nasal prefix awareness
+        var noStemWords = ['menteri', 'mentari', 'mental', 'menu', 'mereka',
+          'bersama', 'perlu', 'termasuk', 'setiap', 'berdasarkan'];
+
+        // Ordered prefix rules: [pattern, replacement]
+        // Longer/more-specific patterns first to avoid greedy mismatch
+        var prefixRules = [
+          [/^meny/, 's'],    // menyapu → sapu
+          [/^mem([bp])/, '$1'], // membawa → bawa, memproses → proses
+          [/^mem/, 'm'],     // memuat → muat
+          [/^meng([gkh])/, '$1'], // menggali → gali
+          [/^meng([aiueo])/, 'k$1'], // pengurang → kurang (k dropped by nasal)
+          [/^meng/, ''],     // mengatur → atur (non-k root)
+          [/^men([cdjtz])/, '$1'], // mendata → data, mencari → cari
+          [/^men/, 'n'],     // menilai → nilai
+          [/^me/, ''],       // melawan → lawan
+          [/^peny/, 's'],    // penyebab → sebab
+          [/^pem([bp])/, '$1'], // pembayar → bayar
+          [/^pem/, 'm'],     // pemuat → muat
+          [/^peng([gkh])/, '$1'], // pengguna → guna
+          [/^peng([aiueo])/, 'k$1'], // pengurang → kurang (k dropped by nasal)
+          [/^peng/, ''],     // non-k root
+          [/^pen([cdjtz])/, '$1'], // pendaftar → daftar
+          [/^pen/, 'n'],     // penilai → nilai
+          [/^pe/, ''],       // pelaku → laku
+          [/^ber/, ''],      // berlaku → laku
+          [/^per/, ''],      // perkara → kara
+          [/^ter/, ''],      // terbuka → buka
+          [/^di/, ''],       // dibuat → buat
+          [/^ke/, ''],       // ketua → tua
+          [/^se/, ''],       // semua → mua
+        ];
+
         function indonesianStem(word) {
           var s = word.toLowerCase();
-          s = s.replace(/^(meng|mem|men|meny|me|peng|pem|pen|peny|pe|ber|per|ter|di|ke|se)/, '');
-          s = s.replace(/(kan|an|i)$/, '');
-          return s;
+          if (s.length < 4) return s;
+          if (noStemWords.indexOf(s) !== -1) return s;
+
+          // Step 1: remove suffix first (no standalone -i, causes over-stripping)
+          s = s.replace(/(kan|an)$/, '');
+
+          // Step 2: remove ONE prefix (first match wins)
+          for (var i = 0; i < prefixRules.length; i++) {
+            var rule = prefixRules[i];
+            if (rule[0].test(s)) {
+              s = s.replace(rule[0], rule[1]);
+              break;
+            }
+          }
+
+          return s.length > 2 ? s : word.toLowerCase();
         }
 
         // Watch for zero results and retry with stemmed query
