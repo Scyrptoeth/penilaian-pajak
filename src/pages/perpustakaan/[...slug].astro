@@ -36,6 +36,16 @@ const relations: RelatedItem[] = [
   { label: 'Diubah oleh', items: data.diubah_oleh || [] },
   { label: 'Dasar hukum', items: data.dasar_hukum ? [data.dasar_hukum] : [] },
 ].filter((r) => r.items.length > 0);
+
+// Generate search keywords from topics + common tax terms
+const searchKeywords = [
+  ...data.topik,
+  data.nomor,
+  data.jenis,
+  data.title,
+  'pajak', 'penilaian', 'penilai', 'nilai', 'menilai',
+  'peraturan', 'menteri', 'keuangan',
+].join(', ');
 ---
 
 <BaseLayout title={`${data.nomor} — ${data.title}`} description={data.ringkasan}>
@@ -103,6 +113,7 @@ const relations: RelatedItem[] = [
 
         <!-- Body content -->
         <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
+          <span data-pagefind-meta={`keywords[${searchKeywords}]`} style="display:none;"></span>
           <Content />
         </div>
 

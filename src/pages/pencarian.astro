@@ -61,17 +61,63 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           translations: {
             placeholder: 'Cari di dalam isi peraturan...',
             zero_results: 'Tidak ditemukan hasil untuk "[SEARCH_TERM]"',
-            many_results: '%s hasil ditemukan',
+            many_results: '{count} hasil ditemukan',
             one_result: '1 hasil ditemukan',
-            searching: 'Mencari...',
+            alt_search: 'Tidak ditemukan hasil untuk [SEARCH_TERM]. Tampilkan hasil untuk',
+            search_suggestion: 'Tidak ditemukan hasil untuk [SEARCH_TERM]. Coba salah satu pencarian berikut:',
+            searching: 'Mencari [SEARCH_TERM]...',
+            load_more: 'Muat lebih banyak hasil',
           },
         });
 
+        // Indonesian stemmer for fallback search
+        function indonesianStem(word) {
+          var s = word.toLowerCase();
+          s = s.replace(/^(meng|mem|men|meny|me|peng|pem|pen|peny|pe|ber|per|ter|di|ke|se)/, '');
+          s = s.replace(/(kan|an|i)$/, '');
+          return s;
+        }
+
+        // Watch for zero results and retry with stemmed query
+        var stemNote = document.createElement('div');
+        stemNote.id = 'stem-note';
+        stemNote.style.cssText = 'padding:12px 16px;margin-top:8px;background:#fffbeb;border:1px solid #d97706;color:#92400e;font-size:14px;display:none;';
+        el.parentNode.insertBefore(stemNote, el.nextSibling);
+
+        var lastRawQuery = '';
+        var observer = new MutationObserver(function() {
+          var zeroEl = el.querySelector('.pagefind-ui__message');
+          var input = el.querySelector('input');
+          if (!input) return;
+          var currentQuery = input.value.trim();
+
+          if (zeroEl && currentQuery && currentQuery === lastRawQuery) return;
+          lastRawQuery = '';
+          stemNote.style.display = 'none';
+
+          if (!zeroEl || !currentQuery) return;
+          if (zeroEl.textContent.indexOf('Tidak ditemukan') === -1) return;
+
+          // Stem each word and retry
+          var words = currentQuery.split(/\s+/);
+          var stemmed = words.map(indonesianStem).filter(function(w) { return w.length > 2; });
+          var stemmedQuery = stemmed.join(' ');
+
+          if (stemmedQuery && stemmedQuery !== currentQuery.toLowerCase()) {
+            lastRawQuery = currentQuery;
+            stemNote.textContent = 'Menampilkan hasil untuk "' + stemmedQuery + '" (dari "' + currentQuery + '")';
+            stemNote.style.display = 'block';
+            input.value = stemmedQuery;
+            input.dispatchEvent(new Event('input'));
+          }
+        });
+        observer.observe(el, { childList: true, subtree: true });
+
         // Check for query param
-        const params = new URLSearchParams(window.location.search);
-        const query = params.get('q');
+        var params = new URLSearchParams(window.location.search);
+        var query = params.get('q');
         if (query) {
-          const input = el.querySelector('input');
+          var input = el.querySelector('input');
           if (input) {
             input.value = query;
             input.dispatchEvent(new Event('input'));

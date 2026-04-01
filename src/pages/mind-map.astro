@@ -143,7 +143,7 @@ for (const cat of categorizedData) {
     id: catNodeId,
     type: 'category',
     position: { x: 0, y: 0 },
-    data: { label: cat.label, count: cat.regulations.length, nodeType: 'category' },
+    data: { label: cat.label, count: cat.regulations.length, categoryId: cat.id, nodeType: 'category' },
   });
   edges.push({
     id: `${ROOT_ID}-${catNodeId}`,
