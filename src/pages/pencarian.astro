@@ -126,7 +126,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         // Watch for zero results and retry with stemmed query
         var stemNote = document.createElement('div');
         stemNote.id = 'stem-note';
-        stemNote.style.cssText = 'padding:12px 16px;margin-top:8px;background:#fffbeb;border:1px solid #d97706;color:#92400e;font-size:14px;display:none;';
+        stemNote.style.cssText = 'padding:12px 16px;margin-top:8px;font-size:14px;display:none;border-radius:0;';
+        stemNote.className = 'bg-amber-50 border border-amber-500 text-amber-800 dark:bg-amber-900/20 dark:border-amber-600 dark:text-amber-300';
         el.parentNode.insertBefore(stemNote, el.nextSibling);
 
         var lastRawQuery = '';

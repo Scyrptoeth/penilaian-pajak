@@ -28,7 +28,7 @@ const maxTahun = tahunSet.size > 0 ? Math.max(...tahunSet) : 0;
 
       <!-- Search bar -->
       <div class="mt-10 max-w-2xl">
-        <form action="/pencarian" method="get" class="flex gap-2">
+        <form action="/pencarian" method="get" class="flex flex-col gap-2 sm:flex-row">
           <div class="relative flex-1">
             <svg class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
@@ -42,7 +42,7 @@ const maxTahun = tahunSet.size > 0 ? Math.max(...tahunSet) : 0;
           </div>
           <button
             type="submit"
-            class="bg-gold-400 px-6 py-3.5 font-heading text-sm font-semibold tracking-widest text-navy-900 uppercase transition-colors hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+            class="w-full bg-gold-400 px-6 py-3.5 font-heading text-sm font-semibold tracking-widest text-navy-900 uppercase transition-colors hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 sm:w-auto"
           >
             Cari
           </button>

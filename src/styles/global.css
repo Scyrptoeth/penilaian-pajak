@@ -37,6 +37,14 @@
   html {
     font-family: var(--font-body);
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    font-synthesis: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -45,6 +53,36 @@
 
   code, pre, .font-mono {
     font-family: var(--font-mono);
+  }
+
+  /* Global focus indicator for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 2px;
+  }
+
+  /* Minimum touch target size on mobile */
+  @media (max-width: 768px) {
+    a, button, [role="button"], input[type="checkbox"], input[type="radio"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Prevent iOS zoom on input focus */
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+
+  /* Images responsive */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -122,4 +160,92 @@
 
 .legal-prose .legal-indent-2 {
   padding-left: 4em;
+}
+
+/* =============================================
+   Pagefind UI dark mode overrides
+   ============================================= */
+
+.dark .pagefind-ui__search-input {
+  background-color: var(--color-navy-800) !important;
+  color: #f5f5f4 !important;
+  border-color: var(--color-navy-700) !important;
+}
+
+.dark .pagefind-ui__search-input::placeholder {
+  color: #a8a29e !important;
+}
+
+.dark .pagefind-ui__search-input:focus {
+  border-color: var(--color-gold-400) !important;
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2) !important;
+}
+
+.dark .pagefind-ui__result-link {
+  color: var(--color-gold-400) !important;
+}
+
+.dark .pagefind-ui__result-link:hover {
+  color: var(--color-gold-300) !important;
+}
+
+.dark .pagefind-ui__result-excerpt {
+  color: #d6d3d1 !important;
+}
+
+.dark .pagefind-ui__result-title {
+  color: #f5f5f4 !important;
+}
+
+.dark .pagefind-ui__result {
+  border-color: var(--color-navy-800) !important;
+}
+
+.dark .pagefind-ui__button {
+  background-color: var(--color-navy-800) !important;
+  color: #f5f5f4 !important;
+  border-color: var(--color-navy-700) !important;
+}
+
+.dark .pagefind-ui__button:hover {
+  background-color: var(--color-navy-700) !important;
+  border-color: var(--color-gold-400) !important;
+}
+
+.dark .pagefind-ui__message {
+  color: #a8a29e !important;
+}
+
+.dark .pagefind-ui__drawer {
+  background-color: var(--color-surface-dark) !important;
+}
+
+/* =============================================
+   Dark mode smooth transition
+   ============================================= */
+
+body,
+header,
+footer,
+main,
+nav,
+aside,
+.pagefind-ui__search-input {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* =============================================
+   Legal prose table responsive (mobile)
+   ============================================= */
+
+.legal-prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.legal-prose table th,
+.legal-prose table td {
+  white-space: nowrap;
 }

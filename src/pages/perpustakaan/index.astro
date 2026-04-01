@@ -36,53 +36,59 @@ const jenisColors: Record<string, string> = {
   <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="flex flex-col gap-6 lg:flex-row lg:items-start">
       <!-- Sidebar filters -->
-      <aside class="w-full shrink-0 border-2 border-navy-100 p-5 dark:border-navy-800 lg:w-64">
-        <h2 class="font-heading text-sm font-semibold tracking-widest text-navy-800 uppercase dark:text-stone-100">Filter</h2>
+      <aside class="w-full shrink-0 border-2 border-navy-100 dark:border-navy-800 lg:w-64">
+        <details class="group lg:open" open>
+          <summary class="flex cursor-pointer items-center justify-between p-5 font-heading text-sm font-semibold tracking-widest text-navy-800 uppercase dark:text-stone-100 lg:pointer-events-none lg:cursor-default">
+            Filter
+            <svg class="h-5 w-5 shrink-0 text-navy-400 transition-transform group-open:rotate-180 dark:text-stone-500 lg:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+            </svg>
+          </summary>
+          <div class="space-y-5 px-5 pb-5" id="filters">
+            <!-- Jenis -->
+            <fieldset>
+              <legend class="text-xs font-medium tracking-wide text-navy-500 uppercase dark:text-stone-400">Jenis Peraturan</legend>
+              <div class="mt-2 space-y-1.5">
+                {jenisOptions.map((jenis) => (
+                  <label class="flex cursor-pointer items-center gap-2 text-sm text-navy-700 dark:text-stone-300">
+                    <input type="checkbox" value={jenis} data-filter="jenis" class="accent-gold-400" />
+                    {jenis}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-        <div class="mt-4 space-y-5" id="filters">
-          <!-- Jenis -->
-          <fieldset>
-            <legend class="text-xs font-medium tracking-wide text-navy-500 uppercase dark:text-stone-400">Jenis Peraturan</legend>
-            <div class="mt-2 space-y-1.5">
-              {jenisOptions.map((jenis) => (
-                <label class="flex cursor-pointer items-center gap-2 text-sm text-navy-700 dark:text-stone-300">
-                  <input type="checkbox" value={jenis} data-filter="jenis" class="accent-gold-400" />
-                  {jenis}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+            <!-- Status -->
+            <fieldset>
+              <legend class="text-xs font-medium tracking-wide text-navy-500 uppercase dark:text-stone-400">Status</legend>
+              <div class="mt-2 space-y-1.5">
+                {statusOptions.map((status) => (
+                  <label class="flex cursor-pointer items-center gap-2 text-sm capitalize text-navy-700 dark:text-stone-300">
+                    <input type="checkbox" value={status} data-filter="status" class="accent-gold-400" />
+                    {status}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-          <!-- Status -->
-          <fieldset>
-            <legend class="text-xs font-medium tracking-wide text-navy-500 uppercase dark:text-stone-400">Status</legend>
-            <div class="mt-2 space-y-1.5">
-              {statusOptions.map((status) => (
-                <label class="flex cursor-pointer items-center gap-2 text-sm capitalize text-navy-700 dark:text-stone-300">
-                  <input type="checkbox" value={status} data-filter="status" class="accent-gold-400" />
-                  {status}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+            <!-- Tahun -->
+            <fieldset>
+              <legend class="text-xs font-medium tracking-wide text-navy-500 uppercase dark:text-stone-400">Tahun</legend>
+              <div class="mt-2 space-y-1.5 max-h-40 overflow-y-auto">
+                {tahunOptions.map((tahun) => (
+                  <label class="flex cursor-pointer items-center gap-2 text-sm text-navy-700 dark:text-stone-300">
+                    <input type="checkbox" value={tahun.toString()} data-filter="tahun" class="accent-gold-400" />
+                    {tahun}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-          <!-- Tahun -->
-          <fieldset>
-            <legend class="text-xs font-medium tracking-wide text-navy-500 uppercase dark:text-stone-400">Tahun</legend>
-            <div class="mt-2 space-y-1.5 max-h-40 overflow-y-auto">
-              {tahunOptions.map((tahun) => (
-                <label class="flex cursor-pointer items-center gap-2 text-sm text-navy-700 dark:text-stone-300">
-                  <input type="checkbox" value={tahun.toString()} data-filter="tahun" class="accent-gold-400" />
-                  {tahun}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <button id="reset-filters" class="w-full border border-navy-200 py-2 text-xs font-medium text-navy-600 transition-colors hover:bg-navy-50 dark:border-navy-700 dark:text-stone-400 dark:hover:bg-navy-800">
-            Reset Filter
-          </button>
-        </div>
+            <button id="reset-filters" class="w-full border border-navy-200 py-2 text-xs font-medium text-navy-600 transition-colors hover:bg-navy-50 dark:border-navy-700 dark:text-stone-400 dark:hover:bg-navy-800">
+              Reset Filter
+            </button>
+          </div>
+        </details>
       </aside>
 
       <!-- Regulation list -->
@@ -175,4 +181,19 @@ const jenisColors: Record<string, string> = {
       });
     });
   </script>
+
+  <style>
+    /* On desktop, always show filter content (override closed state) */
+    @media (min-width: 1024px) {
+      aside details {
+        pointer-events: auto;
+      }
+      aside details > summary {
+        list-style: none;
+      }
+      aside details > summary::-webkit-details-marker {
+        display: none;
+      }
+    }
+  </style>
 </BaseLayout>

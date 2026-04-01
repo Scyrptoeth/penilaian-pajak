@@ -28,12 +28,30 @@ const navItems = [
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Penilaian Pajak" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="canonical" href={Astro.url.href} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <title>{title} | Penilaian Pajak</title>
     <script is:inline>
       // Theme init — MUST run before render to prevent FOUC
@@ -48,8 +66,11 @@ const navItems = [
     </script>
   </head>
   <body class="min-h-dvh flex flex-col bg-surface-light text-navy-900 dark:bg-surface-dark dark:text-stone-100 antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-gold-400 focus:px-4 focus:py-2 focus:text-navy-900 focus:font-semibold">
+      Langsung ke konten utama
+    </a>
     <header class="sticky top-0 z-50 border-b border-navy-100 bg-white/80 backdrop-blur-md dark:border-navy-800 dark:bg-navy-900/80">
-      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <nav aria-label="Navigasi utama" class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" class="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-navy-800 dark:text-gold-400">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-gold-400">
             <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
@@ -99,7 +120,9 @@ const navItems = [
           <button
             id="mobile-menu-toggle"
             type="button"
-            aria-label="Open menu"
+            aria-label="Toggle menu navigasi"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
             class="rounded-md p-2 text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800 md:hidden focus-visible:ring-2 focus-visible:ring-gold-400"
           >
             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -110,7 +133,7 @@ const navItems = [
       </nav>
 
       <!-- Mobile menu -->
-      <div id="mobile-menu" class="hidden border-t border-navy-100 dark:border-navy-800 md:hidden">
+      <div id="mobile-menu" role="navigation" aria-label="Menu mobile" class="hidden border-t border-navy-100 dark:border-navy-800 md:hidden">
         <ul class="space-y-1 px-4 py-3">
           {navItems.map(({ href, label }) => {
             const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
@@ -134,7 +157,7 @@ const navItems = [
       </div>
     </header>
 
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
 
@@ -157,7 +180,21 @@ const navItems = [
 
       // Mobile menu toggle
       document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
-        document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        var menu = document.getElementById('mobile-menu');
+        menu?.classList.toggle('hidden');
+        var isExpanded = !menu?.classList.contains('hidden');
+        this.setAttribute('aria-expanded', isExpanded.toString());
+        this.setAttribute('aria-label', isExpanded ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+      });
+
+      // Close mobile menu when a nav link is clicked
+      document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          document.getElementById('mobile-menu')?.classList.add('hidden');
+          var toggle = document.getElementById('mobile-menu-toggle');
+          toggle?.setAttribute('aria-expanded', 'false');
+          toggle?.setAttribute('aria-label', 'Buka menu navigasi');
+        });
       });
     </script>
   </body>

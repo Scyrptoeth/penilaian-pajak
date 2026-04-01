@@ -326,7 +326,7 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
         maxZoom={2}
         attributionPosition="bottom-left"
       >
-        <Background gap={20} size={1} color="#e2e8f0" />
+        <Background gap={20} size={1} />
         <Controls />
         <MiniMap
           nodeColor={(node) => {
