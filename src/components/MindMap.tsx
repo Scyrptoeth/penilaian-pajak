@@ -17,6 +17,11 @@ import {
 import dagre from 'dagre';
 import '@xyflow/react/dist/style.css';
 
+// --- Dark mode detection ---
+
+// Note: useIsDark hook available for future use
+// RegulationNode reads document.documentElement.classList directly for simplicity
+
 // --- Types ---
 
 interface RegulationNodeData {
@@ -54,6 +59,12 @@ const statusBg: Record<string, string> = {
   berlaku: '#f0fdf4',
   dicabut: '#fef2f2',
   diubah: '#fffbeb',
+};
+
+const statusBgDark: Record<string, string> = {
+  berlaku: '#052e16',
+  dicabut: '#450a0a',
+  diubah: '#451a03',
 };
 
 // --- Node sizes for dagre ---
@@ -165,8 +176,11 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
 }
 
 function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   const borderColor = statusBorder[data.status] || '#94a3b8';
-  const bgColor = statusBg[data.status] || '#f8fafc';
+  const bgColor = isDark
+    ? (statusBgDark[data.status] || '#1e293b')
+    : (statusBg[data.status] || '#f8fafc');
 
   return (
     <div
@@ -208,13 +222,13 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
           {data.status}
         </span>
       </div>
-      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: '#0a1628' }}>
+      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#0a1628' }}>
         {data.label}
       </div>
       <div
         style={{
           fontSize: 11,
-          color: '#475569',
+          color: isDark ? '#a8a29e' : '#475569',
           marginTop: 4,
           lineHeight: 1.3,
           overflow: 'hidden',
@@ -335,7 +349,7 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
             if (d.nodeType === 'category') return '#1e3a5f';
             return statusBorder[(d as RegulationNodeData).status] || '#94a3b8';
           }}
-          maskColor="rgba(0,0,0,0.1)"
+          maskColor="rgba(10,22,40,0.15)"
         />
         <Panel position="top-right">
           <div style={{ display: 'flex', gap: 8 }}>
@@ -345,8 +359,8 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
                 padding: '6px 12px',
                 fontSize: 12,
                 fontWeight: 600,
-                background: '#1e3a5f',
-                color: '#fff',
+                background: '#c9a84c',
+                color: '#0a1628',
                 border: 'none',
                 cursor: 'pointer',
               }}
@@ -359,9 +373,9 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
                 padding: '6px 12px',
                 fontSize: 12,
                 fontWeight: 600,
-                background: '#f1f5f9',
-                color: '#1e3a5f',
-                border: '1px solid #94a3b8',
+                background: '#1e3a5f',
+                color: '#fff',
+                border: '1px solid #3b639d',
                 cursor: 'pointer',
               }}
             >

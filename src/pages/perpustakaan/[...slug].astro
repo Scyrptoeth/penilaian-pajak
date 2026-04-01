@@ -51,13 +51,30 @@ const images = data.lampiran_images || [];
 
 <BaseLayout title={`${data.nomor} — ${data.title}`} description={data.ringkasan}>
   <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <!-- Back -->
-    <a href="/perpustakaan" class="inline-flex items-center gap-1.5 py-2 text-sm font-medium text-navy-500 transition-colors hover:text-navy-800 dark:text-stone-400 dark:hover:text-stone-100">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4">
-        <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 010 1.06L7.06 8l2.72 2.72a.75.75 0 11-1.06 1.06L5.47 8.53a.75.75 0 010-1.06l3.25-3.25a.75.75 0 011.06 0z" clip-rule="evenodd" />
-      </svg>
-      Kembali ke Perpustakaan
-    </a>
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="py-2">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm">
+        <li>
+          <a href="/" class="text-navy-400 transition-colors hover:text-navy-700 dark:text-stone-500 dark:hover:text-stone-200">Beranda</a>
+        </li>
+        <li class="text-navy-300 dark:text-stone-600" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5">
+            <path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <a href="/perpustakaan" class="text-navy-400 transition-colors hover:text-navy-700 dark:text-stone-500 dark:hover:text-stone-200">Perpustakaan</a>
+        </li>
+        <li class="text-navy-300 dark:text-stone-600" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5">
+            <path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <span class="font-medium text-navy-700 dark:text-stone-200" aria-current="page">{data.nomor}</span>
+        </li>
+      </ol>
+    </nav>
 
     <div class="mt-6 flex flex-col gap-8 lg:flex-row">
       <!-- Main content -->
@@ -111,6 +128,23 @@ const images = data.lampiran_images || [];
             </span>
           ))}
         </div>
+
+        <!-- Table of Contents (auto-generated from BAB/Pasal headings) -->
+        <nav id="toc-container" class="mt-6 hidden border-2 border-navy-100 dark:border-navy-800" aria-label="Daftar isi peraturan">
+          <button
+            id="toc-toggle"
+            type="button"
+            class="flex w-full items-center justify-between px-5 py-3 text-left font-heading text-sm font-semibold tracking-wide text-navy-800 uppercase dark:text-stone-100"
+            aria-expanded="true"
+            aria-controls="toc-list"
+          >
+            Daftar Isi
+            <svg id="toc-chevron" class="h-5 w-5 shrink-0 text-navy-400 transition-transform dark:text-stone-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <ol id="toc-list" class="space-y-1 px-5 pb-4 text-sm"></ol>
+        </nav>
 
         <!-- Body content -->
         <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
@@ -273,6 +307,76 @@ const images = data.lampiran_images || [];
           return;
         }
       });
+
+      // Generate Table of Contents from BAB and Pasal headings
+      (function() {
+        var tocContainer = document.getElementById('toc-container');
+        var tocList = document.getElementById('toc-list');
+        var tocToggle = document.getElementById('toc-toggle');
+        var tocChevron = document.getElementById('toc-chevron');
+        if (!tocContainer || !tocList || !container) return;
+
+        var entries = [];
+        var idCounter = 0;
+        paragraphs.forEach(function(p) {
+          var text = p.textContent?.trim() || '';
+          var type = null;
+          if (/^BAB\s+[IVXLCDM\d]+$/i.test(text)) {
+            type = 'bab';
+          } else if (/^Pasal\s+\d+[A-Z]?$/i.test(text)) {
+            type = 'pasal';
+          }
+          if (type) {
+            idCounter++;
+            var id = 'toc-' + idCounter;
+            p.id = id;
+            // For BAB, also get its title (next sibling)
+            var label = text;
+            if (type === 'bab') {
+              var next = p.nextElementSibling;
+              if (next && next.tagName === 'P' && next.classList.contains('legal-bab-title')) {
+                label = text + ' — ' + next.textContent.trim();
+              }
+            }
+            entries.push({ id: id, label: label, type: type });
+          }
+        });
+
+        if (entries.length < 2) return; // Don't show TOC for short docs
+
+        tocContainer.classList.remove('hidden');
+
+        entries.forEach(function(entry) {
+          var li = document.createElement('li');
+          li.className = entry.type === 'pasal' ? 'pl-4' : '';
+          var a = document.createElement('a');
+          a.href = '#' + entry.id;
+          a.textContent = entry.label;
+          a.className = entry.type === 'bab'
+            ? 'block py-1 font-semibold text-navy-700 hover:text-gold-600 dark:text-stone-200 dark:hover:text-gold-400'
+            : 'block py-0.5 text-navy-500 hover:text-gold-600 dark:text-stone-400 dark:hover:text-gold-400';
+          a.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.getElementById(entry.id);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              // Update URL hash without jumping
+              history.pushState(null, '', '#' + entry.id);
+            }
+          });
+          li.appendChild(a);
+          tocList.appendChild(li);
+        });
+
+        // Toggle collapse
+        var isOpen = true;
+        tocToggle?.addEventListener('click', function() {
+          isOpen = !isOpen;
+          tocList.style.display = isOpen ? '' : 'none';
+          tocToggle.setAttribute('aria-expanded', isOpen.toString());
+          tocChevron.style.transform = isOpen ? '' : 'rotate(-90deg)';
+        });
+      })();
     });
   </script>
 </BaseLayout>
