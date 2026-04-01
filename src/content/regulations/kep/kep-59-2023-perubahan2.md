@@ -18,6 +18,7 @@ berlaku_untuk:
   - "PBB"
 ringkasan: "Perubahan kedua atas KEP-59/PJ/2023 tentang penetapan nilai bumi untuk PBB."
 sumber_pdf: "https://pbb.margondes.com/LinkedDocuments/Perubahan2_KEP59PJ2023.pdf"
+lampiran_pdf: "https://drive.google.com/file/d/1NU7amibCH5zkp7S8PWr40MASiPVXNokW/view"
 ---
 
 KEMENTERIAN KEUANGAN REPUBLIK INDONESIA
