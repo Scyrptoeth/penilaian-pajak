@@ -43,10 +43,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <script is:inline src="/pagefind/pagefind-ui.js"></script>
   <script is:inline>
-    window.addEventListener('DOMContentLoaded', () => {
-      if (typeof PagefindUI !== 'undefined') {
+    async function initPagefind() {
+      try {
+        const el = document.getElementById('search');
+        if (!el) return;
+
+        // Dynamic import is more reliable than external script tag
+        await import('/pagefind/pagefind-ui.js');
+
+        if (typeof PagefindUI === 'undefined') return;
+
         new PagefindUI({
           element: '#search',
           showSubResults: true,
@@ -59,18 +66,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             searching: 'Mencari...',
           },
         });
-      }
 
-      // Check for query param
-      const params = new URLSearchParams(window.location.search);
-      const query = params.get('q');
-      if (query) {
-        const input = document.querySelector('#search input');
-        if (input) {
-          input.value = query;
-          input.dispatchEvent(new Event('input'));
+        // Check for query param
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get('q');
+        if (query) {
+          const input = el.querySelector('input');
+          if (input) {
+            input.value = query;
+            input.dispatchEvent(new Event('input'));
+          }
         }
+      } catch (e) {
+        console.error('Pagefind init failed:', e);
       }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPagefind);
+    } else {
+      initPagefind();
+    }
   </script>
 </BaseLayout>

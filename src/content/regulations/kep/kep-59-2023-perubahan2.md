@@ -54,6 +54,7 @@ Kapitalisasi, Nilai Jual Objek Pajak Bumi Per Meter
 Persegi, Harga Uap dan Harga Listrik, dan Luas Areal
 Penangkapan Ikan Per Kapal, untuk Penetapan Nilai
 Jual Objek Pajak Pajak Bumi dan Bangunan;
+
 b.   bahwa untuk menyesuaikan dengan perkembangan
 kondisi ekonomi beberapa sektor usaha tertentu, perlu
 dilakukan penyesuaian terhadap biaya investasi
@@ -65,13 +66,16 @@ untuk penetapan nilai jual objek pajak bumi untuk
 tubuh bumi eksploitasi, dan harga listrik per kWh untuk
 penetapan nilai jual objek pajak bumi untuk tubuh bumi
 eksploitasi;
+
 c.   bahwa     berdasarkan      pertimbangan      sebagaimana
 dimaksud dalam huruf a dan huruf b, serta untuk
 melaksanakan ketentuan Pasal 1 angka 9, angka 34,
 dan angka 35, Pasal 15 ayat (2) huruf d dan huruf g,
+
 Pasal 17 ayat (6) dan ayat (7) huruf a, Pasal 19 ayat (6)
 dan ayat (7) huruf a, Pasal 20 ayat (4), Pasal 21 ayat (6)
 dan ayat (7) huruf a, Pasal 33 ayat (3) dan ayat (4), dan
+
 Pasal 35 ayat (2) Peraturan Menteri Keuangan Nomor
 186/PMK.03/2019 tentang Klasifikasi Objek Pajak dan
 Tata Cara Penetapan Nilai Jual Objek Pajak Pajak Bumi
@@ -102,6 +106,7 @@ telah diubah dengan Undang-Undang Nomor 12 Tahun
 (Lembaran Negara Republik Indonesia Tahun 1994
 Nomor 62, Tambahan Lembaran Negara Republik
 Indonesia Nomor 3569);
+
 2.   Peraturan Menteri Keuangan Nomor 186/PMK.03/2019
 tentang Klasifikasi Objek Pajak dan Tata Cara Penetapan
 Nilai Jual Objek Pajak Pajak Bumi dan Bangunan (Berita
@@ -113,6 +118,7 @@ Perubahan atas Peraturan Menteri Keuangan Nomor
 Tata Cara Penetapan Nilai Jual Objek Pajak Pajak Bumi
 dan Bangunan (Berita Negara Republik Indonesia Tahun
 2022 Nomor 1458);
+
 3.   Peraturan Menteri Keuangan Nomor 124 Tahun 2024
 tentang Organisasi dan Tata Kerja Kementerian
 Keuangan (Berita Negara Republik Indonesia Tahun
@@ -122,6 +128,7 @@ tentang Perubahan atas Peraturan Menteri Keuangan
 Nomor 124/PMK.01/2024 tentang Organisasi dan Tata
 Kerja Kementerian Keuangan (Berita Negara Republik
 Indonesia Tahun 2025 Nomor 1208);
+
 4.   Keputusan Direktur Jenderal Pajak Nomor KEP-
 59/PJ/2023 tentang Penetapan Biaya Investasi
 Tanaman, Rasio Biaya Produksi, Angka Kapitalisasi,
@@ -25712,9 +25719,11 @@ LAINNYA                    2                2.744
 2.       Rasio Biaya Produksi untuk penentuan Biaya Produksi Perhutanan
 pada Hutan Alam, objek pajak Pajak Bumi dan Bangunan Sektor
 Perhutanan, ditetapkan sebesar 75% (tujuh puluh lima persen).
+
 3.       Angka Kapitalisasi untuk penetapan Nilai Jual Objek Pajak bumi
 untuk Areal Produktif Perhutanan pada Hutan Alam ditetapkan
 sebesar 8,50 (delapan koma lima nol).
+
 4.       Nilai Jual Objek Pajak bumi per meter persegi untuk Areal Tidak
 Produktif Perhutanan ditetapkan sebagai berikut.
 Nilai Jual Objek Pajak bumi

@@ -69,7 +69,7 @@ function getLayoutedElements(
 ): { nodes: Node<MindMapNodeData>[]; edges: Edge[] } {
   const g = new dagre.graphlib.Graph();
   g.setDefaultEdgeLabel(() => ({}));
-  g.setGraph({ rankdir: 'TB', nodesep: 40, ranksep: 80, marginx: 40, marginy: 40 });
+  g.setGraph({ rankdir: 'LR', nodesep: 60, ranksep: 220, marginx: 60, marginy: 60 });
 
   nodes.forEach((node) => {
     const size =
@@ -125,7 +125,7 @@ function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
       }}
     >
       {data.label}
-      <Handle type="source" position={Position.Bottom} style={{ background: '#c9a84c' }} />
+      <Handle type="source" position={Position.Right} style={{ background: '#c9a84c' }} />
     </div>
   );
 }
@@ -145,12 +145,12 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
         border: '2px solid #3b639d',
       }}
     >
-      <Handle type="target" position={Position.Top} style={{ background: '#3b639d' }} />
+      <Handle type="target" position={Position.Left} style={{ background: '#3b639d' }} />
       <div>{data.label}</div>
       <div style={{ fontSize: 11, color: '#c9a84c', marginTop: 4, fontWeight: 400 }}>
         {data.count} peraturan
       </div>
-      <Handle type="source" position={Position.Bottom} style={{ background: '#3b639d' }} />
+      <Handle type="source" position={Position.Right} style={{ background: '#3b639d' }} />
     </div>
   );
 }
@@ -180,7 +180,7 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
         }
       }}
     >
-      <Handle type="target" position={Position.Top} style={{ background: borderColor }} />
+      <Handle type="target" position={Position.Left} style={{ background: borderColor }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
         <span
           style={{
@@ -216,7 +216,7 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
       >
         {data.title.length > 50 ? data.title.slice(0, 50) + '…' : data.title}
       </div>
-      <Handle type="source" position={Position.Bottom} style={{ background: borderColor }} />
+      <Handle type="source" position={Position.Right} style={{ background: borderColor }} />
     </div>
   );
 }
@@ -267,8 +267,10 @@ export default function MindMap({ initialNodes, initialEdges }: MindMapProps) {
       onInit={onInit}
       nodeTypes={nodeTypes}
       fitView
-      minZoom={0.1}
+      fitViewOptions={{ maxZoom: 0.6, padding: 0.3 }}
+      minZoom={0.05}
       maxZoom={2}
+      defaultViewport={{ x: 0, y: 0, zoom: 0.4 }}
       attributionPosition="bottom-left"
     >
       <Background gap={20} size={1} color="#e2e8f0" />
