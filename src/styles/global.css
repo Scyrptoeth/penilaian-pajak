@@ -3,15 +3,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* DJP-inspired navy palette */
-  --color-navy-50: #e8f0fa;
-  --color-navy-100: #d0e4f5;
-  --color-navy-200: #a0c4e8;
-  --color-navy-300: #5a90c8;
-  --color-navy-400: #2d6ab0;
+  /* DJP-standardized navy palette (4 core shades + tints) */
+  --color-navy-50: #e8f0f7;
+  --color-navy-100: #d0e0ef;
+  --color-navy-200: #a0bfdb;
+  --color-navy-300: #5a8ab8;
+  --color-navy-400: #1a5090;
   --color-navy-500: #1a5090;
-  --color-navy-600: #123f6c;
-  --color-navy-700: #0d3460;
+  --color-navy-600: #0d3b66;
+  --color-navy-700: #0d3b66;
   --color-navy-800: #02275d;
   --color-navy-900: #052240;
 
