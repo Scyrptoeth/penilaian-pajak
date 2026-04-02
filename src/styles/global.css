@@ -93,6 +93,11 @@
   }
 }
 
+/* Anchor scroll offset for fixed header */
+[id^="Pasal_"], [id^="BAB_"] {
+  scroll-margin-top: 80px;
+}
+
 /* Legal document prose styling */
 .legal-prose {
   max-width: 75ch;

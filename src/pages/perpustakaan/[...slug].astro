@@ -462,6 +462,28 @@ const searchKeywords = [
         // Clean up data attribute (not needed after processing)
         container.removeAttribute('data-crossref');
       })();
+
+      // Handle initial page load with hash (deep link)
+      if (window.location.hash) {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            var targetId = window.location.hash.slice(1);
+            var targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+            }
+          }, 500);
+        });
+      }
+    });
+
+    // Handle hashchange event (back/forward navigation)
+    window.addEventListener('hashchange', function() {
+      var targetId = window.location.hash.slice(1);
+      var targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   </script>
 </BaseLayout>
