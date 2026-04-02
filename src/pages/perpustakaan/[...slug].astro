@@ -142,6 +142,115 @@ const searchKeywords = [
           ))}
         </div>
 
+        <!-- Regulation Toolbar -->
+        <div id="reg-toolbar" class="sticky top-0 z-40 -mx-4 mt-6 flex items-center gap-1 overflow-x-auto border-b border-navy-200 bg-white/95 px-4 py-2.5 backdrop-blur-sm sm:gap-2 dark:border-navy-700 dark:bg-navy-900/95">
+          <button id="tb-search" type="button" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" /></svg>
+            <span class="hidden sm:inline">Cari Kata</span>
+          </button>
+          {data.lampiran_pdf ? (
+            <a href={data.lampiran_pdf} target="_blank" rel="noopener noreferrer" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5z" /></svg>
+              <span class="hidden sm:inline">Lampiran</span>
+            </a>
+          ) : (
+            <button type="button" disabled class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-300 dark:text-stone-600" title="Tidak ada lampiran">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5z" /></svg>
+              <span class="hidden sm:inline">Lampiran</span>
+            </button>
+          )}
+          <button id="tb-relasi" type="button" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5z" clip-rule="evenodd" /></svg>
+            <span class="hidden sm:inline">Relasi</span>
+          </button>
+          {data.sumber_pdf ? (
+            <a href={data.sumber_pdf} target="_blank" rel="noopener noreferrer" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" /><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" /></svg>
+              <span class="hidden sm:inline">Download</span>
+            </a>
+          ) : (
+            <button type="button" disabled class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-300 dark:text-stone-600" title="PDF tidak tersedia">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" /></svg>
+              <span class="hidden sm:inline">Download</span>
+            </button>
+          )}
+          <button id="tb-copy" type="button" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" /><path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" /></svg>
+            <span class="hidden sm:inline">Salin Link</span>
+          </button>
+        </div>
+
+        <!-- Search Bar (hidden by default, toggled by Cari Kata) -->
+        <div id="search-bar" class="hidden -mx-4 flex items-center gap-2 border-b border-navy-200 bg-navy-50 px-4 py-3 dark:border-navy-700 dark:bg-navy-800">
+          <input id="search-input" type="text" placeholder="Cari kata di peraturan ini..." class="flex-1 border border-navy-200 bg-white px-3 py-1.5 text-sm text-navy-800 placeholder:text-navy-400 focus:border-gold-400 focus:outline-none dark:border-navy-700 dark:bg-navy-900 dark:text-stone-100 dark:placeholder:text-stone-500" />
+          <span id="search-count" class="shrink-0 text-xs text-navy-400 dark:text-stone-500">0/0</span>
+          <button id="search-prev" type="button" class="rounded p-1 text-navy-500 hover:bg-navy-200 dark:text-stone-400 dark:hover:bg-navy-700" aria-label="Sebelumnya">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 01-1.06 0L8 7.06 5.28 9.78a.75.75 0 01-1.06-1.06l3.25-3.25a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06z" clip-rule="evenodd" /></svg>
+          </button>
+          <button id="search-next" type="button" class="rounded p-1 text-navy-500 hover:bg-navy-200 dark:text-stone-400 dark:hover:bg-navy-700" aria-label="Berikutnya">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 011.06 0L8 8.94l2.72-2.72a.75.75 0 111.06 1.06l-3.25 3.25a.75.75 0 01-1.06 0L4.22 7.28a.75.75 0 010-1.06z" clip-rule="evenodd" /></svg>
+          </button>
+          <button id="search-close" type="button" class="rounded p-1 text-navy-500 hover:bg-navy-200 dark:text-stone-400 dark:hover:bg-navy-700" aria-label="Tutup">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4"><path d="M5.28 4.22a.75.75 0 00-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 101.06 1.06L8 9.06l2.72 2.72a.75.75 0 101.06-1.06L9.06 8l2.72-2.72a.75.75 0 00-1.06-1.06L8 6.94 5.28 4.22z" /></svg>
+          </button>
+        </div>
+
+        <!-- Relasi Panel (hidden by default, toggled by Relasi button) -->
+        <div id="relasi-panel" class="hidden -mx-4 border-b border-navy-200 bg-white px-4 py-4 shadow-lg dark:border-navy-700 dark:bg-navy-800">
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div>
+              <h4 class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Status</h4>
+              <div class="flex items-center gap-2">
+                <span class={`px-2 py-0.5 text-xs font-medium capitalize ${statusColors[data.status]}`}>{data.status}</span>
+                <span class="text-sm text-navy-500 dark:text-stone-400">sejak {data.tanggal_berlaku}</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Riwayat</h4>
+              <div class="space-y-1 text-sm">
+                {data.mencabut && data.mencabut.length > 0 ? (
+                  <p class="text-navy-600 dark:text-stone-300">Mencabut: {data.mencabut.map((n: string) => {
+                    const r = relatedMap.get(n);
+                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-gold-600 hover:underline dark:text-gold-400">{n}</a> : <span>{n}</span>;
+                  })}</p>
+                ) : null}
+                {data.dicabut_oleh ? (
+                  <p class="text-navy-600 dark:text-stone-300">Dicabut oleh: {(() => {
+                    const r = relatedMap.get(data.dicabut_oleh);
+                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-gold-600 hover:underline dark:text-gold-400">{data.dicabut_oleh}</a> : <span>{data.dicabut_oleh}</span>;
+                  })()}</p>
+                ) : null}
+                {data.mengubah ? (
+                  <p class="text-navy-600 dark:text-stone-300">Mengubah: {(() => {
+                    const r = relatedMap.get(data.mengubah);
+                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-gold-600 hover:underline dark:text-gold-400">{data.mengubah}</a> : <span>{data.mengubah}</span>;
+                  })()}</p>
+                ) : null}
+                {data.diubah_oleh && data.diubah_oleh.length > 0 ? (
+                  <p class="text-navy-600 dark:text-stone-300">Diubah oleh: {data.diubah_oleh.map((n: string) => {
+                    const r = relatedMap.get(n);
+                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-gold-600 hover:underline dark:text-gold-400">{n}</a> : <span>{n}</span>;
+                  })}</p>
+                ) : null}
+                {!data.mencabut?.length && !data.dicabut_oleh && !data.mengubah && !data.diubah_oleh?.length && (
+                  <p class="text-navy-400 dark:text-stone-500">Tidak ada riwayat perubahan</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <h4 class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Dasar Hukum</h4>
+              {data.dasar_hukum ? (
+                <p class="text-sm text-navy-600 dark:text-stone-300">{(() => {
+                  const r = relatedMap.get(data.dasar_hukum);
+                  return r ? <a href={`/perpustakaan/${r.id}`} class="text-gold-600 hover:underline dark:text-gold-400">{data.dasar_hukum}</a> : <span>{data.dasar_hukum}</span>;
+                })()}</p>
+              ) : (
+                <p class="text-sm text-navy-400 dark:text-stone-500">—</p>
+              )}
+            </div>
+          </div>
+        </div>
+
         <!-- Table of Contents (auto-generated from BAB/Pasal headings) -->
         <nav id="toc-container" class="mt-6 hidden border-2 border-navy-100 dark:border-navy-800" aria-label="Daftar isi peraturan">
           <button
@@ -502,5 +611,154 @@ const searchKeywords = [
         window.scrollTo({ top: top, behavior: 'instant' });
       }
     });
+
+    // === TOOLBAR INTERACTIONS ===
+
+    // Toggle Relasi panel
+    (function() {
+      var btn = document.getElementById('tb-relasi');
+      var panel = document.getElementById('relasi-panel');
+      if (!btn || !panel) return;
+      btn.addEventListener('click', function() {
+        var isOpen = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden');
+        btn.classList.toggle('bg-gold-100', !isOpen);
+        btn.classList.toggle('text-gold-700', !isOpen);
+        btn.classList.toggle('dark:bg-gold-900/30', !isOpen);
+        btn.classList.toggle('dark:text-gold-400', !isOpen);
+        // Close search bar if open
+        document.getElementById('search-bar')?.classList.add('hidden');
+      });
+    })();
+
+    // Copy Link
+    (function() {
+      var btn = document.getElementById('tb-copy');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var toast = document.createElement('div');
+          toast.textContent = 'Link berhasil disalin!';
+          toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 rounded-lg bg-navy-800 px-4 py-2 text-sm font-medium text-white shadow-lg dark:bg-gold-400 dark:text-navy-900';
+          document.body.appendChild(toast);
+          setTimeout(function() { toast.remove(); }, 2000);
+        });
+      });
+    })();
+
+    // In-Page Search (Cari Kata)
+    (function() {
+      var btn = document.getElementById('tb-search');
+      var bar = document.getElementById('search-bar');
+      var input = document.getElementById('search-input');
+      var countEl = document.getElementById('search-count');
+      var prevBtn = document.getElementById('search-prev');
+      var nextBtn = document.getElementById('search-next');
+      var closeBtn = document.getElementById('search-close');
+      var content = document.getElementById('legal-content');
+      if (!btn || !bar || !input || !content) return;
+
+      var marks = [];
+      var currentIdx = -1;
+
+      function clearHighlights() {
+        marks.forEach(function(m) {
+          var parent = m.parentNode;
+          parent.replaceChild(document.createTextNode(m.textContent), m);
+          parent.normalize();
+        });
+        marks = [];
+        currentIdx = -1;
+        if (countEl) countEl.textContent = '0/0';
+      }
+
+      function highlightMatches(query) {
+        clearHighlights();
+        if (query.length < 2) return;
+
+        var walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, null);
+        var textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        var lowerQuery = query.toLowerCase();
+        textNodes.forEach(function(node) {
+          var text = node.textContent;
+          var lower = text.toLowerCase();
+          var idx = lower.indexOf(lowerQuery);
+          if (idx === -1) return;
+
+          var frag = document.createDocumentFragment();
+          var lastIdx = 0;
+          while (idx !== -1) {
+            frag.appendChild(document.createTextNode(text.substring(lastIdx, idx)));
+            var mark = document.createElement('mark');
+            mark.className = 'bg-yellow-200 dark:bg-yellow-700/50';
+            mark.textContent = text.substring(idx, idx + query.length);
+            frag.appendChild(mark);
+            marks.push(mark);
+            lastIdx = idx + query.length;
+            idx = lower.indexOf(lowerQuery, lastIdx);
+          }
+          frag.appendChild(document.createTextNode(text.substring(lastIdx)));
+          node.parentNode.replaceChild(frag, node);
+        });
+
+        if (marks.length > 0) {
+          currentIdx = 0;
+          goToMatch(0);
+        }
+        if (countEl) countEl.textContent = marks.length > 0 ? '1/' + marks.length : '0/0';
+      }
+
+      function goToMatch(idx) {
+        if (marks.length === 0) return;
+        // Remove active highlight from previous
+        if (currentIdx >= 0 && currentIdx < marks.length) {
+          marks[currentIdx].className = 'bg-yellow-200 dark:bg-yellow-700/50';
+        }
+        currentIdx = ((idx % marks.length) + marks.length) % marks.length;
+        var m = marks[currentIdx];
+        m.className = 'bg-yellow-400 ring-2 ring-gold-500 dark:bg-yellow-500/70';
+        var top = m.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top: top, behavior: 'instant' });
+        if (countEl) countEl.textContent = (currentIdx + 1) + '/' + marks.length;
+      }
+
+      btn.addEventListener('click', function() {
+        var isOpen = !bar.classList.contains('hidden');
+        bar.classList.toggle('hidden');
+        btn.classList.toggle('bg-gold-100', !isOpen);
+        btn.classList.toggle('text-gold-700', !isOpen);
+        if (!isOpen) {
+          input.focus();
+        } else {
+          clearHighlights();
+          input.value = '';
+        }
+        // Close relasi if open
+        document.getElementById('relasi-panel')?.classList.add('hidden');
+      });
+
+      var debounce;
+      input.addEventListener('input', function() {
+        clearTimeout(debounce);
+        debounce = setTimeout(function() { highlightMatches(input.value.trim()); }, 200);
+      });
+
+      prevBtn?.addEventListener('click', function() { goToMatch(currentIdx - 1); });
+      nextBtn?.addEventListener('click', function() { goToMatch(currentIdx + 1); });
+      closeBtn?.addEventListener('click', function() {
+        bar.classList.add('hidden');
+        btn.classList.remove('bg-gold-100', 'text-gold-700');
+        clearHighlights();
+        input.value = '';
+      });
+
+      // Keyboard: Escape to close, Enter for next match
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeBtn?.click(); }
+        if (e.key === 'Enter') { e.shiftKey ? goToMatch(currentIdx - 1) : goToMatch(currentIdx + 1); }
+      });
+    })();
   </script>
 </BaseLayout>
