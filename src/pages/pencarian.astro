@@ -13,6 +13,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
     </div>
 
+    <!-- Search suggestions (visible when no results) -->
+    <div id="search-suggestions" class="mt-8 space-y-6">
+      <div>
+        <p class="mb-3 text-sm font-medium text-navy-500 dark:text-stone-400">Pencarian populer</p>
+        <div class="flex flex-wrap gap-2">
+          {['penilaian', 'NJOP', 'PBB', 'nilai jual objek pajak', 'klasifikasi', 'harta berwujud', 'penagihan', 'pemeriksaan'].map((term) => (
+            <button type="button" class="search-chip rounded-full border border-navy-200 px-4 py-1.5 text-sm text-navy-600 transition-colors hover:bg-navy-50 dark:border-navy-700 dark:text-stone-300 dark:hover:bg-navy-800" data-query={term}>
+              {term}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p class="mb-3 text-sm font-medium text-navy-500 dark:text-stone-400">Jelajahi berdasarkan jenis</p>
+        <div class="flex flex-wrap gap-2">
+          {['PMK', 'PER', 'SE', 'KEP', 'KMK', 'PP', 'UU'].map((jenis) => (
+            <a href={`/perpustakaan`} class="rounded-full border border-navy-200 px-4 py-1.5 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-50 dark:border-navy-700 dark:text-stone-300 dark:hover:bg-navy-800">
+              {jenis}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <!-- Post-search filters (above results) -->
     <div class="mt-6 hidden flex-wrap gap-3" id="search-filters">
       <select id="filter-jenis" class="border border-navy-200 bg-white px-3 py-2 text-sm text-navy-700 dark:border-navy-700 dark:bg-navy-800 dark:text-stone-300">
@@ -393,6 +417,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             }
           });
         });
+
+        // Search chips (popular keywords)
+        var suggestionsEl = document.getElementById('search-suggestions');
+        document.querySelectorAll('.search-chip').forEach(function(chip) {
+          chip.addEventListener('click', function() {
+            var q = this.getAttribute('data-query');
+            var input = el.querySelector('input');
+            if (input && q) {
+              input.value = q;
+              input.dispatchEvent(new Event('input'));
+              input.focus();
+            }
+          });
+        });
+
+        // Auto-hide suggestions when results appear
+        var suggestObserver = new MutationObserver(function() {
+          var hasResults = el.querySelector('.pagefind-ui__result');
+          var hasMessage = el.querySelector('.pagefind-ui__message');
+          if (suggestionsEl) {
+            suggestionsEl.style.display = (hasResults || hasMessage) ? 'none' : '';
+          }
+        });
+        suggestObserver.observe(el, { childList: true, subtree: true });
 
         // Post-search filters
         (function() {

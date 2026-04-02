@@ -8,26 +8,42 @@ const jenisSet = new Set(regulations.map((r) => r.data.jenis));
 const tahunSet = new Set(regulations.map((r) => r.data.tahun));
 const minTahun = tahunSet.size > 0 ? Math.min(...tahunSet) : 0;
 const maxTahun = tahunSet.size > 0 ? Math.max(...tahunSet) : 0;
+
+const popularSlugs = [
+  'pmk/pmk-79-2023',
+  'pmk/pmk-186-2019',
+  'uu/uu-12-1985',
+  'pmk/pmk-139-2014',
+  'per/per-19-2019',
+  'pmk/pmk-48-2021',
+];
+const popular = popularSlugs.map((slug) => regulations.find((r) => r.id === slug)).filter(Boolean);
+
+const statusColorsPopular: Record<string, string> = {
+  berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  diubah: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+};
 ---
 
 <BaseLayout title="Beranda">
   <!-- Hero -->
   <section class="relative overflow-hidden bg-navy-900 text-white">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-navy-700)_0%,_transparent_50%)] opacity-60"></div>
-    <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-      <div class="max-w-3xl">
+    <div class="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+      <div class="mx-auto max-w-3xl">
         <p class="mb-3 font-mono text-sm tracking-widest text-gold-400 uppercase">Perpustakaan Digital</p>
         <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
           Peraturan Penilaian Pajak
           <span class="text-gold-400">Indonesia</span>
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-navy-200">
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-navy-200">
           Sumber referensi lengkap bagi Penilai Pajak &mdash; dengan pencarian full-text ke dalam isi peraturan.
         </p>
       </div>
 
       <!-- Search bar -->
-      <div class="mt-10 max-w-2xl">
+      <div class="mx-auto mt-10 max-w-2xl">
         <form action="/pencarian" method="get" class="flex flex-col gap-2 sm:flex-row">
           <div class="relative flex-1">
             <svg class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -67,6 +83,31 @@ const maxTahun = tahunSet.size > 0 ? Math.max(...tahunSet) : 0;
       ))}
     </div>
   </section>
+
+  <!-- Popular Regulations -->
+  {popular.length > 0 && (
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <p class="text-center font-mono text-xs font-semibold tracking-widest text-gold-500 uppercase">Paling Sering Dirujuk</p>
+      <h2 class="mt-2 text-center font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
+        Peraturan Populer
+      </h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {popular.map((reg) => (
+          <a href={`/perpustakaan/${reg.id}`} class="group border-2 border-navy-100 p-5 transition-all hover:border-gold-400 dark:border-navy-800 dark:hover:border-gold-400">
+            <div class="flex items-center gap-2">
+              <span class="bg-navy-800 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-navy-700">{reg.data.jenis}</span>
+              <span class={`px-2 py-0.5 text-xs font-medium capitalize ${statusColorsPopular[reg.data.status]}`}>{reg.data.status}</span>
+              <span class="ml-auto font-mono text-xs text-navy-400 dark:text-stone-500">{reg.data.tahun}</span>
+            </div>
+            <h3 class="mt-3 font-heading text-base font-semibold text-navy-800 group-hover:text-gold-600 dark:text-stone-100 dark:group-hover:text-gold-400">
+              {reg.data.nomor}
+            </h3>
+            <p class="mt-1 line-clamp-2 text-sm text-navy-500 dark:text-stone-400">{reg.data.title}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- Categories -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
