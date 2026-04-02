@@ -133,19 +133,19 @@ function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
   return (
     <div
       style={{
-        background: '#0a1628',
-        color: '#c9a84c',
+        background: '#052240',
+        color: '#ffca19',
         padding: '16px 24px',
         fontFamily: "'Space Grotesk', system-ui, sans-serif",
         fontWeight: 700,
         fontSize: 16,
         textAlign: 'center',
         minWidth: NODE_SIZES.root.width,
-        border: '2px solid #c9a84c',
+        border: '2px solid #ffca19',
       }}
     >
       {data.label}
-      <Handle type="source" position={Position.Right} style={{ background: '#c9a84c' }} />
+      <Handle type="source" position={Position.Right} style={{ background: '#ffca19' }} />
     </div>
   );
 }
@@ -154,7 +154,7 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
   return (
     <div
       style={{
-        background: '#1e3a5f',
+        background: '#02275d',
         color: '#fff',
         padding: '12px 20px',
         fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -162,16 +162,16 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
         fontSize: 14,
         textAlign: 'center',
         minWidth: NODE_SIZES.category.width,
-        border: '2px solid #3b639d',
+        border: '2px solid #1a5090',
         cursor: 'pointer',
       }}
     >
-      <Handle type="target" position={Position.Left} style={{ background: '#3b639d' }} />
+      <Handle type="target" position={Position.Left} style={{ background: '#1a5090' }} />
       <div>{data.label}</div>
-      <div style={{ fontSize: 11, color: '#c9a84c', marginTop: 4, fontWeight: 400 }}>
+      <div style={{ fontSize: 11, color: '#ffca19', marginTop: 4, fontWeight: 400 }}>
         {data.count} peraturan — klik untuk expand
       </div>
-      <Handle type="source" position={Position.Right} style={{ background: '#3b639d' }} />
+      <Handle type="source" position={Position.Right} style={{ background: '#1a5090' }} />
     </div>
   );
 }
@@ -213,7 +213,7 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
             fontWeight: 600,
             fontFamily: 'monospace',
             padding: '1px 5px',
-            background: '#1e3a5f',
+            background: '#02275d',
             color: '#fff',
           }}
         >
@@ -223,7 +223,7 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
           {data.status}
         </span>
       </div>
-      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#0a1628' }}>
+      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#052240' }}>
         {data.label}
       </div>
       <div
@@ -346,8 +346,8 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
         <MiniMap
           nodeColor={(node) => {
             const d = node.data as MindMapNodeData;
-            if (d.nodeType === 'root') return '#c9a84c';
-            if (d.nodeType === 'category') return '#1e3a5f';
+            if (d.nodeType === 'root') return '#ffca19';
+            if (d.nodeType === 'category') return '#02275d';
             return statusBorder[(d as RegulationNodeData).status] || '#94a3b8';
           }}
           maskColor="rgba(10,22,40,0.15)"
@@ -360,8 +360,8 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
                 padding: '6px 12px',
                 fontSize: 12,
                 fontWeight: 600,
-                background: '#c9a84c',
-                color: '#0a1628',
+                background: '#ffca19',
+                color: '#052240',
                 border: 'none',
                 cursor: 'pointer',
               }}
@@ -374,9 +374,9 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
                 padding: '6px 12px',
                 fontSize: 12,
                 fontWeight: 600,
-                background: '#1e3a5f',
+                background: '#02275d',
                 color: '#fff',
-                border: '1px solid #3b639d',
+                border: '1px solid #1a5090',
                 cursor: 'pointer',
               }}
             >
