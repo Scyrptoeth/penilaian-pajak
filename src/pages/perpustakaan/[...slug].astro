@@ -18,6 +18,20 @@ const { data } = regulation;
 const allRegulations = await getCollection('regulations');
 const relatedMap = new Map(allRegulations.map((r) => [r.data.nomor, r]));
 
+// Build cross-reference map: nomor → slug URL
+const crossRefMap: Record<string, string> = {};
+allRegulations.forEach((r) => {
+  const nomor = r.data.nomor;
+  const url = `/perpustakaan/${r.id}`;
+  crossRefMap[nomor] = url;
+  // Also add simplified patterns for matching
+  // "PMK-79/PMK.03/2023" → extract "79/PMK.03/2023"
+  const parts = nomor.match(/(\d+)\/([^/]+)\/(\d{4})/);
+  if (parts) {
+    crossRefMap[`${parts[1]}/${parts[2]}/${parts[3]}`] = url;
+  }
+});
+
 const statusColors: Record<string, string> = {
   berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
   dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
@@ -146,7 +160,7 @@ const searchKeywords = [
         </nav>
 
         <!-- Body content -->
-        <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body>
+        <div id="legal-content" class="legal-prose prose prose-navy mt-8 dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline" data-pagefind-body data-crossref={JSON.stringify(crossRefMap)}>
           <span data-pagefind-meta={`keywords[${searchKeywords}]`} style="display:none;"></span>
           <Content />
         </div>
@@ -291,7 +305,8 @@ const searchKeywords = [
         }
       });
 
-      // Generate Table of Contents from BAB and Pasal headings
+      // Generate Table of Contents + Anchor IDs from BAB/Pasal headings
+      // Supports both Ortax HTML (<div><strong>BAB I</strong></div>) and legacy (<p>BAB I</p>)
       (function() {
         var tocContainer = document.getElementById('toc-container');
         var tocList = document.getElementById('toc-list');
@@ -300,30 +315,72 @@ const searchKeywords = [
         if (!tocContainer || !tocList || !container) return;
 
         var entries = [];
-        var idCounter = 0;
-        paragraphs.forEach(function(p) {
-          var text = p.textContent?.trim() || '';
+
+        // Scan ALL <strong> elements inside legal-content for BAB/Pasal patterns
+        var strongs = container.querySelectorAll('strong');
+        strongs.forEach(function(strong) {
+          var text = strong.textContent?.trim() || '';
           var type = null;
-          if (/^BAB\s+[IVXLCDM\d]+$/i.test(text)) {
+          var id = null;
+          var label = text;
+
+          // Match BAB headings: "BAB I", "BAB II", "BAB XIV"
+          var babMatch = text.match(/^BAB\s+([IVXLCDM\d]+)\s*$/i);
+          if (babMatch) {
             type = 'bab';
-          } else if (/^Pasal\s+\d+[A-Z]?$/i.test(text)) {
-            type = 'pasal';
-          }
-          if (type) {
-            idCounter++;
-            var id = 'toc-' + idCounter;
-            p.id = id;
-            // For BAB, also get its title (next sibling)
-            var label = text;
-            if (type === 'bab') {
-              var next = p.nextElementSibling;
-              if (next && next.tagName === 'P' && next.classList.contains('legal-bab-title')) {
-                label = text + ' — ' + next.textContent.trim();
+            id = 'BAB_' + babMatch[1];
+            // Check if next <strong> sibling has the BAB title
+            var parent = strong.closest('div') || strong.parentElement;
+            if (parent) {
+              var allStrongs = parent.querySelectorAll('strong');
+              for (var i = 0; i < allStrongs.length; i++) {
+                if (allStrongs[i] === strong && i + 1 < allStrongs.length) {
+                  var nextText = allStrongs[i+1].textContent?.trim() || '';
+                  // BAB title is usually UPPERCASE and short
+                  if (nextText.length < 150 && !/^BAB\s|^Pasal\s/i.test(nextText)) {
+                    label = text + ' — ' + nextText;
+                  }
+                  break;
+                }
               }
             }
-            entries.push({ id: id, label: label, type: type });
+          }
+
+          // Match Pasal headings: "Pasal 1", "Pasal 23", "Pasal 5A"
+          var pasalMatch = text.match(/^Pasal\s+(\d+[A-Z]?)\s*$/i);
+          if (pasalMatch) {
+            type = 'pasal';
+            id = 'Pasal_' + pasalMatch[1];
+          }
+
+          if (type && id) {
+            // Add anchor ID to the closest block parent (div or p)
+            var anchor = strong.closest('div[style*="center"]') || strong.closest('p') || strong.parentElement;
+            if (anchor && !anchor.id) {
+              anchor.id = id;
+            }
+            // Avoid duplicates
+            if (!entries.some(function(e) { return e.id === id; })) {
+              entries.push({ id: id, label: label, type: type });
+            }
           }
         });
+
+        // Fallback: also check <p> tags for legacy non-Ortax content
+        if (entries.length === 0) {
+          paragraphs.forEach(function(p) {
+            var text = p.textContent?.trim() || '';
+            if (/^BAB\s+[IVXLCDM\d]+$/i.test(text)) {
+              var babId = 'BAB_' + text.replace(/^BAB\s+/i, '');
+              p.id = babId;
+              entries.push({ id: babId, label: text, type: 'bab' });
+            } else if (/^Pasal\s+\d+[A-Z]?$/i.test(text)) {
+              var pasalId = 'Pasal_' + text.replace(/^Pasal\s+/i, '');
+              p.id = pasalId;
+              entries.push({ id: pasalId, label: text, type: 'pasal' });
+            }
+          });
+        }
 
         if (entries.length < 2) return; // Don't show TOC for short docs
 
@@ -343,7 +400,6 @@ const searchKeywords = [
             var target = document.getElementById(entry.id);
             if (target) {
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              // Update URL hash without jumping
               history.pushState(null, '', '#' + entry.id);
             }
           });
@@ -359,6 +415,52 @@ const searchKeywords = [
           tocToggle.setAttribute('aria-expanded', isOpen.toString());
           tocChevron.style.transform = isOpen ? '' : 'rotate(-90deg)';
         });
+      })();
+
+      // Cross-reference: auto-link regulation numbers in body text
+      (function() {
+        var crossRefData = container.getAttribute('data-crossref');
+        if (!crossRefData) return;
+        var crossRef;
+        try { crossRef = JSON.parse(crossRefData); } catch(e) { return; }
+
+        // Get current page URL to avoid self-linking
+        var currentPath = window.location.pathname;
+
+        // Walk text nodes inside <td> and <li> elements (where body text lives)
+        var textContainers = container.querySelectorAll('td, li, p');
+        textContainers.forEach(function(el) {
+          // Skip if element already contains links (avoid double-linking)
+          if (el.querySelector('a')) return;
+          // Skip centered elements (these are headings, not body text)
+          if (el.closest('[style*="text-align: center"]') || el.closest('[style*="text-align:center"]')) return;
+
+          var html = el.innerHTML;
+          var changed = false;
+
+          // For each known regulation number, check if it appears in text
+          Object.keys(crossRef).forEach(function(nomor) {
+            var url = crossRef[nomor];
+            if (url === currentPath) return; // Don't self-link
+
+            // Escape special regex chars in nomor
+            var escaped = nomor.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            // Only match if not already inside an <a> tag
+            var regex = new RegExp('(?<!<a[^>]*>)(' + escaped + ')(?![^<]*</a>)', 'g');
+
+            if (regex.test(html)) {
+              html = html.replace(regex, '<a href="' + url + '" class="text-gold-600 hover:underline dark:text-gold-400">$1</a>');
+              changed = true;
+            }
+          });
+
+          if (changed) {
+            el.innerHTML = html;
+          }
+        });
+
+        // Clean up data attribute (not needed after processing)
+        container.removeAttribute('data-crossref');
       })();
     });
   </script>
