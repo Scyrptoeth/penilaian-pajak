@@ -354,10 +354,13 @@ const searchKeywords = [
           }
 
           if (type && id) {
-            // Add anchor ID to the closest block parent (div or p)
+            // Add anchor ID — if parent already has an id, wrap with a span instead
             var anchor = strong.closest('div[style*="center"]') || strong.closest('p') || strong.parentElement;
             if (anchor && !anchor.id) {
               anchor.id = id;
+            } else {
+              // Parent already has id (e.g., BAB div also contains Pasal) — set id on <strong> itself
+              strong.id = id;
             }
             // Avoid duplicates
             if (!entries.some(function(e) { return e.id === id; })) {
@@ -399,7 +402,8 @@ const searchKeywords = [
             e.preventDefault();
             var target = document.getElementById(entry.id);
             if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              var top = target.getBoundingClientRect().top + window.scrollY - 80;
+              window.scrollTo({ top: top, behavior: 'instant' });
               history.pushState(null, '', '#' + entry.id);
             }
           });
@@ -463,26 +467,39 @@ const searchKeywords = [
         container.removeAttribute('data-crossref');
       })();
 
-      // Handle initial page load with hash (deep link)
+      // Handle initial page load with hash (deep link) — retry until accurate
       if (window.location.hash) {
-        requestAnimationFrame(function() {
-          setTimeout(function() {
-            var targetId = window.location.hash.slice(1);
-            var targetEl = document.getElementById(targetId);
-            if (targetEl) {
-              targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
-            }
-          }, 500);
-        });
+        var deepLinkId = window.location.hash.slice(1);
+        var dlAttempts = 0;
+        function tryDeepLink() {
+          var el = document.getElementById(deepLinkId);
+          if (el) {
+            var top = el.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: top, behavior: 'instant' });
+            // Verify position after render tick
+            requestAnimationFrame(function() {
+              var rect = el.getBoundingClientRect();
+              if (Math.abs(rect.top - 80) > 150 && dlAttempts < 8) {
+                dlAttempts++;
+                setTimeout(tryDeepLink, 250);
+              }
+            });
+          } else if (dlAttempts < 8) {
+            dlAttempts++;
+            setTimeout(tryDeepLink, 300);
+          }
+        }
+        requestAnimationFrame(function() { setTimeout(tryDeepLink, 300); });
       }
     });
 
     // Handle hashchange event (back/forward navigation)
     window.addEventListener('hashchange', function() {
       var targetId = window.location.hash.slice(1);
-      var targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var el = document.getElementById(targetId);
+      if (el) {
+        var top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: top, behavior: 'instant' });
       }
     });
   </script>
