@@ -119,6 +119,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           },
         });
 
+        // Accessibility: add aria-label to Pagefind input
+        var pfInput = el.querySelector('.pagefind-ui__search-input');
+        if (pfInput) pfInput.setAttribute('aria-label', 'Cari di dalam isi peraturan');
+
         // === GOOGLE-LIKE SEARCH BEHAVIOR ===
         // 1. "exact phrase" in quotes → never stem
         // 2. plain words → stem only on zero results, show as suggestion (not replace)

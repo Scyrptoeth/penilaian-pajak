@@ -182,7 +182,7 @@ const searchKeywords = [
 
         <!-- Search Bar (hidden by default, toggled by Cari Kata) -->
         <div id="search-bar" class="hidden -mx-4 flex items-center gap-2 border-b border-navy-200 bg-navy-50 px-4 py-3 dark:border-navy-700 dark:bg-navy-800">
-          <input id="search-input" type="text" placeholder="Cari kata di peraturan ini..." class="flex-1 border border-navy-200 bg-white px-3 py-1.5 text-sm text-navy-800 placeholder:text-navy-400 focus:border-gold-400 focus:outline-none dark:border-navy-700 dark:bg-navy-900 dark:text-stone-100 dark:placeholder:text-stone-500" />
+          <input id="search-input" type="text" aria-label="Cari kata dalam peraturan" placeholder="Cari kata di peraturan ini..." class="flex-1 border border-navy-200 bg-white px-3 py-1.5 text-sm text-navy-800 placeholder:text-navy-400 focus:border-gold-400 focus:outline-none dark:border-navy-700 dark:bg-navy-900 dark:text-stone-100 dark:placeholder:text-stone-500" />
           <span id="search-count" class="shrink-0 text-xs text-navy-400 dark:text-stone-500">0/0</span>
           <button id="search-prev" type="button" class="rounded p-1 text-navy-500 hover:bg-navy-200 dark:text-stone-400 dark:hover:bg-navy-700" aria-label="Sebelumnya">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 01-1.06 0L8 7.06 5.28 9.78a.75.75 0 01-1.06-1.06l3.25-3.25a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06z" clip-rule="evenodd" /></svg>
@@ -199,14 +199,14 @@ const searchKeywords = [
         <div id="relasi-panel" class="hidden -mx-4 border-b border-navy-200 bg-white px-4 py-4 shadow-lg dark:border-navy-700 dark:bg-navy-800">
           <div class="grid gap-4 sm:grid-cols-3">
             <div>
-              <h4 class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Status</h4>
+              <p class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Status</p>
               <div class="flex items-center gap-2">
                 <span class={`px-2 py-0.5 text-xs font-medium capitalize ${statusColors[data.status]}`}>{data.status}</span>
                 <span class="text-sm text-navy-500 dark:text-stone-400">sejak {data.tanggal_berlaku}</span>
               </div>
             </div>
             <div>
-              <h4 class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Riwayat</h4>
+              <p class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Riwayat</p>
               <div class="space-y-1 text-sm">
                 {data.mencabut && data.mencabut.length > 0 ? (
                   <p class="text-navy-600 dark:text-stone-300">Mencabut: {data.mencabut.map((n: string) => {
@@ -238,7 +238,7 @@ const searchKeywords = [
               </div>
             </div>
             <div>
-              <h4 class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Dasar Hukum</h4>
+              <p class="mb-2 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Dasar Hukum</p>
               {data.dasar_hukum ? (
                 <p class="text-sm text-navy-600 dark:text-stone-300">{(() => {
                   const r = relatedMap.get(data.dasar_hukum);

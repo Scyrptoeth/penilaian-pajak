@@ -205,6 +205,13 @@
   padding-left: 4em;
 }
 
+/* Pagefind UI font override */
+.pagefind-ui__search-input {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
 /* =============================================
    Pagefind UI dark mode overrides
    ============================================= */
