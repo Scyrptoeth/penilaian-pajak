@@ -13,6 +13,7 @@ import {
   Position,
   Panel,
   useReactFlow,
+  ReactFlowProvider,
 } from '@xyflow/react';
 import dagre from 'dagre';
 import '@xyflow/react/dist/style.css';
@@ -412,6 +413,8 @@ export default function MindMap({ initialNodes, initialEdges }: MindMapProps) {
   }
 
   return (
-    <MindMapInner allNodes={initialNodes} allEdges={initialEdges} />
+    <ReactFlowProvider>
+      <MindMapInner allNodes={initialNodes} allEdges={initialEdges} />
+    </ReactFlowProvider>
   );
 }
