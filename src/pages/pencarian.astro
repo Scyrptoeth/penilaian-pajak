@@ -13,13 +13,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
     </div>
 
-    <!-- Pagefind search widget -->
-    <div class="mt-8">
-      <div id="search" class="min-h-[400px]"></div>
-    </div>
-
-    <!-- Post-search filters -->
-    <div class="mt-4 flex flex-wrap gap-3" id="search-filters" style="display:none;">
+    <!-- Post-search filters (above results) -->
+    <div class="mt-6 hidden flex-wrap gap-3" id="search-filters">
       <select id="filter-jenis" class="border border-navy-200 bg-white px-3 py-2 text-sm text-navy-700 dark:border-navy-700 dark:bg-navy-800 dark:text-stone-300">
         <option value="">Semua Jenis</option>
         <option value="pmk">PMK</option>
@@ -39,6 +34,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <option value="dicabut">Dicabut</option>
         <option value="diubah">Diubah</option>
       </select>
+      <span id="filter-count" class="self-center text-xs text-navy-400 dark:text-stone-500"></span>
+    </div>
+
+    <!-- Pagefind search widget -->
+    <div class="mt-4">
+      <div id="search" class="min-h-[400px]"></div>
     </div>
 
     <!-- Usage tips with clickable examples -->
@@ -412,14 +413,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           }
 
           // Show filters when results appear, apply filter on change
+          var filterCountEl = document.getElementById('filter-count');
+
           function applyFilters() {
             var results = el.querySelectorAll('.pagefind-ui__result');
             if (results.length === 0) return;
 
-            filtersEl.style.display = '';
             var jv = filterJenis ? filterJenis.value.toLowerCase() : '';
             var tv = filterTahun ? filterTahun.value : '';
             var sv = filterStatus ? filterStatus.value.toLowerCase() : '';
+            var visible = 0;
 
             results.forEach(function(r) {
               var link = r.querySelector('a');
@@ -430,18 +433,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               if (tv && href.indexOf(tv) === -1 && text.indexOf(tv) === -1) show = false;
               if (sv && text.indexOf(sv) === -1) show = false;
               r.style.display = show ? '' : 'none';
+              if (show) visible++;
             });
+
+            // Update counter
+            if (filterCountEl && (jv || tv || sv)) {
+              filterCountEl.textContent = visible + ' dari ' + results.length + ' hasil';
+            } else if (filterCountEl) {
+              filterCountEl.textContent = '';
+            }
           }
 
           [filterJenis, filterTahun, filterStatus].forEach(function(sel) {
             if (sel) sel.addEventListener('change', applyFilters);
           });
 
-          // Watch for results appearing
+          // Watch for results appearing — show/hide filters
           var resultsObserver = new MutationObserver(function() {
             var results = el.querySelectorAll('.pagefind-ui__result');
             if (results.length > 0) {
-              filtersEl.style.display = '';
+              filtersEl.classList.remove('hidden');
+              filtersEl.classList.add('flex');
+            } else {
+              filtersEl.classList.add('hidden');
+              filtersEl.classList.remove('flex');
+              if (filterCountEl) filterCountEl.textContent = '';
             }
           });
           resultsObserver.observe(el, { childList: true, subtree: true });

@@ -39,12 +39,12 @@
     /* scroll-behavior handled by JS for reliability on long pages */
     -webkit-font-smoothing: antialiased;
     text-size-adjust: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden removed — breaks position:sticky on descendants */
   }
 
   body {
-    overflow-x: hidden;
     font-synthesis: none;
+    /* overflow-x: hidden removed — breaks position:sticky on descendants */
   }
 
   h1, h2, h3, h4, h5, h6 {
