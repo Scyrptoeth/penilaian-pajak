@@ -484,7 +484,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               if (show) visible++;
             });
 
-            // Update counter
+            // Update both counters
+            var msgEl = el.querySelector('.pagefind-ui__message');
+            if (msgEl && (jv || tv || sv)) {
+              msgEl.textContent = 'Ditemukan ' + visible + ' hasil (difilter dari ' + results.length + ')';
+            }
             if (filterCountEl && (jv || tv || sv)) {
               filterCountEl.textContent = visible + ' dari ' + results.length + ' hasil';
             } else if (filterCountEl) {

@@ -1,0 +1,90 @@
+---
+// Lemniscate of Bernoulli path generation (build-time)
+function lemniscatePoint(t: number) {
+  const theta = t * 2 * Math.PI;
+  const scale = 38;
+  const denom = 1 + Math.sin(theta) * Math.sin(theta);
+  const x = 50 + (scale * Math.cos(theta)) / denom;
+  const y = 50 + (scale * Math.sin(theta) * Math.cos(theta)) / denom;
+  return { x, y };
+}
+
+const steps = 200;
+const pathD = Array.from({ length: steps + 1 }, (_, i) => {
+  const { x, y } = lemniscatePoint(i / steps);
+  return `${i === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${y.toFixed(2)}`;
+}).join(' ');
+---
+
+<div id="curve-loader" class="pointer-events-none fixed z-[9999] hidden" style="transform: translate(-50%, -50%); will-change: transform;">
+  <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+    <path d={pathD} stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.12" />
+    <path d={pathD} stroke="currentColor" stroke-width="5" stroke-linecap="round" class="curve-trail" />
+  </svg>
+</div>
+
+<style>
+  #curve-loader {
+    color: var(--color-navy-800, #02275d);
+  }
+  :where(.dark, .dark *) #curve-loader {
+    color: var(--color-gold-400, #ffca19);
+  }
+  .curve-trail {
+    stroke-dasharray: 80 400;
+    animation: curve-draw 1.2s linear infinite;
+  }
+  @keyframes curve-draw {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -480; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .curve-trail { animation: none; opacity: 0.5; }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var loader = document.getElementById('curve-loader');
+    if (!loader) return;
+    var mx = 0, my = 0;
+
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      if (!loader.classList.contains('hidden')) {
+        loader.style.left = mx + 'px';
+        loader.style.top = my + 'px';
+      }
+    });
+    document.addEventListener('touchstart', function(e) {
+      mx = e.touches[0].clientX; my = e.touches[0].clientY;
+    });
+
+    function show() {
+      loader.style.left = mx + 'px';
+      loader.style.top = my + 'px';
+      loader.classList.remove('hidden');
+    }
+    function hide() { loader.classList.add('hidden'); }
+
+    // Trigger on internal link clicks
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href^="/"]');
+      if (link && !link.getAttribute('target')) show();
+    });
+
+    // Hide on page fully loaded
+    window.addEventListener('load', hide);
+
+    // Fallback: auto-hide after 3s
+    var autoHide;
+    function showWithTimeout() {
+      show();
+      clearTimeout(autoHide);
+      autoHide = setTimeout(hide, 3000);
+    }
+
+    // Expose globally for pencarian.astro
+    window._curveLoader = { show: showWithTimeout, hide: hide };
+  })();
+</script>
