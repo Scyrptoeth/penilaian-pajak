@@ -18,14 +18,14 @@ const { data } = regulation;
 const allRegulations = await getCollection('regulations');
 const relatedMap = new Map(allRegulations.map((r) => [r.data.nomor, r]));
 
-// Build cross-reference map: nomor → slug URL
+// Build cross-reference map: nomor â slug URL
 const crossRefMap: Record<string, string> = {};
 allRegulations.forEach((r) => {
   const nomor = r.data.nomor;
   const url = `/perpustakaan/${r.id}`;
   crossRefMap[nomor] = url;
   // Also add simplified patterns for matching
-  // "PMK-79/PMK.03/2023" → extract "79/PMK.03/2023"
+  // "PMK-79/PMK.03/2023" â extract "79/PMK.03/2023"
   const parts = nomor.match(/(\d+)\/([^/]+)\/(\d{4})/);
   if (parts) {
     crossRefMap[`${parts[1]}/${parts[2]}/${parts[3]}`] = url;
@@ -62,7 +62,7 @@ const searchKeywords = [
 ].join(', ');
 ---
 
-<BaseLayout title={`${data.nomor} — ${data.title}`} description={data.ringkasan}>
+<BaseLayout title={`${data.nomor} â ${data.title}`} description={data.ringkasan}>
   <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- Breadcrumb -->
     <nav aria-label="Breadcrumb" class="py-2">
@@ -163,8 +163,8 @@ const searchKeywords = [
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5z" clip-rule="evenodd" /></svg>
             <span class="hidden sm:inline">Relasi</span>
           </button>
-          {data.sumber_pdf ? (
-            <a href={data.sumber_pdf} target="_blank" rel="noopener noreferrer" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
+          {data.lampiran_pdf ? (
+            <a href={data.lampiran_pdf} target="_blank" rel="noopener noreferrer" class="tb-btn flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-100 dark:text-stone-300 dark:hover:bg-navy-800">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" /><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" /></svg>
               <span class="hidden sm:inline">Download</span>
             </a>
@@ -245,7 +245,7 @@ const searchKeywords = [
                   return r ? <a href={`/perpustakaan/${r.id}`} class="text-gold-600 hover:underline dark:text-gold-400">{data.dasar_hukum}</a> : <span>{data.dasar_hukum}</span>;
                 })()}</p>
               ) : (
-                <p class="text-sm text-navy-400 dark:text-stone-500">—</p>
+                <p class="text-sm text-navy-400 dark:text-stone-500">â</p>
               )}
             </div>
           </div>
@@ -274,7 +274,7 @@ const searchKeywords = [
           <Content />
         </div>
 
-        <!-- PDF buttons removed — available in sticky toolbar above -->
+        <!-- PDF buttons removed â available in sticky toolbar above -->
       </div>
 
       <!-- Sidebar -->
@@ -417,7 +417,7 @@ const searchKeywords = [
                   var nextText = allStrongs[i+1].textContent?.trim() || '';
                   // BAB title is usually UPPERCASE and short
                   if (nextText.length < 150 && !/^BAB\s|^Pasal\s/i.test(nextText)) {
-                    label = text + ' — ' + nextText;
+                    label = text + ' â ' + nextText;
                   }
                   break;
                 }
@@ -433,12 +433,12 @@ const searchKeywords = [
           }
 
           if (type && id) {
-            // Add anchor ID — if parent already has an id, wrap with a span instead
+            // Add anchor ID â if parent already has an id, wrap with a span instead
             var anchor = strong.closest('div[style*="center"]') || strong.closest('p') || strong.parentElement;
             if (anchor && !anchor.id) {
               anchor.id = id;
             } else {
-              // Parent already has id (e.g., BAB div also contains Pasal) — set id on <strong> itself
+              // Parent already has id (e.g., BAB div also contains Pasal) â set id on <strong> itself
               strong.id = id;
             }
             // Avoid duplicates
@@ -546,7 +546,7 @@ const searchKeywords = [
         container.removeAttribute('data-crossref');
       })();
 
-      // Handle initial page load with hash (deep link) — retry until accurate
+      // Handle initial page load with hash (deep link) â retry until accurate
       if (window.location.hash) {
         var deepLinkId = window.location.hash.slice(1);
         var dlAttempts = 0;
