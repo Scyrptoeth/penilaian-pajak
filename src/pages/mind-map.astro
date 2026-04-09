@@ -62,6 +62,19 @@ const categories: Category[] = [
       (jenis === 'PMK' && topik.some((t) => /perpajakan/i.test(t))) ||
       topik.some((t) => /harta berwujud|harta tidak berwujud|bisnis/i.test(t)),
   },
+  {
+    id: 'sektoral',
+    label: 'PBB Sektoral',
+    match: (topik) =>
+      topik.some((t) => /pertambangan|perkebunan|perhutanan|kehutanan|migas|mineral|batubara|panas bumi|perikanan|sektor lainnya|minyak|gas bumi|hulu|cost recovery|minerba|kelapa sawit/i.test(t)),
+  },
+  {
+    id: 'dasar_hukum',
+    label: 'Dasar Hukum & Kebijakan',
+    match: (topik, jenis) =>
+      ['UU', 'PP', 'KEPPRES'].includes(jenis) ||
+      topik.some((t) => /undang-undang|dasar hukum|pengalihan PBB|biaya pemungutan|pembagian/i.test(t)),
+  },
 ];
 
 // Assign each regulation to a category
