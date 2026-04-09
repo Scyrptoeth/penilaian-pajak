@@ -14,4 +14,12 @@ topik:
   - "PBB"
 ---
 
-*Isi peraturan belum tersedia. Lihat [sumber asli di DDTC](https://perpajakan.ddtc.co.id/sumber-hukum/peraturan-pusat/surat-edaran-direktur-jenderal-pajak-se-03pj-61996).*
+SURAT EDARAN DIREKTUR JENDERAL PAJAK  
+NOMOR SE-03/PJ.6/1996   TENTANG   PENENTUAN SEKTOR PENGENAAN/PENERIMAAN PBB USAHA BIDANG PERIKANAN DAN PETERNAKAN   DIREKTUR JENDERAL PAJAK,  
+---  
+   
+Menanggapi adanya pertanyaan dari beberapa Kantor Pelayanan PBB perihal tersebut di atas, dengan ini ditegaskan bahwa pengenaan/penerimaan PBB usaha bidang perikanan dan peternakan, dimasukkan sebagai pengenaan/penerimaan sektor Pedesaan atau Perkotaan sesuai lokasi objek pajak tersebut berada, dan mengacu kepada Surat Edaran Dirjen Pajak No. [SE-51/PJ.6/1994](https://perpajakan.ddtc.co.id/sumber-hukum/peraturan-pusat/surat-edaran-direktur-jenderal-pajak-se-51pj-61994) tanggal 13 Agustus 1994 perihal Penentuan Sektor Pedesaan dan Perkotaan dalam Pengenaan PBB.  
+   
+Demikian untuk dimaklumi.  
+   
+5 Januari 1996 A.n. DIREKTUR JENDERAL PAJAK DIREKTUR PAJAK BUMI DAN BANGUNAN, ttd. MACHFUD SIDIK

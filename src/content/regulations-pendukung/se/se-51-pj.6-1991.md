@@ -14,4 +14,21 @@ topik:
   - "PBB"
 ---
 
-*Isi peraturan belum tersedia. Lihat [sumber asli di DDTC](https://perpajakan.ddtc.co.id/sumber-hukum/peraturan-pusat/surat-edaran-direktur-jenderal-pajak-se-51pj-61991).*
+SURAT EDARAN DIREKTUR JENDERAL PAJAK  
+NOMOR SE-51/PJ.6/1991   TENTANG   RALAT ATAS SURAT DIREKTUR JENDERAL PAJAK NOMOR: SE-27/PJ.6/1991 TANGGAL 9 MARET 1991   DIREKTUR JENDERAL PAJAK,  
+---  
+   
+Berdasarkan surat kami nomor: SE-27/PJ.6/1991 tanggal 9 Maret 1991 perihal ketetapan PBB Tambang Minyak dan Gas Bumi tahun 1990 dengan ini diberitahukan bahwa di dalam surat tersebut ternyata terdapat kesalahan dalam pengetikan.  
+   
+Kesalahan pengetikan tersebut terdapat pada:  
+A.n. DIREKTUR JENDERAL PAJAK  
+DIREKTUR JENDERAL PAJAK  
+   
+yang seharusnya tertulis:  
+A.n. DIREKTUR JENDERAL PAJAK  
+DIREKTUR PAJAK BUMI DAN BANGUNAN  
+   
+Demikian, agar menjadi maklum.  
+   
+10 Juni 1991 A.n. DIREKTUR JENDERAL PAJAK  
+DIREKTUR PAJAK BUMI DAN BANGUNAN, ttd Drs. KARSONO SURJOWIBOWO
