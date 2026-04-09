@@ -6,7 +6,7 @@ const regulations = defineCollection({
   schema: z.object({
     title: z.string(),
     nomor: z.string(),
-    jenis: z.enum(['UU', 'PP', 'PMK', 'PER', 'SE', 'KEP', 'KMK']),
+    jenis: z.enum(['UU', 'PP', 'PMK', 'PER', 'SE', 'KEP', 'KMK', 'KEPPRES']),
     tahun: z.number(),
     tanggal_diundangkan: z.string(),
     tanggal_berlaku: z.string(),

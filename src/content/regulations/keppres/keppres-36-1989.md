@@ -1,7 +1,7 @@
 ---
 title: "Perubahan Keputusan Presiden Nomor 77 Tahun 1985 Tentang Pengenaan, Pemungutan, Dan Pembagian Iuran Hasil Hutan"
-nomor: "PP-36/1989"
-jenis: "PP"
+nomor: "KEPPRES-36/1989"
+jenis: "KEPPRES"
 tahun: 1989
 tanggal_diundangkan: "1989-07-24"
 tanggal_berlaku: "1989-07-24"
@@ -12,7 +12,7 @@ sektor:
   - "umum"
 berlaku_untuk:
   - "PBB"
-ringkasan: "Peraturan Pemerintah tentang perubahan Keputusan Presiden Nomor 77 Tahun 1985 Tentang Pengenaan, Pemungutan, Dan Pembagian Iuran Hasil Hutan"
+ringkasan: "Keputusan Presiden tentang perubahan Keputusan Presiden Nomor 77 Tahun 1985 Tentang Pengenaan, Pemungutan, Dan Pembagian Iuran Hasil Hutan"
 lampiran_pdf: ""
 ortax_id: "175"
 ---
