@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MindMapPendukung from '../components/MindMapPendukung';
+import { getCollection } from 'astro:content';
+
+const regulations = await getCollection('regulations-pendukung');
+
+const mindMapData = regulations.map((r) => ({
+  nomor: r.data.nomor,
+  title: r.data.title,
+  jenis: r.data.jenis,
+  status: r.data.status,
+  slug: r.id.split('/').pop() || r.id,
+  deskripsi: r.data.deskripsi,
+}));
+---
+
+<BaseLayout title="Mind Map Peraturan Pendukung" description="Visualisasi hubungan antar 337 peraturan pendukung PBB dalam bentuk mind map interaktif.">
+  <div class="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
+    <h1 class="font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
+      Mind Map Peraturan Pendukung
+    </h1>
+    <p class="mt-1 text-sm text-navy-500 dark:text-stone-400">
+      Klik kategori untuk expand, klik peraturan untuk detail. {mindMapData.length} peraturan PBB.
+    </p>
+  </div>
+  <div style="height: calc(100vh - 140px)">
+    <MindMapPendukung client:only="react" regulations={mindMapData} />
+  </div>
+</BaseLayout>

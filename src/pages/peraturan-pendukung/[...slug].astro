@@ -1,0 +1,408 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const regulations = await getCollection('regulations-pendukung');
+  return regulations.map((reg) => ({
+    params: { slug: reg.id },
+    props: { regulation: reg },
+  }));
+}
+
+const { regulation } = Astro.props;
+const { Content } = await render(regulation);
+const { data } = regulation;
+
+const statusColors: Record<string, string> = {
+  berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  diubah: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+};
+
+const statusLabels: Record<string, string> = {
+  berlaku: 'Berlaku',
+  dicabut: 'Tidak Berlaku',
+  diubah: 'Perubahan',
+};
+
+const statusDotColors: Record<string, string> = {
+  berlaku: 'bg-green-500',
+  dicabut: 'bg-red-500',
+  diubah: 'bg-blue-500',
+};
+
+// Sidebar tab definitions
+const tabs = [
+  { id: 'indeks', label: 'Indeks', icon: 'list' },
+  { id: 'riwayat', label: 'Riwayat', icon: 'clock' },
+  { id: 'terkait', label: 'Peraturan Terkait', icon: 'link' },
+  { id: 'analisis', label: 'Analisis', icon: 'chart' },
+];
+
+const hasRiwayat = data.riwayat && data.riwayat.length > 0;
+const hasTerkaitBaru = data.peraturan_terkait_terbaru && data.peraturan_terkait_terbaru.length > 0;
+const hasTerkaitLama = data.peraturan_terkait_sebelumnya && data.peraturan_terkait_sebelumnya.length > 0;
+const hasTerkait = hasTerkaitBaru || hasTerkaitLama;
+const hasAnalisis = data.analisis && data.analisis.length > 0;
+---
+
+<BaseLayout title={`${data.nomor} — ${data.title}`} description={data.deskripsi}>
+  <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8" data-pagefind-body>
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="py-2">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm">
+        <li>
+          <a href="/" class="text-navy-400 transition-colors hover:text-navy-700 dark:text-stone-500 dark:hover:text-stone-200">Beranda</a>
+        </li>
+        <li class="text-navy-300 dark:text-stone-600" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5">
+            <path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <a href="/peraturan-pendukung" class="text-navy-400 transition-colors hover:text-navy-700 dark:text-stone-500 dark:hover:text-stone-200">Peraturan Pendukung</a>
+        </li>
+        <li class="text-navy-300 dark:text-stone-600" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5">
+            <path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <span class="font-medium text-navy-700 dark:text-stone-200" aria-current="page">{data.nomor}</span>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="mt-6">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="bg-navy-100 px-2 py-0.5 font-mono text-xs font-medium text-navy-800 dark:bg-navy-800 dark:text-navy-200">
+          {data.jenis}
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class={`h-2.5 w-2.5 rounded-full ${statusDotColors[data.status]}`}></span>
+          <span class={`px-2 py-0.5 text-xs font-medium ${statusColors[data.status]}`}>
+            {data.status_label || statusLabels[data.status]}
+          </span>
+        </span>
+      </div>
+      <h1 class="mt-3 font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100 sm:text-3xl">
+        {data.nomor}
+      </h1>
+      <p class="mt-2 text-lg text-navy-600 dark:text-stone-300">{data.title}</p>
+    </header>
+
+    <!-- Metadata bar -->
+    <dl class="mt-6 grid grid-cols-2 gap-4 border-y-2 border-navy-100 py-6 dark:border-navy-800 sm:grid-cols-3">
+      <div>
+        <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Berlaku</dt>
+        <dd class="mt-1 font-mono text-sm text-navy-700 dark:text-stone-300">{data.tanggal_berlaku}</dd>
+      </div>
+      <div>
+        <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Tahun</dt>
+        <dd class="mt-1 font-mono text-sm text-navy-700 dark:text-stone-300">{data.tahun}</dd>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <dt class="text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Deskripsi</dt>
+        <dd class="mt-1 text-sm text-navy-700 dark:text-stone-300">{data.deskripsi}</dd>
+      </div>
+    </dl>
+
+    <!-- Topics -->
+    {data.topik && data.topik.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        {data.topik.map((t: string) => (
+          <span class="border border-navy-200 px-2 py-0.5 text-xs text-navy-500 dark:border-navy-700 dark:text-stone-400">
+            {t}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- PDF buttons -->
+    <div class="mt-6 flex flex-wrap gap-3">
+      {data.pdf_isi ? (
+        <a href={data.pdf_isi} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border-2 border-navy-800 px-4 py-2.5 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-800 hover:text-white dark:border-gold-400 dark:text-gold-400 dark:hover:bg-gold-400 dark:hover:text-navy-900">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" /><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" /></svg>
+          Unduh PDF Isi
+        </a>
+      ) : (
+        <button type="button" disabled class="inline-flex items-center gap-2 border-2 border-navy-200 px-4 py-2.5 text-sm font-semibold text-navy-300 dark:border-navy-700 dark:text-stone-600" title="PDF belum tersedia">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" /><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" /></svg>
+          Unduh PDF Isi
+        </button>
+      )}
+      {data.pdf_lampiran ? (
+        <a href={data.pdf_lampiran} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border-2 border-navy-200 px-4 py-2.5 text-sm font-semibold text-navy-600 transition-colors hover:border-gold-400 hover:text-gold-600 dark:border-navy-700 dark:text-stone-400 dark:hover:border-gold-400 dark:hover:text-gold-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5z" /></svg>
+          Unduh PDF Lampiran
+        </a>
+      ) : null}
+    </div>
+
+    <!-- Main layout: sidebar tabs + content -->
+    <div class="mt-8 flex flex-col gap-8 lg:flex-row">
+      <!-- Left sidebar with tabs (DDTC style) -->
+      <aside class="w-full shrink-0 lg:w-72">
+        <div class="sticky top-20 space-y-4">
+          <!-- Tab buttons -->
+          <div class="border-2 border-navy-100 dark:border-navy-800">
+            <nav class="flex flex-col" aria-label="Sidebar tabs">
+              {tabs.map((tab) => (
+                <button
+                  type="button"
+                  data-tab={tab.id}
+                  class="sidebar-tab flex items-center gap-3 border-b border-navy-100 px-4 py-3 text-left text-sm font-medium text-navy-600 transition-colors last:border-b-0 hover:bg-navy-50 dark:border-navy-800 dark:text-stone-400 dark:hover:bg-navy-800"
+                >
+                  {tab.id === 'indeks' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0"><path fill-rule="evenodd" d="M2 3.75A.75.75 0 012.75 3h11.5a.75.75 0 010 1.5H2.75A.75.75 0 012 3.75zm0 4.5A.75.75 0 012.75 7.5h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 012 8.25zm0 4.5a.75.75 0 01.75-.75h11.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75zm0 4.5a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5a.75.75 0 01-.75-.75z" clip-rule="evenodd" /></svg>
+                  )}
+                  {tab.id === 'riwayat' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" /></svg>
+                  )}
+                  {tab.id === 'terkait' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0"><path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" /><path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" /></svg>
+                  )}
+                  {tab.id === 'analisis' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0"><path d="M15.5 2A1.5 1.5 0 0014 3.5v13a1.5 1.5 0 001.5 1.5h1a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-1zM9.5 6A1.5 1.5 0 008 7.5v9A1.5 1.5 0 009.5 18h1a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0010.5 6h-1zM3.5 10A1.5 1.5 0 002 11.5v5A1.5 1.5 0 003.5 18h1A1.5 1.5 0 006 16.5v-5A1.5 1.5 0 004.5 10h-1z" /></svg>
+                  )}
+                  {tab.label}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          <!-- Tab content panels -->
+          <div class="border-2 border-navy-100 dark:border-navy-800">
+            <!-- Indeks panel -->
+            <div id="panel-indeks" class="tab-panel p-4" data-panel="indeks">
+              <h3 class="mb-3 font-heading text-sm font-semibold tracking-wide text-navy-800 uppercase dark:text-stone-100">Daftar Isi</h3>
+              <ol id="toc-list-pendukung" class="space-y-1 text-sm">
+                <li class="text-navy-400 dark:text-stone-500">Memuat daftar isi...</li>
+              </ol>
+            </div>
+
+            <!-- Riwayat panel -->
+            <div id="panel-riwayat" class="tab-panel hidden p-4" data-panel="riwayat">
+              <h3 class="mb-3 font-heading text-sm font-semibold tracking-wide text-navy-800 uppercase dark:text-stone-100">Riwayat</h3>
+              {hasRiwayat ? (
+                <ul class="space-y-2">
+                  {data.riwayat!.map((item: string) => (
+                    <li class="flex items-start gap-2 text-sm text-navy-600 dark:text-stone-300">
+                      <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-navy-400 dark:bg-stone-500"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="text-sm text-navy-400 dark:text-stone-500">Tidak ada riwayat yang tercatat.</p>
+              )}
+            </div>
+
+            <!-- Peraturan Terkait panel -->
+            <div id="panel-terkait" class="tab-panel hidden p-4" data-panel="terkait">
+              <h3 class="mb-3 font-heading text-sm font-semibold tracking-wide text-navy-800 uppercase dark:text-stone-100">Peraturan Terkait</h3>
+              {hasTerkait ? (
+                <div class="space-y-4">
+                  {hasTerkaitBaru && (
+                    <div>
+                      <p class="mb-2 text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Peraturan Terbaru</p>
+                      <ul class="space-y-1.5">
+                        {data.peraturan_terkait_terbaru!.map((ref) => (
+                          <li>
+                            <a href={`/peraturan-pendukung/${ref.prefix}/${ref.slug}`} class="block text-sm font-medium text-gold-600 hover:text-gold-500 dark:text-gold-400 dark:hover:text-gold-300">
+                              {ref.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {hasTerkaitLama && (
+                    <div>
+                      <p class="mb-2 text-xs font-medium tracking-wide text-navy-400 uppercase dark:text-stone-500">Peraturan Sebelumnya</p>
+                      <ul class="space-y-1.5">
+                        {data.peraturan_terkait_sebelumnya!.map((ref) => (
+                          <li>
+                            <a href={`/peraturan-pendukung/${ref.prefix}/${ref.slug}`} class="block text-sm font-medium text-gold-600 hover:text-gold-500 dark:text-gold-400 dark:hover:text-gold-300">
+                              {ref.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p class="text-sm text-navy-400 dark:text-stone-500">Tidak ada peraturan terkait yang tercatat.</p>
+              )}
+            </div>
+
+            <!-- Analisis panel -->
+            <div id="panel-analisis" class="tab-panel hidden p-4" data-panel="analisis">
+              <h3 class="mb-3 font-heading text-sm font-semibold tracking-wide text-navy-800 uppercase dark:text-stone-100">Analisis</h3>
+              {hasAnalisis ? (
+                <ul class="space-y-2">
+                  {data.analisis!.map((item: string) => (
+                    <li class="flex items-start gap-2 text-sm text-navy-600 dark:text-stone-300">
+                      <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="text-sm text-navy-400 dark:text-stone-500">Tidak ada analisis yang tersedia.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content area -->
+      <div class="min-w-0 flex-1">
+        <!-- Body content -->
+        <div id="legal-content" class="legal-prose prose prose-navy dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-gold-600 prose-a:no-underline hover:prose-a:underline">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // === SIDEBAR TAB SWITCHING ===
+      const tabButtons = document.querySelectorAll('.sidebar-tab');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+
+      function activateTab(tabId) {
+        // Update buttons
+        tabButtons.forEach((btn) => {
+          const isActive = btn.dataset.tab === tabId;
+          btn.classList.toggle('bg-navy-50', isActive);
+          btn.classList.toggle('dark:bg-navy-800', isActive);
+          btn.classList.toggle('text-gold-600', isActive);
+          btn.classList.toggle('dark:text-gold-400', isActive);
+          btn.classList.toggle('border-l-2', isActive);
+          btn.classList.toggle('border-l-gold-400', isActive);
+        });
+
+        // Update panels
+        tabPanels.forEach((panel) => {
+          const isActive = panel.dataset.panel === tabId;
+          panel.classList.toggle('hidden', !isActive);
+        });
+      }
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+      });
+
+      // Activate first tab by default
+      activateTab('indeks');
+
+      // === GENERATE TABLE OF CONTENTS ===
+      const container = document.getElementById('legal-content');
+      const tocList = document.getElementById('toc-list-pendukung');
+      if (!container || !tocList) return;
+
+      const entries = [];
+
+      // Scan <strong> elements for BAB/Pasal patterns
+      const strongs = container.querySelectorAll('strong');
+      strongs.forEach(function(strong) {
+        var text = strong.textContent?.trim() || '';
+        var type = null;
+        var id = null;
+        var label = text;
+
+        var babMatch = text.match(/^BAB\s+([IVXLCDM\d]+)\s*$/i);
+        if (babMatch) {
+          type = 'bab';
+          id = 'BAB_' + babMatch[1];
+          var parent = strong.closest('div') || strong.parentElement;
+          if (parent) {
+            var allStrongs = parent.querySelectorAll('strong');
+            for (var i = 0; i < allStrongs.length; i++) {
+              if (allStrongs[i] === strong && i + 1 < allStrongs.length) {
+                var nextText = allStrongs[i+1].textContent?.trim() || '';
+                if (nextText.length < 150 && !/^BAB\s|^Pasal\s/i.test(nextText)) {
+                  label = text + ' \u2014 ' + nextText;
+                }
+                break;
+              }
+            }
+          }
+        }
+
+        var pasalMatch = text.match(/^Pasal\s+(\d+[A-Z]?)\s*$/i);
+        if (pasalMatch) {
+          type = 'pasal';
+          id = 'Pasal_' + pasalMatch[1];
+        }
+
+        if (type && id) {
+          var anchor = strong.closest('div[style*="center"]') || strong.closest('p') || strong.parentElement;
+          if (anchor && !anchor.id) {
+            anchor.id = id;
+          } else {
+            strong.id = id;
+          }
+          if (!entries.some(function(e) { return e.id === id; })) {
+            entries.push({ id: id, label: label, type: type });
+          }
+        }
+      });
+
+      // Clear placeholder
+      tocList.innerHTML = '';
+
+      if (entries.length === 0) {
+        tocList.innerHTML = '<li class="text-navy-400 dark:text-stone-500">Tidak ada daftar isi.</li>';
+        return;
+      }
+
+      entries.forEach(function(entry) {
+        var li = document.createElement('li');
+        li.className = entry.type === 'pasal' ? 'pl-4' : '';
+        var a = document.createElement('a');
+        a.href = '#' + entry.id;
+        a.textContent = entry.label;
+        a.className = entry.type === 'bab'
+          ? 'block py-1 font-semibold text-navy-700 hover:text-gold-600 dark:text-stone-200 dark:hover:text-gold-400'
+          : 'block py-0.5 text-navy-500 hover:text-gold-600 dark:text-stone-400 dark:hover:text-gold-400';
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.getElementById(entry.id);
+          if (target) {
+            var top = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: top, behavior: 'instant' });
+            history.pushState(null, '', '#' + entry.id);
+          }
+        });
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      // === FORMAT LEGAL DOCUMENT ===
+      const paragraphs = container.querySelectorAll('p');
+      paragraphs.forEach((p) => {
+        const text = p.textContent?.trim() || '';
+        if (/^BAB\s+[IVXLCDM\d]+$/i.test(text)) {
+          p.classList.add('legal-bab');
+          const next = p.nextElementSibling;
+          if (next && next.tagName === 'P') {
+            const nextText = next.textContent?.trim() || '';
+            if (nextText.length < 100 && nextText === nextText.toUpperCase()) {
+              next.classList.add('legal-bab-title');
+            }
+          }
+        } else if (/^Pasal\s+\d+[A-Z]?$/i.test(text)) {
+          p.classList.add('legal-pasal');
+        } else if (/^MEMUTUSKAN\s*:?$/i.test(text)) {
+          p.classList.add('legal-memutuskan');
+        }
+      });
+    });
+  </script>
+</BaseLayout>

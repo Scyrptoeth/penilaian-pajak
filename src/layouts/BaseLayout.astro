@@ -10,12 +10,19 @@ interface Props {
 const { title, description = 'Perpustakaan digital peraturan Penilaian Pajak Indonesia untuk Penilai Pajak — dengan pencarian full-text ke dalam isi peraturan.' } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-const navItems = [
+// Simple nav items (no dropdown)
+const simpleNavItems = [
   { href: '/', label: 'Beranda' },
   { href: '/pencarian', label: 'Pencarian' },
-  { href: '/perpustakaan', label: 'Perpustakaan' },
-  { href: '/mind-map', label: 'Mind Map' },
+  { href: '/perpustakaan', label: 'Peraturan Inti' },
+  { href: '/peraturan-pendukung', label: 'Peraturan Pendukung' },
   { href: '/tentang', label: 'Tentang' },
+];
+
+// Mind Map dropdown items
+const mindMapItems = [
+  { href: '/mind-map', label: 'Peraturan Inti' },
+  { href: '/mind-map-pendukung', label: 'Peraturan Pendukung' },
 ];
 ---
 
@@ -86,7 +93,7 @@ const navItems = [
 
         <!-- Desktop nav -->
         <ul class="hidden items-center gap-1 md:flex">
-          {navItems.map(({ href, label }) => {
+          {simpleNavItems.map(({ href, label }) => {
             const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
             return (
               <li>
@@ -104,6 +111,44 @@ const navItems = [
               </li>
             );
           })}
+          {/* Mind Map dropdown */}
+          <li class="relative">
+            <button
+              id="mindmap-dropdown-btn"
+              type="button"
+              class:list={[
+                'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                currentPath.startsWith('/mind-map')
+                  ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                  : 'text-navy-600 hover:bg-navy-50 hover:text-navy-900 dark:text-stone-400 dark:hover:bg-navy-800 dark:hover:text-stone-100',
+              ]}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              Mind Map
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <div id="mindmap-dropdown" class="absolute right-0 top-full z-50 mt-1 hidden w-52 border-2 border-navy-100 bg-white shadow-lg dark:border-navy-800 dark:bg-navy-900">
+              {mindMapItems.map(({ href, label }) => {
+                const isActive = currentPath === href;
+                return (
+                  <a
+                    href={href}
+                    class:list={[
+                      'block px-4 py-2.5 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                        : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800',
+                    ]}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
+            </div>
+          </li>
         </ul>
 
         <div class="flex items-center gap-2">
@@ -141,7 +186,7 @@ const navItems = [
       <!-- Mobile menu -->
       <div id="mobile-menu" role="navigation" aria-label="Menu mobile" class="hidden border-t border-navy-100 dark:border-navy-800 md:hidden">
         <ul class="space-y-1 px-4 py-3">
-          {navItems.map(({ href, label }) => {
+          {simpleNavItems.map(({ href, label }) => {
             const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
             return (
               <li>
@@ -149,6 +194,28 @@ const navItems = [
                   href={href}
                   class:list={[
                     'block rounded-md px-3 py-2 text-sm font-medium',
+                    isActive
+                      ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                      : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800',
+                  ]}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+          {/* Mind Map section in mobile menu */}
+          <li>
+            <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Mind Map</p>
+          </li>
+          {mindMapItems.map(({ href, label }) => {
+            const isActive = currentPath === href;
+            return (
+              <li>
+                <a
+                  href={href}
+                  class:list={[
+                    'block rounded-md px-3 py-2 pl-6 text-sm font-medium',
                     isActive
                       ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
                       : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800',
@@ -204,6 +271,25 @@ const navItems = [
         this.setAttribute('aria-expanded', isExpanded.toString());
         this.setAttribute('aria-label', isExpanded ? 'Tutup menu navigasi' : 'Buka menu navigasi');
       });
+
+      // Mind Map dropdown toggle
+      (function() {
+        var btn = document.getElementById('mindmap-dropdown-btn');
+        var dropdown = document.getElementById('mindmap-dropdown');
+        if (!btn || !dropdown) return;
+        btn.addEventListener('click', function() {
+          var isOpen = !dropdown.classList.contains('hidden');
+          dropdown.classList.toggle('hidden');
+          btn.setAttribute('aria-expanded', (!isOpen).toString());
+        });
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.add('hidden');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      })();
 
       // Close mobile menu when a nav link is clicked
       document.querySelectorAll('#mobile-menu a').forEach(function(link) {

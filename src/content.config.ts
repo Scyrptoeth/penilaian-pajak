@@ -28,4 +28,45 @@ const regulations = defineCollection({
   }),
 });
 
-export const collections = { regulations };
+// DDTC-style lampiran info item
+const lampiranInfoItem = z.object({
+  uuid: z.string(),
+  file_path: z.string(),
+  file_title: z.string(),
+});
+
+// Related regulation reference
+const relatedRegRef = z.object({
+  title: z.string(),
+  prefix: z.string(),
+  slug: z.string(),
+});
+
+const regulationsPendukung = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/regulations-pendukung' }),
+  schema: z.object({
+    title: z.string(),
+    nomor: z.string(),
+    jenis: z.enum(['UU', 'PP', 'PMK', 'PER', 'SE', 'KEP', 'KMK', 'KEPPRES', 'PBM', 'SDIRJEN', 'KEBDJ', 'INSTRUKSI', 'PENGUMUMAN', 'PERPRES']),
+    tahun: z.number(),
+    tanggal_berlaku: z.string(),
+    deskripsi: z.string(),
+    status: z.enum(['berlaku', 'dicabut', 'diubah']),
+    status_label: z.string().optional(),
+    status_color: z.enum(['green', 'red', 'blue']),
+    topik: z.array(z.string()).optional(),
+    slug_ddtc: z.string().optional(),
+    sumber_ddtc: z.string().optional(),
+    // Google Drive PDF links
+    pdf_isi: z.string().optional(),
+    pdf_lampiran: z.string().optional(),
+    // DDTC-style metadata
+    lampiran_info: z.array(lampiranInfoItem).optional(),
+    peraturan_terkait_terbaru: z.array(relatedRegRef).optional(),
+    peraturan_terkait_sebelumnya: z.array(relatedRegRef).optional(),
+    riwayat: z.array(z.string()).optional(),
+    analisis: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { regulations, 'regulations-pendukung': regulationsPendukung };
