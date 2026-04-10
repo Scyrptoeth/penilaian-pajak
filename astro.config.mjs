@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://penilaian-pajak.vercel.app',
+  site: 'https://penilaipedia.vercel.app',
   output: 'static',
   integrations: [react(), sitemap()],
   vite: {

@@ -81,7 +81,7 @@
   --color-neutral-800: #262626;
   --color-neutral-900: #171717;
 
-  /* Monochrome accent palette (replaces gold — used for interactive elements) */
+  /* Monochrome accent palette (replaces gold, used for interactive elements) */
   --color-accent-50: #fafafa;
   --color-accent-100: #f5f5f5;
   --color-accent-200: #e5e5e5;
@@ -111,12 +111,12 @@
     /* scroll-behavior handled by JS for reliability on long pages */
     -webkit-font-smoothing: antialiased;
     text-size-adjust: 100%;
-    /* overflow-x: hidden removed — breaks position:sticky on descendants */
+    /* overflow-x: hidden removed, breaks position:sticky on descendants */
   }
 
   body {
     font-synthesis: none;
-    /* overflow-x: hidden removed — breaks position:sticky on descendants */
+    /* overflow-x: hidden removed, breaks position:sticky on descendants */
   }
 
   h1, h2, h3, h4, h5, h6 {

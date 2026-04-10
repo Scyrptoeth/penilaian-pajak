@@ -142,16 +142,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           'pemerintah',   // government ≠ perintah (command)
           'pembangunan',  // development ≠ bangun (build)
           'pendapatan',   // income ≠ dapat (get)
-          'pengelolaan',  // management ≠ kelola (manage) — actually similar but keep for precision
+          'pengelolaan',  // management ≠ kelola (manage), actually similar but keep for precision
           'penghasilan',  // income ≠ hasil (result)
           'keputusan',    // decision ≠ putus (break)
           'penetapan',    // determination ≠ tetap (fixed)
           'perhitungan',  // calculation ≠ hitung (count)
-          'persyaratan',  // requirement ≠ syarat (condition) — similar but keep
+          'persyaratan',  // requirement ≠ syarat (condition), similar but keep
           'pelaksanaan',  // implementation ≠ laksana (manner)
           'pengurangan',  // reduction/deduction ≠ kurang (less)
-          'perpajakan',   // taxation ≠ pajak (tax) — similar but keep for precision
-          'pembayaran',   // payment ≠ bayar (pay) — similar but keep
+          'perpajakan',   // taxation ≠ pajak (tax), similar but keep for precision
+          'pembayaran',   // payment ≠ bayar (pay), similar but keep
           'pengembalian',  // return/refund ≠ kembali (return verb)
           'pemeriksaan',  // examination ≠ periksa (check)
           'pemanfaatan',  // utilization
@@ -504,7 +504,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             if (sel) sel.addEventListener('change', applyFilters);
           });
 
-          // Watch for results appearing — show/hide filters
+          // Watch for results appearing, show/hide filters
           var resultsObserver = new MutationObserver(function() {
             var results = el.querySelectorAll('.pagefind-ui__result');
             if (results.length > 0) {

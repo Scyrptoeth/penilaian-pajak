@@ -132,7 +132,7 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
     <div style={{ background: isDark ? '#e5e5e5' : '#262626', color: isDark ? '#000000' : '#ffffff', padding: '12px 20px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: `2px solid ${isDark ? '#d4d4d4' : '#525252'}`, cursor: 'pointer' }}>
       <Handle type="target" position={Position.Left} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
       <div>{data.label}</div>
-      <div style={{ fontSize: 11, color: isDark ? '#525252' : '#a3a3a3', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
+      <div style={{ fontSize: 11, color: isDark ? '#525252' : '#a3a3a3', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan, klik untuk expand</div>
       <Handle type="source" position={Position.Right} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
     </div>
   );
@@ -199,7 +199,7 @@ function MindMapInner({ allNodes, allEdges }: { allNodes: Node<MindMapNodeData>[
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
-  // Sync layout — match proven inti pattern exactly
+  // Sync layout: match proven inti pattern exactly
   const prevLayout = useMemo(() => JSON.stringify(layoutedNodes.map((n) => n.id)), [layoutedNodes]);
   useMemo(() => {
     setNodes(layoutedNodes);

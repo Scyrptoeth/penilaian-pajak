@@ -171,7 +171,7 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
       <Handle type="target" position={Position.Left} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
       <div>{data.label}</div>
       <div style={{ fontSize: 11, color: isDark ? '#525252' : '#a3a3a3', marginTop: 4, fontWeight: 400 }}>
-        {data.count} peraturan — klik untuk expand
+        {data.count} peraturan, klik untuk expand
       </div>
       <Handle type="source" position={Position.Right} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
     </div>

@@ -7,7 +7,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Perpustakaan digital peraturan Penilaian Pajak Indonesia untuk Penilai Pajak — dengan pencarian full-text ke dalam isi peraturan.' } = Astro.props;
+const { title, description = 'Perpustakaan digital peraturan penilaian pajak Indonesia untuk Penilai Pajak, dengan pencarian full-text ke dalam isi peraturan.' } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 // Dropdown items for "Peraturan"
@@ -45,7 +45,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:locale" content="id_ID" />
-    <meta property="og:site_name" content="Penilaian Pajak" />
+    <meta property="og:site_name" content="PenilaiPedia" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -67,9 +67,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
         rel="stylesheet"
       />
     </noscript>
-    <title>{title} | Penilaian Pajak</title>
+    <title>{title} | PenilaiPedia</title>
     <script is:inline>
-      // Theme init — MUST run before render to prevent FOUC
+      // Theme init: MUST run before render to prevent FOUC
       (function() {
         var stored = localStorage.getItem('theme');
         if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -90,7 +90,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-black dark:text-white">
             <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
           </svg>
-          Penilaian Pajak
+          PenilaiPedia
         </a>
 
         <!-- Desktop nav -->
@@ -109,18 +109,18 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               Beranda
             </a>
           </li>
-          {/* Cari */}
+          {/* Pencarian Peraturan */}
           <li>
             <a
-              href="/pencarian"
+              href="/pencarian-peraturan"
               class:list={[
                 'nav-stabilo px-3 py-2 text-sm font-medium transition-colors',
-                currentPath === '/pencarian'
+                currentPath === '/pencarian-peraturan' || currentPath === '/pencarian-peraturan/'
                   ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
-              Cari
+              Pencarian Peraturan
             </a>
           </li>
           {/* Peraturan dropdown */}
@@ -205,7 +205,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               href="/tentang"
               class:list={[
                 'nav-stabilo px-3 py-2 text-sm font-medium transition-colors',
-                currentPath === '/tentang'
+                currentPath === '/tentang' || currentPath === '/tentang/'
                   ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
@@ -256,10 +256,10 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               Beranda
             </a>
           </li>
-          {/* Cari */}
+          {/* Pencarian Peraturan */}
           <li>
-            <a href="/pencarian" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
-              Cari
+            <a href="/pencarian-peraturan" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian-peraturan' || currentPath === '/pencarian-peraturan/' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
+              Pencarian Peraturan
             </a>
           </li>
           {/* Peraturan section */}
@@ -308,7 +308,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
           })}
           {/* Tentang */}
           <li>
-            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
+            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' || currentPath === '/tentang/' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Tentang
             </a>
           </li>
@@ -335,9 +335,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
     <footer class="border-t border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-900">
       <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center gap-2 text-center text-sm text-neutral-500 dark:text-neutral-500">
-          <p>Perpustakaan Digital Peraturan Penilaian Pajak Indonesia</p>
+          <p>PenilaiPedia: Perpustakaan Digital Peraturan Penilaian Pajak Indonesia</p>
           <p>Bukan website resmi Direktorat Jenderal Pajak.</p>
-          <p class="font-mono text-xs">&copy; {new Date().getFullYear()} Penilaian Pajak</p>
+          <p class="font-mono text-xs">&copy; {new Date().getFullYear()} PenilaiPedia</p>
         </div>
       </div>
     </footer>
