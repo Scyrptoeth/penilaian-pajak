@@ -30,16 +30,16 @@ const statusColorsPopular: Record<string, string> = {
 
 <BaseLayout title="Beranda">
   <!-- Hero -->
-  <section class="relative overflow-hidden bg-navy-900 text-white">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-navy-700)_0%,_transparent_50%)] opacity-60"></div>
+  <section class="relative overflow-hidden bg-neutral-900 text-white">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-neutral-700)_0%,_transparent_50%)] opacity-60"></div>
     <div class="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-36">
       <div class="mx-auto max-w-3xl">
-        <p class="mb-3 font-mono text-sm tracking-widest text-gold-400 uppercase">Perpustakaan Digital</p>
+        <p class="mb-3 font-mono text-sm tracking-widest text-accent-400 uppercase">Perpustakaan Digital</p>
         <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
           Peraturan Penilaian Pajak
-          <span class="text-gold-400">Indonesia</span>
+          <span class="text-accent-400">Indonesia</span>
         </h1>
-        <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-navy-200">
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-200">
           Sumber referensi lengkap bagi Penilai Pajak &mdash; dengan pencarian full-text ke dalam isi peraturan.
         </p>
       </div>
@@ -48,7 +48,7 @@ const statusColorsPopular: Record<string, string> = {
       <div class="mx-auto mt-10 max-w-2xl">
         <form action="/pencarian" method="get" class="flex flex-col gap-2 sm:flex-row">
           <div class="relative flex-1">
-            <svg class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-navy-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <svg class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
             </svg>
             <input
@@ -56,12 +56,12 @@ const statusColorsPopular: Record<string, string> = {
               name="q"
               aria-label="Cari peraturan"
               placeholder="Cari peraturan... contoh: 'nilai jual objek pajak'"
-              class="w-full rounded-none border-2 border-navy-600 bg-navy-800/50 py-3.5 pl-12 pr-4 text-white placeholder:text-navy-400 focus:border-gold-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+              class="w-full rounded-none border-2 border-neutral-600 bg-neutral-800/50 py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-400 focus:border-accent-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
             />
           </div>
           <button
             type="submit"
-            class="w-full bg-gold-400 px-6 py-3.5 font-heading text-sm font-semibold tracking-widest text-navy-900 uppercase transition-colors hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 sm:w-auto"
+            class="w-full bg-accent-400 px-6 py-3.5 font-heading text-sm font-semibold tracking-widest text-neutral-900 uppercase transition-colors hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 sm:w-auto"
           >
             Cari
           </button>
@@ -71,7 +71,7 @@ const statusColorsPopular: Record<string, string> = {
   </section>
 
   <!-- Stats -->
-  <section class="border-b border-navy-100 bg-white dark:border-navy-800 dark:bg-navy-900/50">
+  <section class="border-b border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-900/50">
     <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px sm:grid-cols-4">
       {[
         { value: allRegulations.length.toString(), label: 'Total Peraturan' },
@@ -80,8 +80,8 @@ const statusColorsPopular: Record<string, string> = {
         { value: tahunSet.size > 0 ? `${minTahun}\u2013${maxTahun}` : '-', label: 'Rentang Tahun' },
       ].map(({ value, label }) => (
         <div class="px-6 py-8 text-center">
-          <p class="font-heading text-3xl font-bold text-navy-800 dark:text-gold-400">{value}</p>
-          <p class="mt-1 text-sm text-navy-500 dark:text-stone-400">{label}</p>
+          <p class="font-heading text-3xl font-bold text-neutral-800 dark:text-accent-400">{value}</p>
+          <p class="mt-1 text-sm text-neutral-500 dark:text-stone-400">{label}</p>
         </div>
       ))}
     </div>
@@ -90,22 +90,22 @@ const statusColorsPopular: Record<string, string> = {
   <!-- Popular Regulations -->
   {popular.length > 0 && (
     <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <p class="text-center font-mono text-xs font-semibold tracking-widest text-gold-500 uppercase">Paling Sering Dirujuk</p>
-      <h2 class="mt-2 text-center font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
+      <p class="text-center font-mono text-xs font-semibold tracking-widest text-accent-500 uppercase">Paling Sering Dirujuk</p>
+      <h2 class="mt-2 text-center font-heading text-2xl font-bold tracking-tight text-neutral-800 dark:text-stone-100">
         Peraturan Populer
       </h2>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {popular.map((reg) => (
-          <a href={`/perpustakaan/${reg.id}`} class="group border-2 border-navy-100 p-5 transition-all hover:border-gold-400 dark:border-navy-800 dark:hover:border-gold-400">
+          <a href={`/perpustakaan/${reg.id}`} class="group border-2 border-neutral-100 p-5 transition-all hover:border-accent-400 dark:border-neutral-800 dark:hover:border-accent-400">
             <div class="flex items-center gap-2">
-              <span class="bg-navy-800 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-navy-700">{reg.data.jenis}</span>
+              <span class="bg-neutral-800 px-2 py-0.5 font-mono text-xs font-medium text-white dark:bg-neutral-700">{reg.data.jenis}</span>
               <span class={`px-2 py-0.5 text-xs font-medium capitalize ${statusColorsPopular[reg.data.status]}`}>{reg.data.status}</span>
-              <span class="ml-auto font-mono text-xs text-navy-400 dark:text-stone-500">{reg.data.tahun}</span>
+              <span class="ml-auto font-mono text-xs text-neutral-400 dark:text-stone-500">{reg.data.tahun}</span>
             </div>
-            <h3 class="mt-3 font-heading text-base font-semibold text-navy-800 group-hover:text-gold-600 dark:text-stone-100 dark:group-hover:text-gold-400">
+            <h3 class="mt-3 font-heading text-base font-semibold text-neutral-800 group-hover:text-accent-600 dark:text-stone-100 dark:group-hover:text-accent-400">
               {reg.data.nomor}
             </h3>
-            <p class="mt-1 line-clamp-2 text-sm text-navy-500 dark:text-stone-400">{reg.data.title}</p>
+            <p class="mt-1 line-clamp-2 text-sm text-neutral-500 dark:text-stone-400">{reg.data.title}</p>
           </a>
         ))}
       </div>
@@ -114,40 +114,40 @@ const statusColorsPopular: Record<string, string> = {
 
   <!-- Categories -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <h2 class="font-heading text-2xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
+    <h2 class="font-heading text-2xl font-bold tracking-tight text-neutral-800 dark:text-stone-100">
       Kategori Peraturan
     </h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2">
-      <a href="/perpustakaan?topik=pbb" class="group border-2 border-navy-100 p-6 transition-all hover:border-gold-400 dark:border-navy-800 dark:hover:border-gold-400">
+      <a href="/perpustakaan?topik=pbb" class="group border-2 border-neutral-100 p-6 transition-all hover:border-accent-400 dark:border-neutral-800 dark:hover:border-accent-400">
         <div class="flex items-start gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center bg-navy-800 text-gold-400 dark:bg-gold-400/10">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center bg-neutral-800 text-accent-400 dark:bg-accent-400/10">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6">
               <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h16.5a.75.75 0 010 1.5H18v8.75A2.75 2.75 0 0115.25 15h-1.072l.798 3.06a.75.75 0 01-1.452.38L13.41 18H6.59l-.114.44a.75.75 0 01-1.452-.38L5.822 15H4.75A2.75 2.75 0 012 12.25V3.5h-.25A.75.75 0 011 2.75z" clip-rule="evenodd" />
             </svg>
           </div>
           <div>
-            <h3 class="font-heading text-lg font-semibold text-navy-800 group-hover:text-gold-600 dark:text-stone-100 dark:group-hover:text-gold-400">
+            <h3 class="font-heading text-lg font-semibold text-neutral-800 group-hover:text-accent-600 dark:text-stone-100 dark:group-hover:text-accent-400">
               PBB Sektor P5L
             </h3>
-            <p class="mt-1 text-sm leading-relaxed text-navy-500 dark:text-stone-400">
+            <p class="mt-1 text-sm leading-relaxed text-neutral-500 dark:text-stone-400">
               Perkebunan, Perhutanan, Pertambangan (Minerba &amp; Migas), Perikanan, Panas Bumi, dan Sektor Lainnya.
             </p>
           </div>
         </div>
       </a>
 
-      <a href="/perpustakaan?topik=penilaian" class="group border-2 border-navy-100 p-6 transition-all hover:border-gold-400 dark:border-navy-800 dark:hover:border-gold-400">
+      <a href="/perpustakaan?topik=penilaian" class="group border-2 border-neutral-100 p-6 transition-all hover:border-accent-400 dark:border-neutral-800 dark:hover:border-accent-400">
         <div class="flex items-start gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center bg-navy-800 text-gold-400 dark:bg-gold-400/10">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center bg-neutral-800 text-accent-400 dark:bg-accent-400/10">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6">
               <path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" clip-rule="evenodd" />
             </svg>
           </div>
           <div>
-            <h3 class="font-heading text-lg font-semibold text-navy-800 group-hover:text-gold-600 dark:text-stone-100 dark:group-hover:text-gold-400">
+            <h3 class="font-heading text-lg font-semibold text-neutral-800 group-hover:text-accent-600 dark:text-stone-100 dark:group-hover:text-accent-400">
               Penilaian untuk Tujuan Perpajakan
             </h3>
-            <p class="mt-1 text-sm leading-relaxed text-navy-500 dark:text-stone-400">
+            <p class="mt-1 text-sm leading-relaxed text-neutral-500 dark:text-stone-400">
               PMK 79/2023 dan turunannya &mdash; penilaian harta berwujud, tidak berwujud, dan bisnis untuk PPh, PPN, PBB, PPSP.
             </p>
           </div>
@@ -157,23 +157,23 @@ const statusColorsPopular: Record<string, string> = {
   </section>
 
   <!-- CTA -->
-  <section class="border-t border-navy-100 bg-navy-50 dark:border-navy-800 dark:bg-navy-900/30">
+  <section class="border-t border-neutral-100 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/30">
     <div class="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-16 text-center sm:flex-row sm:justify-center sm:px-6 sm:text-left lg:px-8">
       <a
         href="/perpustakaan"
-        class="block w-full bg-navy-800 px-8 py-3.5 text-center font-heading text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-navy-700 sm:inline-block sm:w-auto dark:bg-gold-400 dark:text-navy-900 dark:hover:bg-gold-300 focus-visible:ring-2 focus-visible:ring-gold-400"
+        class="block w-full bg-neutral-800 px-8 py-3.5 text-center font-heading text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-neutral-700 sm:inline-block sm:w-auto dark:bg-accent-400 dark:text-neutral-900 dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400"
       >
         Peraturan Inti
       </a>
       <a
         href="/peraturan-pendukung"
-        class="block w-full border-2 border-navy-800 px-8 py-3.5 text-center font-heading text-sm font-semibold tracking-widest text-navy-800 uppercase transition-colors hover:bg-navy-800 hover:text-white sm:inline-block sm:w-auto dark:border-gold-400 dark:text-gold-400 dark:hover:bg-gold-400 dark:hover:text-navy-900 focus-visible:ring-2 focus-visible:ring-gold-400"
+        class="block w-full border-2 border-neutral-800 px-8 py-3.5 text-center font-heading text-sm font-semibold tracking-widest text-neutral-800 uppercase transition-colors hover:bg-neutral-800 hover:text-white sm:inline-block sm:w-auto dark:border-accent-400 dark:text-accent-400 dark:hover:bg-accent-400 dark:hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-accent-400"
       >
         Peraturan Pendukung
       </a>
       <a
         href="/mind-map"
-        class="block w-full border-2 border-navy-200 px-8 py-3.5 text-center font-heading text-sm font-semibold tracking-widest text-navy-600 uppercase transition-colors hover:border-gold-400 hover:text-gold-600 sm:inline-block sm:w-auto dark:border-navy-700 dark:text-stone-400 dark:hover:border-gold-400 dark:hover:text-gold-400 focus-visible:ring-2 focus-visible:ring-gold-400"
+        class="block w-full border-2 border-neutral-200 px-8 py-3.5 text-center font-heading text-sm font-semibold tracking-widest text-neutral-600 uppercase transition-colors hover:border-accent-400 hover:text-accent-600 sm:inline-block sm:w-auto dark:border-neutral-700 dark:text-stone-400 dark:hover:border-accent-400 dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-accent-400"
       >
         Mind Map
       </a>

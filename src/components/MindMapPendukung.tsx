@@ -118,20 +118,20 @@ function getLayoutedElements(
 
 function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
   return (
-    <div style={{ background: '#052240', color: '#ffca19', padding: '16px 24px', fontFamily: "'Space Grotesk', system-ui", fontWeight: 700, fontSize: 16, textAlign: 'center', minWidth: NODE_SIZES.root.width, border: '2px solid #ffca19' }}>
+    <div style={{ background: '#171717', color: '#ffffff', padding: '16px 24px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 16, textAlign: 'center', minWidth: NODE_SIZES.root.width, border: '2px solid #ffffff' }}>
       {data.label}
-      <Handle type="source" position={Position.Right} style={{ background: '#ffca19' }} />
+      <Handle type="source" position={Position.Right} style={{ background: '#ffffff' }} />
     </div>
   );
 }
 
 function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
   return (
-    <div style={{ background: '#02275d', color: '#fff', padding: '12px 20px', fontFamily: "'Space Grotesk', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: '2px solid #1a5090', cursor: 'pointer' }}>
-      <Handle type="target" position={Position.Left} style={{ background: '#1a5090' }} />
+    <div style={{ background: '#262626', color: '#fff', padding: '12px 20px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: '2px solid #525252', cursor: 'pointer' }}>
+      <Handle type="target" position={Position.Left} style={{ background: '#525252' }} />
       <div>{data.label}</div>
-      <div style={{ fontSize: 11, color: '#ffca19', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
-      <Handle type="source" position={Position.Right} style={{ background: '#1a5090' }} />
+      <div style={{ fontSize: 11, color: '#ffffff', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
+      <Handle type="source" position={Position.Right} style={{ background: '#525252' }} />
     </div>
   );
 }
@@ -151,10 +151,10 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
     >
       <Handle type="target" position={Position.Left} style={{ background: borderColor }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-        <span style={{ fontSize: 10, fontWeight: 600, fontFamily: 'monospace', padding: '1px 5px', background: '#02275d', color: '#fff' }}>{data.jenis}</span>
+        <span style={{ fontSize: 10, fontWeight: 600, fontFamily: 'monospace', padding: '1px 5px', background: '#262626', color: '#fff' }}>{data.jenis}</span>
         <span style={{ fontSize: 10, fontWeight: 500, textTransform: 'capitalize', color: borderColor }}>{data.status}</span>
       </div>
-      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#052240' }}>{data.label}</div>
+      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#171717' }}>{data.label}</div>
       <div style={{ fontSize: 11, color: isDark ? '#a8a29e' : '#475569', marginTop: 4, lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
         {data.title.length > 50 ? data.title.slice(0, 50) + '…' : data.title}
       </div>
@@ -245,16 +245,16 @@ function MindMapInner({ allNodes, allEdges }: { allNodes: Node<MindMapNodeData>[
       <MiniMap
         nodeColor={(n) => {
           const d = n.data as MindMapNodeData;
-          if (d.nodeType === 'root') return '#ffca19';
-          if (d.nodeType === 'category') return '#02275d';
+          if (d.nodeType === 'root') return '#ffffff';
+          if (d.nodeType === 'category') return '#262626';
           return statusBorder[(d as RegulationNodeData).status] || '#6b7280';
         }}
         maskColor="rgba(10,22,40,0.15)"
       />
       <Panel position="top-right">
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={expandAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#ffca19', color: '#052240', border: 'none', cursor: 'pointer' }}>Tampilkan Semua</button>
-          <button onClick={collapseAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#02275d', color: '#fff', border: '1px solid #1a5090', cursor: 'pointer' }}>Sembunyikan Semua</button>
+          <button onClick={expandAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#ffffff', color: '#171717', border: 'none', cursor: 'pointer' }}>Tampilkan Semua</button>
+          <button onClick={collapseAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#262626', color: '#fff', border: '1px solid #525252', cursor: 'pointer' }}>Sembunyikan Semua</button>
         </div>
       </Panel>
     </ReactFlow>

@@ -26,36 +26,36 @@
 }
 
 @theme {
-  /* DJP-standardized navy palette (4 core shades + tints) */
-  --color-navy-50: #e8f0f7;
-  --color-navy-100: #d0e0ef;
-  --color-navy-200: #a0bfdb;
-  --color-navy-300: #5a8ab8;
-  --color-navy-400: #1a5090;
-  --color-navy-500: #1a5090;
-  --color-navy-600: #0d3b66;
-  --color-navy-700: #0d3b66;
-  --color-navy-800: #02275d;
-  --color-navy-900: #052240;
+  /* Monochrome neutral palette (replaces navy) */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
 
-  /* DJP-inspired gold palette */
-  --color-gold-50: #fff8e0;
-  --color-gold-100: #fff2bf;
-  --color-gold-200: #ffe480;
-  --color-gold-300: #ffd84d;
-  --color-gold-400: #ffca19;
-  --color-gold-500: #f5c518;
-  --color-gold-600: #d4a800;
-  --color-gold-700: #a68300;
-  --color-gold-800: #7a6100;
-  --color-gold-900: #4d3d00;
+  /* Monochrome accent palette (replaces gold — used for interactive elements) */
+  --color-accent-50: #fafafa;
+  --color-accent-100: #f5f5f5;
+  --color-accent-200: #e5e5e5;
+  --color-accent-300: #d4d4d4;
+  --color-accent-400: #a3a3a3;
+  --color-accent-500: #737373;
+  --color-accent-600: #525252;
+  --color-accent-700: #404040;
+  --color-accent-800: #262626;
+  --color-accent-900: #171717;
 
-  --color-surface-light: #f8f9fa;
-  --color-surface-dark: #0a1525;
+  --color-surface-light: #fafdff;
+  --color-surface-dark: #000004;
 
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-heading: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+  --font-secondary: 'Poppins', system-ui, sans-serif;
 }
 
 @layer base {
@@ -77,7 +77,7 @@
   }
 
   code, pre, .font-mono {
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
   }
 
   /* Global focus indicator for accessibility */
@@ -87,7 +87,7 @@
   select:focus-visible,
   textarea:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid var(--color-gold-400);
+    outline: 2px solid currentColor;
     outline-offset: 2px;
   }
 
@@ -240,53 +240,53 @@
    ============================================= */
 
 .dark .pagefind-ui__search-input {
-  background-color: var(--color-navy-800) !important;
-  color: #f5f5f4 !important;
-  border-color: var(--color-navy-700) !important;
+  background-color: var(--color-neutral-800) !important;
+  color: #f5f5f5 !important;
+  border-color: var(--color-neutral-700) !important;
 }
 
 .dark .pagefind-ui__search-input::placeholder {
-  color: #a8a29e !important;
+  color: #a3a3a3 !important;
 }
 
 .dark .pagefind-ui__search-input:focus {
-  border-color: var(--color-gold-400) !important;
-  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
 }
 
 .dark .pagefind-ui__result-link {
-  color: var(--color-gold-400) !important;
+  color: #ffffff !important;
 }
 
 .dark .pagefind-ui__result-link:hover {
-  color: var(--color-gold-300) !important;
+  color: #d4d4d4 !important;
 }
 
 .dark .pagefind-ui__result-excerpt {
-  color: #d6d3d1 !important;
+  color: #a3a3a3 !important;
 }
 
 .dark .pagefind-ui__result-title {
-  color: #f5f5f4 !important;
+  color: #f5f5f5 !important;
 }
 
 .dark .pagefind-ui__result {
-  border-color: var(--color-navy-800) !important;
+  border-color: var(--color-neutral-800) !important;
 }
 
 .dark .pagefind-ui__button {
-  background-color: var(--color-navy-800) !important;
-  color: #f5f5f4 !important;
-  border-color: var(--color-navy-700) !important;
+  background-color: var(--color-neutral-800) !important;
+  color: #f5f5f5 !important;
+  border-color: var(--color-neutral-700) !important;
 }
 
 .dark .pagefind-ui__button:hover {
-  background-color: var(--color-navy-700) !important;
-  border-color: var(--color-gold-400) !important;
+  background-color: var(--color-neutral-700) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .dark .pagefind-ui__message {
-  color: #a8a29e !important;
+  color: #a3a3a3 !important;
 }
 
 .dark .pagefind-ui__drawer {
@@ -318,5 +318,5 @@ aside,
 }
 
 .dark .legal-prose strong {
-  color: var(--color-stone-100, #f5f5f4);
+  color: #f5f5f5;
 }
