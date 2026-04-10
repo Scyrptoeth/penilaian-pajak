@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-11-11"
 topik:
   - "PBB"
-
+  - "penerbitan_dokumen"
 pdf_isi: "https://drive.google.com/file/d/1LFFEVZXb7jHqbk6YSRob9ccbcwjRT6q8/view"
 ---
 

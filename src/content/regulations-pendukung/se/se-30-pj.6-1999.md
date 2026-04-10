@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-05-17"
 topik:
   - "PBB"
-
+  - "pengenaan_sektoral"
 pdf_isi: "https://drive.google.com/file/d/1TN9z4CxRoE9EIPMkhCgXOzJjlTRBQ5ID/view"
 ---
 

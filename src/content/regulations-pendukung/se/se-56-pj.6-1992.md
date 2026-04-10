@@ -12,7 +12,7 @@ tahun: 1992
 tanggal_berlaku: "1992-11-16"
 topik:
   - "PBB"
-
+  - "pembayaran_penagihan"
 pdf_isi: "https://drive.google.com/file/d/1u3C2GjtNZqE2BmC1HZECy5XV1iILEVYf/view"
 ---
 

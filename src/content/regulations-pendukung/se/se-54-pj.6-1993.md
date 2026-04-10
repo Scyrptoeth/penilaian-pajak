@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-09-29"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 pdf_isi: "https://drive.google.com/file/d/1oVhNSGoh2ABhatuyNC5U3DNjbwm163VB/view"
 ---
 

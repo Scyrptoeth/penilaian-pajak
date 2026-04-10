@@ -12,7 +12,7 @@ tahun: 2012
 tanggal_berlaku: "2012-02-01"
 topik:
   - "PBB"
-
+  - "petunjuk_sektoral"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 76/PMK.03/2013"

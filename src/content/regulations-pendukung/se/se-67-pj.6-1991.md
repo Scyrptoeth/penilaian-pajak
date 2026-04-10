@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-07-27"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 pdf_isi: "https://drive.google.com/file/d/18gYMELYjXmmKpTtww5mWFCBd35ELQWAV/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-10-29"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_terbaru:
   -
     title: "Keputusan Direktur Jenderal Pajak Nomor: KEP-268/PJ./2001"

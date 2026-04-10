@@ -12,7 +12,7 @@ tahun: 2013
 tanggal_berlaku: "2013-04-08"
 topik:
   - "PBB"
-
+  - "petunjuk_sektoral"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 81 Tahun 2024"

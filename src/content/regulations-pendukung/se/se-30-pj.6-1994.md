@@ -12,7 +12,7 @@ tahun: 1994
 tanggal_berlaku: "1994-05-31"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1MrLRJtkBH2dk2wMJyZ2KsVnc_zG0-HNM/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-03-10"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/1hFlarM1kdhco-vBdOa-0Q6Q_QfntfseM/view"
 ---
 

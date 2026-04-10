@@ -12,7 +12,7 @@ tahun: 2013
 tanggal_berlaku: "2013-04-12"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 82/PMK.03/2017"

@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-01-17"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 pdf_isi: "https://drive.google.com/file/d/1EvL6PuAQ42C4LDoDY-Cv2FkQKwEexsil/view"
 ---
 

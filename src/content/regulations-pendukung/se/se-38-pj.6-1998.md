@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-09-18"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1ILodm4lfdKa44U7eZ1U7lldUgkGiPb3p/view"
 ---
 

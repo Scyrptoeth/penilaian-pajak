@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-10-19"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 peraturan_terkait_sebelumnya:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-20/PJ.6/1998"

@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-01-05"
 topik:
   - "PBB"
-
+  - "pengenaan_sektoral"
 pdf_isi: "https://drive.google.com/file/d/12fu8nQT9D3yqZuRXAZ7rb2qLZ3oW-l3E/view"
 ---
 

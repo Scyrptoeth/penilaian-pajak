@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-07-15"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_sebelumnya:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-13/PJ.6/1998"

@@ -12,7 +12,7 @@ tahun: 2007
 tanggal_berlaku: "2007-04-23"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 98/PMK.05/2008"

@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-08-12"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 pdf_isi: "https://drive.google.com/file/d/1lRE90DUvOWx9CQC4a6t6K9ZXRtNVk2ec/view"
 ---
 

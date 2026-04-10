@@ -12,7 +12,7 @@ tahun: 1989
 tanggal_berlaku: "1989-10-31"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 pdf_isi: "https://drive.google.com/file/d/122hT40LVgbUxyt1RUEJNqQxy2WdkdR9H/view"
 ---
 

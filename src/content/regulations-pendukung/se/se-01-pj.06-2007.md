@@ -12,7 +12,7 @@ tahun: 2007
 tanggal_berlaku: "2007-02-16"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1njQpsGIogL8YDyz_DKlPhWIfftay9_U8/view"
 ---
 

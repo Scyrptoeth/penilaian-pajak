@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-09-01"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1TNFIK1AmiV5rh9D0rzMG5qzEzPntsizQ/view"
 ---
 

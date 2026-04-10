@@ -12,7 +12,7 @@ tahun: 2000
 tanggal_berlaku: "2000-03-21"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 35/PMK.03/2005"

@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-06-02"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-46/PJ.6/1999"

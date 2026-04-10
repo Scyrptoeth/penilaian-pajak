@@ -12,7 +12,7 @@ tahun: 2011
 tanggal_berlaku: "2011-04-04"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 23/PMK.03/2014"

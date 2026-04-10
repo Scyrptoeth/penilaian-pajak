@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-08-19"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 pdf_isi: "https://drive.google.com/file/d/1EuZvW9X5Bh-_q5V6vFsn8Is7B1G1NGGv/view"
 ---
 

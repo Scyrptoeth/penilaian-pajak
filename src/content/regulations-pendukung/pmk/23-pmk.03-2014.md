@@ -12,7 +12,7 @@ tahun: 2014
 tanggal_berlaku: "2014-02-03"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 peraturan_terkait_sebelumnya:
   -
     title: "Peraturan Menteri Keuangan Nomor: 67/PMK.03/2011"

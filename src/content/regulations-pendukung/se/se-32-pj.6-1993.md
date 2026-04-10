@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-06-10"
 topik:
   - "PBB"
-
+  - "penerbitan_dokumen"
 pdf_isi: "https://drive.google.com/file/d/15ow9dkCZjrLOIlbCe1gOSpT2pCEGjGok/view"
 ---
 

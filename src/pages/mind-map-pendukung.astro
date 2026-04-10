@@ -5,36 +5,66 @@ import { getCollection } from 'astro:content';
 
 const regulations = await getCollection('regulations-pendukung');
 
-// --- Jenis labels ---
+// --- Theme categories (approved in Fase 1) ---
 
-const jenisLabels: Record<string, string> = {
-  SE: 'Surat Edaran',
-  PMK: 'Peraturan Menteri Keuangan',
-  PER: 'Peraturan Direktur Jenderal',
-  KEP: 'Keputusan',
-  KMK: 'Keputusan Menteri Keuangan',
-  SDIRJEN: 'Surat Direktur Jenderal',
-  UU: 'Undang-Undang',
-  PBM: 'Peraturan Bersama Menteri',
-  KEBDJ: 'Keputusan Direktur Jenderal',
-  INSTRUKSI: 'Instruksi',
-  PENGUMUMAN: 'Pengumuman',
-  PERPRES: 'Peraturan Presiden',
-  KEPPRES: 'Keputusan Presiden',
-  PP: 'Peraturan Pemerintah',
-};
-
-// --- Group regulations by jenis ---
-
-const jenisGroups = new Map<string, typeof regulations>();
-for (const reg of regulations) {
-  const key = reg.data.jenis;
-  if (!jenisGroups.has(key)) jenisGroups.set(key, []);
-  jenisGroups.get(key)!.push(reg);
+interface Category {
+  id: string;
+  label: string;
+  match: (topik: string[]) => boolean;
 }
 
-// Sort by count descending
-const sortedGroups = [...jenisGroups.entries()].sort((a, b) => b[1].length - a[1].length);
+const categories: Category[] = [
+  { id: 'penerimaan_alokasi', label: 'Penerimaan & Alokasi Dana', match: (topik) => topik.includes('penerimaan_alokasi') },
+  { id: 'pendataan_pendaftaran', label: 'Pendataan & Pendaftaran', match: (topik) => topik.includes('pendataan_pendaftaran') },
+  { id: 'pengurangan_keberatan', label: 'Keberatan & Pengurangan', match: (topik) => topik.includes('pengurangan_keberatan') },
+  { id: 'pengenaan_sektoral', label: 'Pengenaan PBB Sektoral', match: (topik) => topik.includes('pengenaan_sektoral') },
+  { id: 'klasifikasi_njop', label: 'Klasifikasi & Penetapan NJOP', match: (topik) => topik.includes('klasifikasi_njop') },
+  { id: 'pembayaran_penagihan', label: 'Pembayaran & Penagihan', match: (topik) => topik.includes('pembayaran_penagihan') },
+  { id: 'pengenaan_objek_khusus', label: 'Pengenaan Objek Khusus', match: (topik) => topik.includes('pengenaan_objek_khusus') },
+  { id: 'penerbitan_dokumen', label: 'Penerbitan Dokumen & Formulir', match: (topik) => topik.includes('penerbitan_dokumen') },
+  { id: 'dasar_hukum_kebijakan', label: 'Dasar Hukum & Kebijakan', match: (topik) => topik.includes('dasar_hukum_kebijakan') },
+  { id: 'penilaian_teknis', label: 'Penilaian & Parameter Teknis', match: (topik) => topik.includes('penilaian_teknis') },
+  { id: 'petunjuk_sektoral', label: 'Petunjuk Teknis Sektoral', match: (topik) => topik.includes('petunjuk_sektoral') },
+  { id: 'organisasi_pelayanan', label: 'Organisasi & Pelayanan', match: (topik) => topik.includes('organisasi_pelayanan') },
+  { id: 'p2_perkotaan', label: 'PBB P2 (Perdesaan & Perkotaan)', match: (topik) => topik.includes('p2_perkotaan') },
+];
+
+// --- Assign regulations to categories ---
+
+const categoryRegMap = new Map<string, typeof regulations>();
+for (const cat of categories) {
+  categoryRegMap.set(cat.id, []);
+}
+categoryRegMap.set('lainnya', []);
+
+for (const reg of regulations) {
+  const topik = reg.data.topik || [];
+  let assigned = false;
+  for (const cat of categories) {
+    if (cat.match(topik)) {
+      categoryRegMap.get(cat.id)!.push(reg);
+      assigned = true;
+      break;
+    }
+  }
+  if (!assigned) {
+    categoryRegMap.get('lainnya')!.push(reg);
+  }
+}
+
+// Build categorized data (filter empty)
+const categorizedData = [
+  ...categories.map((cat) => ({
+    id: cat.id,
+    label: cat.label,
+    regulations: categoryRegMap.get(cat.id) || [],
+  })),
+  {
+    id: 'lainnya',
+    label: 'Lainnya',
+    regulations: categoryRegMap.get('lainnya') || [],
+  },
+].filter((cat) => cat.regulations.length > 0);
 
 // --- Sub-group large categories by era ---
 
@@ -46,53 +76,20 @@ interface EraGroup {
   regulations: typeof regulations;
 }
 
-function getEraGroups(jenis: string, regs: typeof regulations): EraGroup[] {
+function getEraGroups(catId: string, regs: typeof regulations): EraGroup[] {
   if (regs.length <= SUB_GROUP_THRESHOLD) return [];
-
-  const byDecade = new Map<string, typeof regulations>();
+  const byEra = new Map<string, typeof regulations>();
   for (const reg of regs) {
     const year = reg.data.tahun;
-    let era: string;
-    if (year < 2000) era = '1985-1999';
-    else if (year < 2010) era = '2000-2009';
-    else if (year < 2020) era = '2010-2019';
-    else era = '2020-2025';
-
-    if (!byDecade.has(era)) byDecade.set(era, []);
-    byDecade.get(era)!.push(reg);
+    const era = year < 2000 ? '1985-1999' : year < 2010 ? '2000-2009' : year < 2020 ? '2010-2019' : '2020-2025';
+    if (!byEra.has(era)) byEra.set(era, []);
+    byEra.get(era)!.push(reg);
   }
-
-  return [...byDecade.entries()]
+  return [...byEra.entries()]
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([era, eraRegs]) => ({
-      id: `${jenis}-${era}`,
-      label: `${jenis} ${era}`,
-      regulations: eraRegs,
-    }));
+    .filter(([, regs]) => regs.length > 0)
+    .map(([era, eraRegs]) => ({ id: `${catId}-${era}`, label: `${era}`, regulations: eraRegs }));
 }
-
-// --- Build categorized data for mobile + node pre-computation ---
-
-interface CategoryData {
-  id: string;
-  label: string;
-  jenis: string;
-  count: number;
-  subGroups: EraGroup[];
-  regulations: typeof regulations;
-}
-
-const categorizedData: CategoryData[] = sortedGroups.map(([jenis, regs]) => {
-  const subGroups = getEraGroups(jenis, regs);
-  return {
-    id: jenis,
-    label: jenisLabels[jenis] || jenis,
-    jenis,
-    count: regs.length,
-    subGroups,
-    regulations: regs,
-  };
-});
 
 // --- Build React Flow nodes and edges ---
 
@@ -122,18 +119,13 @@ const edges: Array<{
 
 for (const cat of categorizedData) {
   const catNodeId = `cat-${cat.id}`;
+  const subGroups = getEraGroups(cat.id, cat.regulations);
 
-  // Top-level category node
   nodes.push({
     id: catNodeId,
     type: 'category',
     position: { x: 0, y: 0 },
-    data: {
-      label: `${cat.jenis} — ${cat.label}`,
-      count: cat.count,
-      categoryId: cat.id,
-      nodeType: 'category',
-    },
+    data: { label: cat.label, count: cat.regulations.length, categoryId: cat.id, nodeType: 'category' },
   });
   edges.push({
     id: `${ROOT_ID}-${catNodeId}`,
@@ -143,28 +135,16 @@ for (const cat of categorizedData) {
     style: { stroke: '#1a5090', strokeWidth: 2 },
   });
 
-  if (cat.subGroups.length > 0) {
-    // Has sub-groups: category → sub-category → regulation
-    for (const sub of cat.subGroups) {
+  if (subGroups.length > 0) {
+    for (const sub of subGroups) {
       const subCatId = `cat-${sub.id}`;
       nodes.push({
         id: subCatId,
         type: 'category',
         position: { x: 0, y: 0 },
-        data: {
-          label: sub.label,
-          count: sub.regulations.length,
-          categoryId: sub.id,
-          nodeType: 'category',
-        },
+        data: { label: sub.label, count: sub.regulations.length, categoryId: sub.id, nodeType: 'category' },
       });
-      edges.push({
-        id: `${catNodeId}-${subCatId}`,
-        source: catNodeId,
-        target: subCatId,
-        type: 'smoothstep',
-        style: { stroke: '#334155', strokeWidth: 1.5 },
-      });
+      edges.push({ id: `${catNodeId}-${subCatId}`, source: catNodeId, target: subCatId, style: { stroke: '#334155', strokeWidth: 1.5 } });
 
       for (const reg of sub.regulations) {
         const slug = reg.id.split('/').pop() || reg.id;
@@ -173,25 +153,12 @@ for (const cat of categorizedData) {
           id: regNodeId,
           type: 'regulation',
           position: { x: 0, y: 0 },
-          data: {
-            label: reg.data.nomor,
-            title: reg.data.deskripsi || reg.data.title,
-            jenis: reg.data.jenis,
-            status: reg.data.status,
-            slug,
-            nodeType: 'regulation',
-          },
+          data: { label: reg.data.nomor, title: reg.data.deskripsi || reg.data.title, jenis: reg.data.jenis, status: reg.data.status, slug, nodeType: 'regulation' },
         });
-        edges.push({
-          id: `${subCatId}-${regNodeId}`,
-          source: subCatId,
-          target: regNodeId,
-          style: { stroke: '#94a3b8' },
-        });
+        edges.push({ id: `${subCatId}-${regNodeId}`, source: subCatId, target: regNodeId, style: { stroke: '#94a3b8' } });
       }
     }
   } else {
-    // No sub-groups: category → regulation directly
     for (const reg of cat.regulations) {
       const slug = reg.id.split('/').pop() || reg.id;
       const regNodeId = `reg-${slug}`;
@@ -199,21 +166,9 @@ for (const cat of categorizedData) {
         id: regNodeId,
         type: 'regulation',
         position: { x: 0, y: 0 },
-        data: {
-          label: reg.data.nomor,
-          title: reg.data.deskripsi || reg.data.title,
-          jenis: reg.data.jenis,
-          status: reg.data.status,
-          slug,
-          nodeType: 'regulation',
-        },
+        data: { label: reg.data.nomor, title: reg.data.deskripsi || reg.data.title, jenis: reg.data.jenis, status: reg.data.status, slug, nodeType: 'regulation' },
       });
-      edges.push({
-        id: `${catNodeId}-${regNodeId}`,
-        source: catNodeId,
-        target: regNodeId,
-        style: { stroke: '#94a3b8' },
-      });
+      edges.push({ id: `${catNodeId}-${regNodeId}`, source: catNodeId, target: regNodeId, style: { stroke: '#94a3b8' } });
     }
   }
 }
@@ -225,13 +180,13 @@ const statusColors: Record<string, string> = {
 };
 ---
 
-<BaseLayout title="Mind Map Peraturan Pendukung" description="Visualisasi hubungan antar 337 peraturan pendukung PBB dalam bentuk mind map interaktif.">
+<BaseLayout title="Mind Map Peraturan Pendukung" description="Visualisasi hubungan antar 337 peraturan pendukung PBB dalam bentuk mind map interaktif berbasis tema.">
   <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <h1 class="font-heading text-3xl font-bold tracking-tight text-navy-800 dark:text-stone-100">
       Peta Peraturan Pendukung
     </h1>
     <p class="mt-2 text-navy-500 dark:text-stone-400">
-      {regulations.length} peraturan pendukung PBB. Klik kategori untuk expand, klik peraturan untuk detail.
+      {regulations.length} peraturan pendukung PBB dikelompokkan berdasarkan tema. Klik kategori untuk expand, klik peraturan untuk detail.
     </p>
 
     <!-- Legend -->
@@ -255,7 +210,7 @@ const statusColors: Record<string, string> = {
     </div>
   </section>
 
-  <!-- Data for React Flow (embedded as JSON, not as props) -->
+  <!-- Data for React Flow (embedded as JSON script tags) -->
   <script id="mindmap-nodes" type="application/json" set:html={JSON.stringify(nodes)} />
   <script id="mindmap-edges" type="application/json" set:html={JSON.stringify(edges)} />
 
@@ -268,59 +223,58 @@ const statusColors: Record<string, string> = {
   <div class="border-t-2 border-navy-100 dark:border-navy-800 md:hidden">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
       <p class="mb-4 text-sm text-navy-500 dark:text-stone-400">
-        Gunakan perangkat desktop untuk melihat mind map interaktif. Di bawah ini daftar peraturan per kategori.
+        Gunakan perangkat desktop untuk melihat mind map interaktif. Di bawah ini daftar peraturan per tema.
       </p>
-      {categorizedData.map((cat) => (
-        <details class="group border-b border-navy-100 dark:border-navy-800">
-          <summary class="flex cursor-pointer items-center justify-between py-4 font-heading font-semibold text-navy-800 dark:text-stone-100">
-            <span>{cat.jenis} — {cat.label} <span class="ml-2 text-sm font-normal text-navy-400 dark:text-stone-500">({cat.count})</span></span>
-            <svg class="h-5 w-5 shrink-0 text-navy-400 transition-transform group-open:rotate-180 dark:text-stone-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
-            </svg>
-          </summary>
-          {cat.subGroups.length > 0 ? (
-            <div class="pb-4 pl-2">
-              {cat.subGroups.map((sub) => (
-                <details class="group/sub border-l-2 border-navy-200 pl-4 dark:border-navy-700">
-                  <summary class="flex cursor-pointer items-center justify-between py-2 text-sm font-medium text-navy-700 dark:text-stone-200">
-                    <span>{sub.label} <span class="text-navy-400 dark:text-stone-500">({sub.regulations.length})</span></span>
-                    <svg class="h-4 w-4 shrink-0 text-navy-400 transition-transform group-open/sub:rotate-180 dark:text-stone-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
-                    </svg>
-                  </summary>
-                  <ul class="space-y-2 py-2 pl-2">
-                    {sub.regulations.map((reg) => (
-                      <li>
-                        <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
-                          <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>
-                            {reg.data.status}
-                          </span>
-                          <span class="font-mono text-xs font-medium text-navy-700 dark:text-stone-300">{reg.data.nomor}</span>
-                          <span class="truncate text-navy-500 dark:text-stone-400">{reg.data.deskripsi || reg.data.title}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              ))}
-            </div>
-          ) : (
-            <ul class="space-y-2 pb-4 pl-2">
-              {cat.regulations.map((reg) => (
-                <li>
-                  <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
-                    <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>
-                      {reg.data.status}
-                    </span>
-                    <span class="font-mono text-xs font-medium text-navy-700 dark:text-stone-300">{reg.data.nomor}</span>
-                    <span class="truncate text-navy-500 dark:text-stone-400">{reg.data.deskripsi || reg.data.title}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </details>
-      ))}
+      {categorizedData.map((cat) => {
+        const subGroups = getEraGroups(cat.id, cat.regulations);
+        return (
+          <details class="group border-b border-navy-100 dark:border-navy-800">
+            <summary class="flex cursor-pointer items-center justify-between py-4 font-heading font-semibold text-navy-800 dark:text-stone-100">
+              <span>{cat.label} <span class="ml-2 text-sm font-normal text-navy-400 dark:text-stone-500">({cat.regulations.length})</span></span>
+              <svg class="h-5 w-5 shrink-0 text-navy-400 transition-transform group-open:rotate-180 dark:text-stone-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+              </svg>
+            </summary>
+            {subGroups.length > 0 ? (
+              <div class="pb-4 pl-2">
+                {subGroups.map((sub) => (
+                  <details class="group/sub border-l-2 border-navy-200 pl-4 dark:border-navy-700">
+                    <summary class="flex cursor-pointer items-center justify-between py-2 text-sm font-medium text-navy-700 dark:text-stone-200">
+                      <span>{sub.label} <span class="text-navy-400 dark:text-stone-500">({sub.regulations.length})</span></span>
+                      <svg class="h-4 w-4 shrink-0 text-navy-400 transition-transform group-open/sub:rotate-180 dark:text-stone-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                      </svg>
+                    </summary>
+                    <ul class="space-y-2 py-2 pl-2">
+                      {sub.regulations.map((reg) => (
+                        <li>
+                          <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                            <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
+                            <span class="font-mono text-xs font-medium text-navy-700 dark:text-stone-300">{reg.data.nomor}</span>
+                            <span class="truncate text-navy-500 dark:text-stone-400">{reg.data.deskripsi || reg.data.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
+              </div>
+            ) : (
+              <ul class="space-y-2 pb-4 pl-2">
+                {cat.regulations.map((reg) => (
+                  <li>
+                    <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                      <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
+                      <span class="font-mono text-xs font-medium text-navy-700 dark:text-stone-300">{reg.data.nomor}</span>
+                      <span class="truncate text-navy-500 dark:text-stone-400">{reg.data.deskripsi || reg.data.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </details>
+        );
+      })}
     </div>
   </div>
 </BaseLayout>

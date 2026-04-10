@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-04-08"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-38/PJ/2010"

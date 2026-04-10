@@ -12,7 +12,7 @@ tahun: 2009
 tanggal_berlaku: "2009-03-16"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Direktur Jenderal Pajak Nomor: PER-27/PJ/2015"

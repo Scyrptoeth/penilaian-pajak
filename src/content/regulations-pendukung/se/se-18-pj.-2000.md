@@ -12,7 +12,7 @@ tahun: 2000
 tanggal_berlaku: "2000-03-24"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1x1emwlXfjiqxm1fS0dm4JgHZrk_AkcrI/view"
 ---
 

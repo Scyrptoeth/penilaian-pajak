@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-07-21"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-66/PJ.6/1993"

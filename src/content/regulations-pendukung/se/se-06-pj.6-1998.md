@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-04-02"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/1JEINJwyhQy36l5Op197ac25htrki1Yf6/view"
 ---
 

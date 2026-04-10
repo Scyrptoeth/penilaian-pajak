@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-08-10"
 topik:
   - "PBB"
-
+  - "organisasi_pelayanan"
 pdf_isi: "https://drive.google.com/file/d/17sicqu7uzcYriiSifZbURP0js2EBGXKs/view"
 ---
 

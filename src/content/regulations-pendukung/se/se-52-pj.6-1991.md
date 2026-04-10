@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-03-04"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/11u3ylf8EVdKF3NJozj9LueJYP0sW2t3k/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 1992
 tanggal_berlaku: "1992-02-14"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 pdf_isi: "https://drive.google.com/file/d/1YqYXNYtCDG1uIMOEf1R665LyMdKwtahq/view"
 ---
 

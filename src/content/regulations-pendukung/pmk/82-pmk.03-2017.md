@@ -12,7 +12,7 @@ tahun: 2017
 tanggal_berlaku: "2017-06-21"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 129 Tahun 2023"

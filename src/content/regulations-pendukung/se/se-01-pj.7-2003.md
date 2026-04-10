@@ -12,7 +12,7 @@ tahun: 2003
 tanggal_berlaku: "2003-04-01"
 topik:
   - "PBB"
-
+  - "penilaian_teknis"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-01/PJ.7/2006"

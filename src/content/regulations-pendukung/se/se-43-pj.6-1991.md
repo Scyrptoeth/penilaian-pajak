@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-05-17"
 topik:
   - "PBB"
-
+  - "organisasi_pelayanan"
 pdf_isi: "https://drive.google.com/file/d/1JKmseF0cA141_0QXpy7UyMigYoaflhPX/view"
 ---
 

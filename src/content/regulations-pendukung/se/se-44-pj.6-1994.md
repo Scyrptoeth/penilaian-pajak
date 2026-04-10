@@ -12,7 +12,7 @@ tahun: 1994
 tanggal_berlaku: "1994-07-06"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/1OAdgXgoaKqQS-dJcAGhox0aWTssL5aLV/view"
 ---
 

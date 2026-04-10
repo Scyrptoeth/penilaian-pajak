@@ -12,7 +12,7 @@ tahun: 1995
 tanggal_berlaku: "1995-02-10"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 pdf_isi: "https://drive.google.com/file/d/1WHkDSjHGmUiERHlOPV84p3h-yyELBOYE/view"
 ---
 

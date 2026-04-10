@@ -12,7 +12,7 @@ tahun: 2006
 tanggal_berlaku: "2006-01-13"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1P53Z7hpYLKH36gP7o33DA5ouN7E6_SBr/view"
 ---
 

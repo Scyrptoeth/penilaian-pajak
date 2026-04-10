@@ -12,7 +12,7 @@ tahun: 1994
 tanggal_berlaku: "1994-09-13"
 topik:
   - "PBB"
-
+  - "pengenaan_sektoral"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-36/PJ.6/1997"

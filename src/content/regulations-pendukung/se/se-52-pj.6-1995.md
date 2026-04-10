@@ -12,7 +12,7 @@ tahun: 1995
 tanggal_berlaku: "1995-10-03"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1QM1WkTogGkSzDgNz6PEwLH7g-hPo7poj/view"
 pdf_lampiran: "https://drive.google.com/file/d/1N9DkVi-43BAqfx2jRFCz18ENAueiTfkT/view"
 ---

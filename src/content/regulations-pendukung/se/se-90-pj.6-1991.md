@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-12-23"
 topik:
   - "PBB"
-
+  - "pengenaan_sektoral"
 pdf_isi: "https://drive.google.com/file/d/1khlEqTIXBz8MoP9N08I2_1CJ0XdQ-3ri/view"
 ---
 

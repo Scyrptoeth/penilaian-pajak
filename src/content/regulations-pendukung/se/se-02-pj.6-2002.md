@@ -12,7 +12,7 @@ tahun: 2002
 tanggal_berlaku: "2002-01-28"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1qrUw47bamn6X4OOBg3t03-Vy_gb6VNov/view"
 pdf_lampiran: "https://drive.google.com/file/d/1TdXNAQmRRhBBdFqSAPDtMnYRLyO4ZXhp/view"
 ---

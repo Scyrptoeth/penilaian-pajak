@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-06-23"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-25/PJ.6/2000"

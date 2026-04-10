@@ -12,7 +12,7 @@ tahun: 1992
 tanggal_berlaku: "1992-04-25"
 topik:
   - "PBB"
-
+  - "penerbitan_dokumen"
 pdf_isi: "https://drive.google.com/file/d/1JR3GEYEM_szAZQZCHf1Gc-VkyzUitWhh/view"
 pdf_lampiran: "https://drive.google.com/file/d/1th2fovOX62VsprM_gGTct1LDOcNSDsLN/view"
 ---

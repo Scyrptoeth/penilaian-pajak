@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-04-29"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 pdf_isi: "https://drive.google.com/file/d/1Bo5OKI-Qy12XrmlauUB-1htXu20GqLZ1/view"
 ---
 

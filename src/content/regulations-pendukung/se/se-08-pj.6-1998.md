@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-04-27"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 pdf_isi: "https://drive.google.com/file/d/1t7-_rNuB-I0Ax7tbm0bhuPNxAYHPFzw8/view"
 ---
 

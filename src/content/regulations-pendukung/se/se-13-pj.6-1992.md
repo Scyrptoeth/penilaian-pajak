@@ -12,7 +12,7 @@ tahun: 1992
 tanggal_berlaku: "1992-03-16"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 pdf_isi: "https://drive.google.com/file/d/1LpX6V1qUc5UxQEha7kf1guzt_UJV-v2A/view"
 ---
 

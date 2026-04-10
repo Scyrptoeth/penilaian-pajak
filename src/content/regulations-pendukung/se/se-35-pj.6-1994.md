@@ -12,7 +12,7 @@ tahun: 1994
 tanggal_berlaku: "1994-06-20"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 pdf_isi: "https://drive.google.com/file/d/1nqZYEHiTzOC3CTxsr75deVzPrMyhn3__/view"
 ---
 

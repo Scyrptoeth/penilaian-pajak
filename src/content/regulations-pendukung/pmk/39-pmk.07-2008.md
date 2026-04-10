@@ -12,7 +12,7 @@ tahun: 2008
 tanggal_berlaku: "2008-02-26"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/18tOkKEbUjMoC9nBqF0AJbWWoKfd6a7NT/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 2013
 tanggal_berlaku: "2013-02-15"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 102/PMK.07/2013"

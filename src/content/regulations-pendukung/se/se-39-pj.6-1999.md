@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-06-21"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 pdf_isi: "https://drive.google.com/file/d/1F4DNSBJ9TB4tWO5mD6sezd9qR7WfHQTm/view"
 ---
 

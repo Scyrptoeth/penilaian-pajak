@@ -12,7 +12,7 @@ tahun: 2001
 tanggal_berlaku: "2001-12-13"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1chPaEsD8Pb9bazRzAekVnYuGI7STfQxd/view"
 ---
 

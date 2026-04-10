@@ -12,7 +12,7 @@ tahun: 2016
 tanggal_berlaku: "2016-05-11"
 topik:
   - "PBB"
-
+  - "penerbitan_dokumen"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 80 Tahun 2023"

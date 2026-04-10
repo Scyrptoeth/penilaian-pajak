@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-06-21"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 pdf_isi: "https://drive.google.com/file/d/1ITBOJir7cbPqehc_BA9Hbf2YmAb8XkB3/view"
 ---
 

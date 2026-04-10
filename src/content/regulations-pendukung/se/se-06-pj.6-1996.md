@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-01-23"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 pdf_isi: "https://drive.google.com/file/d/1sHK_tp9le3PkRRMbiUNPH93pnQ2DKVIE/view"
 pdf_lampiran: "https://drive.google.com/file/d/1yrBXuvmCSIjKK6k59x_WxIhKvmoShIBC/view"
 ---

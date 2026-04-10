@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-07-13"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 pdf_isi: "https://drive.google.com/file/d/1wZH7JwBarYJvlsx-D7JX9ukM1RhMLVZX/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 2003
 tanggal_berlaku: "2003-09-24"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1JtCQrJaFqR8J_udcac4NKMTFWaAllEwL/view"
 ---
 

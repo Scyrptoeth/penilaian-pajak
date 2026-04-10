@@ -12,7 +12,7 @@ tahun: 1989
 tanggal_berlaku: "1989-06-15"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 pdf_isi: "https://drive.google.com/file/d/1wg0m1Gq2Y86PEAwp3ZbYRQAHMsVQdaDv/view"
 ---
 

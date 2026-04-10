@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-03-09"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 pdf_isi: "https://drive.google.com/file/d/1AVk7XgDFPVy_nZ3IlUWlFWIOJJdfkQD2/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-11-01"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 pdf_isi: "https://drive.google.com/file/d/1FchjB9-2p9yrnd7iMxFNAWT42jwm3t-N/view"
 ---
 

@@ -12,7 +12,7 @@ tahun: 1995
 tanggal_berlaku: "1995-02-10"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/162J_q5BeU3gAdFUJkIelryF1k80FvHFi/view"
 ---
 

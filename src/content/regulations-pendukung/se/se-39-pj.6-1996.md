@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-08-02"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1OHApyGviRzHb7hnZUptIBP-ZChyZ8bNW/view"
 pdf_lampiran: "https://drive.google.com/file/d/1-4YE2P5R_-KBxdtzLOQy81xaBgsVo-jJ/view"
 ---

@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-10-20"
 topik:
   - "PBB"
-
+  - "lainnya"
 pdf_isi: "https://drive.google.com/file/d/11FyXQRmevNzaVk35UdvCHSHn-bwHW-Rr/view"
 ---
 

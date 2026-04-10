@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-12-08"
 topik:
   - "PBB"
-
+  - "pengenaan_sektoral"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-25/PJ.6/1999"

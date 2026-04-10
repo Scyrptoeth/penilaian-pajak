@@ -12,7 +12,7 @@ tahun: 1995
 tanggal_berlaku: "1995-02-10"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-13/PJ.6/1998"

@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-04-06"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1tYLjptBkvTz9d3LmQ_kcNfS8oQZmqAEo/view"
 ---
 

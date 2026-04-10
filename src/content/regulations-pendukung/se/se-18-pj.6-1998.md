@@ -12,7 +12,7 @@ tahun: 1998
 tanggal_berlaku: "1998-07-14"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 peraturan_terkait_sebelumnya:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-26/PJ.6/1997"

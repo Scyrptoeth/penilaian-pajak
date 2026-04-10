@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-12-15"
 topik:
   - "PBB"
-
+  - "dasar_hukum_kebijakan"
 peraturan_terkait_sebelumnya:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-40/PJ.6/1993"

@@ -12,7 +12,7 @@ tahun: 2014
 tanggal_berlaku: "2014-01-24"
 topik:
   - "PBB"
-
+  - "p2_perkotaan"
 pdf_isi: "https://drive.google.com/file/d/17zBFiKdTTwDcT-SPWUaQPa5yTTylTRq7/view"
 ---
 

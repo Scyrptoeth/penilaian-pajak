@@ -12,7 +12,7 @@ tahun: 1993
 tanggal_berlaku: "1993-10-08"
 topik:
   - "PBB"
-
+  - "penilaian_teknis"
 pdf_isi: "https://drive.google.com/file/d/1IsH1JEdtqXL5P6gd2LTqEvtd21ePgngR/view"
 ---
 

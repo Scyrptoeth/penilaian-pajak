@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-05-01"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/16a6hVlg5ZEw5MSvWFCQNs0qi5zXq_SoW/view"
 pdf_lampiran: "https://drive.google.com/file/d/15pYPVutd-x6gcriceu_T0bS0JLTlmHRi/view"
 ---

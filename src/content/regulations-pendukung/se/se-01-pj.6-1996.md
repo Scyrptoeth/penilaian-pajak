@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-01-04"
 topik:
   - "PBB"
-
+  - "petunjuk_sektoral"
 pdf_isi: "https://drive.google.com/file/d/1CD6FJhA5uBKlFb5o_nfgQQLULb2IQHcz/view"
 ---
 

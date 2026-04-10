@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-02-06"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_terbaru:
   -
     title: "Keputusan Direktur Jenderal Pajak Nomor: KEP-10/PJ.6/1999"

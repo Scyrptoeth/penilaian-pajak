@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-09-20"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 peraturan_terkait_sebelumnya:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-44/PJ.6/1991"

@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-06-26"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/1SXJqqAe4NaZEpiOJG3hQvjve3czbRByr/view"
 ---
 

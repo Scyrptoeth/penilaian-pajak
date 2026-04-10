@@ -12,7 +12,7 @@ tahun: 2015
 tanggal_berlaku: "2015-02-10"
 topik:
   - "PBB"
-
+  - "petunjuk_sektoral"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 186/PMK.03/2019"

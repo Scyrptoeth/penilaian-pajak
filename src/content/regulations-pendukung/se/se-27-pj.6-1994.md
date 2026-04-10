@@ -12,7 +12,7 @@ tahun: 1994
 tanggal_berlaku: "1994-05-18"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 pdf_isi: "https://drive.google.com/file/d/1uSDhXmD4vZpFs8tWZT54tzKEmeDpq4r_/view"
 ---
 

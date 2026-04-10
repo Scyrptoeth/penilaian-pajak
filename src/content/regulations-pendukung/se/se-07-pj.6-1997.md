@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-04-08"
 topik:
   - "PBB"
-
+  - "pendataan_pendaftaran"
 pdf_isi: "https://drive.google.com/file/d/1NXcBoky-oLFis3jQP-CkkbF1PncKx5un/view"
 ---
 

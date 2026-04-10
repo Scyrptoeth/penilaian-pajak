@@ -12,7 +12,7 @@ tahun: 1996
 tanggal_berlaku: "1996-05-21"
 topik:
   - "PBB"
-
+  - "pengenaan_objek_khusus"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-18/PJ.6/1997"

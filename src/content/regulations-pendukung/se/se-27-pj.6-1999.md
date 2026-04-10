@@ -12,7 +12,7 @@ tahun: 1999
 tanggal_berlaku: "1999-04-23"
 topik:
   - "PBB"
-
+  - "pengenaan_sektoral"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-64/PJ/2012"

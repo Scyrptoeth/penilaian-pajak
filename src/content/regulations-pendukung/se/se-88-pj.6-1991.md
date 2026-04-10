@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-12-11"
 topik:
   - "PBB"
-
+  - "penilaian_teknis"
 pdf_isi: "https://drive.google.com/file/d/1TOlMNf-zOkCMBGRje0X6d7wId1QHJFRl/view"
 ---
 

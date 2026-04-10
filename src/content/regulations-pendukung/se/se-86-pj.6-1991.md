@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-12-02"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 pdf_isi: "https://drive.google.com/file/d/1RDQYPuFlJrU3fXR0R_Uh-00dZPWzgPo0/view"
 ---
 

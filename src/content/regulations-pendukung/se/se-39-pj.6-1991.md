@@ -12,7 +12,7 @@ tahun: 1991
 tanggal_berlaku: "1991-04-29"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 pdf_isi: "https://drive.google.com/file/d/1e0kuI4CHl7giyP4N3X_cMQOsy-WEwsua/view"
 ---
 

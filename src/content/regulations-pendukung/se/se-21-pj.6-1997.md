@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-09-03"
 topik:
   - "PBB"
-
+  - "penilaian_teknis"
 peraturan_terkait_terbaru:
   -
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-54/PJ.6/1999"

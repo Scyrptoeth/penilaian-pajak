@@ -12,7 +12,7 @@ tahun: 2001
 tanggal_berlaku: "2001-11-13"
 topik:
   - "PBB"
-
+  - "klasifikasi_njop"
 pdf_isi: "https://drive.google.com/file/d/1r5_V7AcmzcOhqkRRGILbxz3F7onm351s/view"
 ---
 

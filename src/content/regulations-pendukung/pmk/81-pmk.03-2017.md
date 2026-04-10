@@ -12,7 +12,7 @@ tahun: 2017
 tanggal_berlaku: "2017-06-20"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 118 Tahun 2024"

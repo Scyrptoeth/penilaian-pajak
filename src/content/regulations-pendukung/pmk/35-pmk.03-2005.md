@@ -12,7 +12,7 @@ tahun: 2005
 tanggal_berlaku: "2005-05-23"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 42/PMK.05/2007"

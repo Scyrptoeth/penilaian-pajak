@@ -12,7 +12,7 @@ tahun: 1997
 tanggal_berlaku: "1997-06-05"
 topik:
   - "PBB"
-
+  - "pengurangan_keberatan"
 pdf_isi: "https://drive.google.com/file/d/1BrPvwX77qFtqEPWAmertvEp-6kaMIkUc/view"
 ---
 

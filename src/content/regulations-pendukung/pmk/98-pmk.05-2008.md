@@ -12,7 +12,7 @@ tahun: 2008
 tanggal_berlaku: "2008-07-04"
 topik:
   - "PBB"
-
+  - "penerimaan_alokasi"
 peraturan_terkait_terbaru:
   -
     title: "Peraturan Menteri Keuangan Nomor: 127/PMK.05/2009"
