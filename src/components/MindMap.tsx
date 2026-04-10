@@ -130,48 +130,50 @@ function getLayoutedElements(
 // --- Custom Nodes ---
 
 function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   return (
     <div
       style={{
-        background: '#171717',
-        color: '#ffffff',
+        background: isDark ? '#ffffff' : '#000000',
+        color: isDark ? '#000000' : '#ffffff',
         padding: '16px 24px',
         fontFamily: "'Montserrat', system-ui, sans-serif",
         fontWeight: 700,
         fontSize: 16,
         textAlign: 'center',
         minWidth: NODE_SIZES.root.width,
-        border: '2px solid #ffffff',
+        border: `2px solid ${isDark ? '#ffffff' : '#000000'}`,
       }}
     >
       {data.label}
-      <Handle type="source" position={Position.Right} style={{ background: '#ffffff' }} />
+      <Handle type="source" position={Position.Right} style={{ background: isDark ? '#000000' : '#ffffff' }} />
     </div>
   );
 }
 
 function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   return (
     <div
       style={{
-        background: '#262626',
-        color: '#fff',
+        background: isDark ? '#e5e5e5' : '#262626',
+        color: isDark ? '#000000' : '#ffffff',
         padding: '12px 20px',
         fontFamily: "'Montserrat', system-ui, sans-serif",
         fontWeight: 700,
         fontSize: 14,
         textAlign: 'center',
         minWidth: NODE_SIZES.category.width,
-        border: '2px solid #525252',
+        border: `2px solid ${isDark ? '#d4d4d4' : '#525252'}`,
         cursor: 'pointer',
       }}
     >
-      <Handle type="target" position={Position.Left} style={{ background: '#525252' }} />
+      <Handle type="target" position={Position.Left} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
       <div>{data.label}</div>
-      <div style={{ fontSize: 11, color: '#ffffff', marginTop: 4, fontWeight: 400 }}>
+      <div style={{ fontSize: 11, color: isDark ? '#525252' : '#a3a3a3', marginTop: 4, fontWeight: 400 }}>
         {data.count} peraturan — klik untuk expand
       </div>
-      <Handle type="source" position={Position.Right} style={{ background: '#525252' }} />
+      <Handle type="source" position={Position.Right} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
     </div>
   );
 }
@@ -223,13 +225,13 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
           {data.status}
         </span>
       </div>
-      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#171717' }}>
+      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#f5f5f5' : '#171717' }}>
         {data.label}
       </div>
       <div
         style={{
           fontSize: 11,
-          color: isDark ? '#a8a29e' : '#475569',
+          color: isDark ? '#a3a3a3' : '#525252',
           marginTop: 4,
           lineHeight: 1.3,
           overflow: 'hidden',
@@ -346,11 +348,11 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
         <MiniMap
           nodeColor={(node) => {
             const d = node.data as MindMapNodeData;
-            if (d.nodeType === 'root') return '#ffffff';
-            if (d.nodeType === 'category') return '#262626';
-            return statusBorder[(d as RegulationNodeData).status] || '#94a3b8';
+            if (d.nodeType === 'root') return '#000000';
+            if (d.nodeType === 'category') return '#404040';
+            return statusBorder[(d as RegulationNodeData).status] || '#a3a3a3';
           }}
-          maskColor="rgba(10,22,40,0.15)"
+          maskColor="rgba(0,0,0,0.08)"
         />
         <Panel position="top-right">
           <div style={{ display: 'flex', gap: 8 }}>
@@ -406,7 +408,7 @@ interface MindMapProps {
 export default function MindMap({ initialNodes, initialEdges }: MindMapProps) {
   if (initialNodes.length === 0) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#64748b' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#737373' }}>
         <p>Mind map akan ditampilkan setelah data peraturan diisi.</p>
       </div>
     );

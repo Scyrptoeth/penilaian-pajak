@@ -117,21 +117,23 @@ function getLayoutedElements(
 // --- Custom Nodes ---
 
 function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   return (
-    <div style={{ background: '#171717', color: '#ffffff', padding: '16px 24px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 16, textAlign: 'center', minWidth: NODE_SIZES.root.width, border: '2px solid #ffffff' }}>
+    <div style={{ background: isDark ? '#ffffff' : '#000000', color: isDark ? '#000000' : '#ffffff', padding: '16px 24px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 16, textAlign: 'center', minWidth: NODE_SIZES.root.width, border: `2px solid ${isDark ? '#ffffff' : '#000000'}` }}>
       {data.label}
-      <Handle type="source" position={Position.Right} style={{ background: '#ffffff' }} />
+      <Handle type="source" position={Position.Right} style={{ background: isDark ? '#000000' : '#ffffff' }} />
     </div>
   );
 }
 
 function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   return (
-    <div style={{ background: '#262626', color: '#fff', padding: '12px 20px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: '2px solid #525252', cursor: 'pointer' }}>
-      <Handle type="target" position={Position.Left} style={{ background: '#525252' }} />
+    <div style={{ background: isDark ? '#e5e5e5' : '#262626', color: isDark ? '#000000' : '#ffffff', padding: '12px 20px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: `2px solid ${isDark ? '#d4d4d4' : '#525252'}`, cursor: 'pointer' }}>
+      <Handle type="target" position={Position.Left} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
       <div>{data.label}</div>
-      <div style={{ fontSize: 11, color: '#ffffff', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
-      <Handle type="source" position={Position.Right} style={{ background: '#525252' }} />
+      <div style={{ fontSize: 11, color: isDark ? '#525252' : '#a3a3a3', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
+      <Handle type="source" position={Position.Right} style={{ background: isDark ? '#a3a3a3' : '#525252' }} />
     </div>
   );
 }
@@ -154,8 +156,8 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
         <span style={{ fontSize: 10, fontWeight: 600, fontFamily: 'monospace', padding: '1px 5px', background: '#262626', color: '#fff' }}>{data.jenis}</span>
         <span style={{ fontSize: 10, fontWeight: 500, textTransform: 'capitalize', color: borderColor }}>{data.status}</span>
       </div>
-      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#171717' }}>{data.label}</div>
-      <div style={{ fontSize: 11, color: isDark ? '#a8a29e' : '#475569', marginTop: 4, lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#f5f5f5' : '#171717' }}>{data.label}</div>
+      <div style={{ fontSize: 11, color: isDark ? '#a3a3a3' : '#525252', marginTop: 4, lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
         {data.title.length > 50 ? data.title.slice(0, 50) + '…' : data.title}
       </div>
       <Handle type="source" position={Position.Right} style={{ background: borderColor }} />
@@ -245,11 +247,11 @@ function MindMapInner({ allNodes, allEdges }: { allNodes: Node<MindMapNodeData>[
       <MiniMap
         nodeColor={(n) => {
           const d = n.data as MindMapNodeData;
-          if (d.nodeType === 'root') return '#ffffff';
-          if (d.nodeType === 'category') return '#262626';
-          return statusBorder[(d as RegulationNodeData).status] || '#6b7280';
+          if (d.nodeType === 'root') return '#000000';
+          if (d.nodeType === 'category') return '#404040';
+          return statusBorder[(d as RegulationNodeData).status] || '#a3a3a3';
         }}
-        maskColor="rgba(10,22,40,0.15)"
+        maskColor="rgba(0,0,0,0.08)"
       />
       <Panel position="top-right">
         <div style={{ display: 'flex', gap: 8 }}>
@@ -280,7 +282,7 @@ export default function MindMapPendukung() {
 
   if (allNodes.length === 0) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#64748b' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#737373' }}>
         <p>Mind map data tidak ditemukan.</p>
       </div>
     );
