@@ -281,10 +281,10 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
         maxWidth: 280,
         cursor: 'pointer',
       }}
-      onClick={() => { window.location.href = `/perpustakaan/${data.slug}`; }}
+      onClick={() => { window.location.href = `/peraturan-inti/${data.slug}`; }}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.href = `/perpustakaan/${data.slug}`; }}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.href = `/peraturan-inti/${data.slug}`; }}
     >
       <Handle type="target" position={side === 'left' ? Position.Right : Position.Left} id={side === 'left' ? 'target-right' : 'target-left'} style={{ background: borderColor }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>

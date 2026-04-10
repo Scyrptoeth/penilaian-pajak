@@ -13,18 +13,18 @@ const currentPath = Astro.url.pathname;
 // Dropdown items for "Peraturan"
 const peraturanItems = [
   { href: '/peraturan-seluruhnya', label: 'Peraturan Seluruhnya' },
-  { href: '/perpustakaan', label: 'Peraturan Inti' },
+  { href: '/peraturan-inti', label: 'Peraturan Inti' },
   { href: '/peraturan-pendukung', label: 'Peraturan Pendukung' },
 ];
 
 // Dropdown items for "Mind Map"
 const mindMapItems = [
   { href: '/mind-map-seluruhnya', label: 'Peraturan Seluruhnya' },
-  { href: '/mind-map', label: 'Peraturan Inti' },
+  { href: '/mind-map-inti', label: 'Peraturan Inti' },
   { href: '/mind-map-pendukung', label: 'Peraturan Pendukung' },
 ];
 
-const isPeraturanActive = currentPath.startsWith('/perpustakaan') || currentPath.startsWith('/peraturan-pendukung') || currentPath.startsWith('/peraturan-seluruhnya');
+const isPeraturanActive = currentPath.startsWith('/peraturan-inti') || currentPath.startsWith('/peraturan-pendukung') || currentPath.startsWith('/peraturan-seluruhnya');
 const isMindMapActive = currentPath.startsWith('/mind-map');
 ---
 

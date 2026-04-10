@@ -22,7 +22,7 @@ const relatedMap = new Map(allRegulations.map((r) => [r.data.nomor, r]));
 const crossRefMap: Record<string, string> = {};
 allRegulations.forEach((r) => {
   const nomor = r.data.nomor;
-  const url = `/perpustakaan/${r.id}`;
+  const url = `/peraturan-inti/${r.id}`;
   crossRefMap[nomor] = url;
   // Also add simplified patterns for matching
   // "PMK-79/PMK.03/2023" â extract "79/PMK.03/2023"
@@ -76,7 +76,7 @@ const searchKeywords = [
           </svg>
         </li>
         <li>
-          <a href="/perpustakaan" class="text-neutral-400 transition-colors hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-200">Peraturan Inti</a>
+          <a href="/peraturan-inti" class="text-neutral-400 transition-colors hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-200">Peraturan Inti</a>
         </li>
         <li class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5">
@@ -211,25 +211,25 @@ const searchKeywords = [
                 {data.mencabut && data.mencabut.length > 0 ? (
                   <p class="text-neutral-600 dark:text-neutral-300">Mencabut: {data.mencabut.map((n: string) => {
                     const r = relatedMap.get(n);
-                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-black hover:underline dark:text-white">{n}</a> : <span>{n}</span>;
+                    return r ? <a href={`/peraturan-inti/${r.id}`} class="text-black hover:underline dark:text-white">{n}</a> : <span>{n}</span>;
                   })}</p>
                 ) : null}
                 {data.dicabut_oleh ? (
                   <p class="text-neutral-600 dark:text-neutral-300">Dicabut oleh: {(() => {
                     const r = relatedMap.get(data.dicabut_oleh);
-                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-black hover:underline dark:text-white">{data.dicabut_oleh}</a> : <span>{data.dicabut_oleh}</span>;
+                    return r ? <a href={`/peraturan-inti/${r.id}`} class="text-black hover:underline dark:text-white">{data.dicabut_oleh}</a> : <span>{data.dicabut_oleh}</span>;
                   })()}</p>
                 ) : null}
                 {data.mengubah ? (
                   <p class="text-neutral-600 dark:text-neutral-300">Mengubah: {(() => {
                     const r = relatedMap.get(data.mengubah);
-                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-black hover:underline dark:text-white">{data.mengubah}</a> : <span>{data.mengubah}</span>;
+                    return r ? <a href={`/peraturan-inti/${r.id}`} class="text-black hover:underline dark:text-white">{data.mengubah}</a> : <span>{data.mengubah}</span>;
                   })()}</p>
                 ) : null}
                 {data.diubah_oleh && data.diubah_oleh.length > 0 ? (
                   <p class="text-neutral-600 dark:text-neutral-300">Diubah oleh: {data.diubah_oleh.map((n: string) => {
                     const r = relatedMap.get(n);
-                    return r ? <a href={`/perpustakaan/${r.id}`} class="text-black hover:underline dark:text-white">{n}</a> : <span>{n}</span>;
+                    return r ? <a href={`/peraturan-inti/${r.id}`} class="text-black hover:underline dark:text-white">{n}</a> : <span>{n}</span>;
                   })}</p>
                 ) : null}
                 {!data.mencabut?.length && !data.dicabut_oleh && !data.mengubah && !data.diubah_oleh?.length && (
@@ -242,7 +242,7 @@ const searchKeywords = [
               {data.dasar_hukum ? (
                 <p class="text-sm text-neutral-600 dark:text-neutral-300">{(() => {
                   const r = relatedMap.get(data.dasar_hukum);
-                  return r ? <a href={`/perpustakaan/${r.id}`} class="text-black hover:underline dark:text-white">{data.dasar_hukum}</a> : <span>{data.dasar_hukum}</span>;
+                  return r ? <a href={`/peraturan-inti/${r.id}`} class="text-black hover:underline dark:text-white">{data.dasar_hukum}</a> : <span>{data.dasar_hukum}</span>;
                 })()}</p>
               ) : (
                 <p class="text-sm text-neutral-400 dark:text-neutral-500">â</p>
@@ -295,7 +295,7 @@ const searchKeywords = [
                         <li>
                           {related ? (
                             <a
-                              href={`/perpustakaan/${related.id}`}
+                              href={`/peraturan-inti/${related.id}`}
                               class="block text-sm font-medium text-black hover:text-neutral-500 dark:text-white dark:hover:text-neutral-200"
                             >
                               {nomor}

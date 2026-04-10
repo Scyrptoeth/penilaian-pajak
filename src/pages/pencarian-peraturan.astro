@@ -29,7 +29,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="mb-3 text-sm font-medium text-neutral-500 dark:text-neutral-400">Jelajahi berdasarkan jenis</p>
         <div class="flex flex-wrap gap-2">
           {['PMK', 'PER', 'SE', 'KEP', 'KMK', 'PP', 'UU'].map((jenis) => (
-            <a href={`/perpustakaan`} class="rounded-full border border-neutral-200 px-4 py-1.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800">
+            <a href={`/peraturan-inti`} class="rounded-full border border-neutral-200 px-4 py-1.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800">
               {jenis}
             </a>
           ))}
