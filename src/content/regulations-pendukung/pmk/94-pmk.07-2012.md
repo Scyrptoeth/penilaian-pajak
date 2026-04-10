@@ -12,6 +12,8 @@ tahun: 2012
 tanggal_berlaku: "2012-06-12"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1L30KWl2_-VCqNnnM8y4iUP-IZ6Ib8WiN/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

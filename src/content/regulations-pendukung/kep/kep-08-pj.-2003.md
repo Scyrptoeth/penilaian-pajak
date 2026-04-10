@@ -12,6 +12,8 @@ tahun: 2003
 tanggal_berlaku: "2003-01-13"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1GdDpcSxkomxhucMRVSPNyqyLfg5xBiCq/view"
 ---
 
 KEPUTUSAN DIREKTUR JENDERAL PAJAK  

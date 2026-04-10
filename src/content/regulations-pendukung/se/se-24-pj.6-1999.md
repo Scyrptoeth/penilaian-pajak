@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-38/PJ.6/1997"
     prefix: "SE-38/PJ.6/1997"
     slug: "surat-edaran-direktur-jenderal-pajak-se-38pj-61997"
+
+pdf_isi: "https://drive.google.com/file/d/1AFxSPDHQ2Gh9ND07zbh3E-mn_RqQbc6l/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK,  

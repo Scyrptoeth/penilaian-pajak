@@ -31,6 +31,8 @@ peraturan_terkait_sebelumnya:
     title: "Keputusan Menteri Keuangan Nomor: 451/KMK.04/1997"
     prefix: "451/KMK.04/1997"
     slug: "keputusan-menteri-keuangan-451kmk-041997"
+
+pdf_isi: "https://drive.google.com/file/d/1u49eaBjBJPK-AQWCauGYOmd0KNCKfjOX/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

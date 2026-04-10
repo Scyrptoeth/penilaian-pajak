@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Peraturan Menteri Keuangan Nomor: 23/PMK.03/2014"
     prefix: "23/PMK.03/2014"
     slug: "peraturan-menteri-keuangan-23pmk-032014"
+
+pdf_isi: "https://drive.google.com/file/d/1zD1R7BRE8iS8ZMr9N8K--h-LFM01HrKk/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

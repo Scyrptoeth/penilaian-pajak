@@ -22,6 +22,8 @@ peraturan_terkait_terbaru:
     title: "Keputusan Menteri Keuangan Nomor: 555/KMK.03/2002"
     prefix: "555/KMK.03/2002"
     slug: "keputusan-menteri-keuangan-555kmk-032002"
+
+pdf_isi: "https://drive.google.com/file/d/195cNmJv2mSiRfa3RsH5Y0ZNNrlOw2xn5/view"
 ---
 
 KEPUTUSAN MENTERI KEUANGAN REPUBLIK INDONESIA  

@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-39/PJ.6/1994"
     prefix: "SE-39/PJ.6/1994"
     slug: "surat-edaran-direktur-jenderal-pajak-se-39pj-61994"
+
+pdf_isi: "https://drive.google.com/file/d/1qnAjZ3H6EXax2MQWVOnKdsr6w1YVuLER/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

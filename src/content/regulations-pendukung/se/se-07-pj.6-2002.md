@@ -12,6 +12,8 @@ tahun: 2002
 tanggal_berlaku: "2002-02-27"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1il1mq8KCcN88XsXZyyj_qTdzPg7ACDUZ/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

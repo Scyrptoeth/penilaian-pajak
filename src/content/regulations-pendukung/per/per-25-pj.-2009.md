@@ -27,6 +27,8 @@ peraturan_terkait_sebelumnya:
     title: "Keputusan Direktur Jenderal Pajak Nomor: KEP-59/PJ./2000"
     prefix: "KEP-59/PJ./2000"
     slug: "keputusan-direktur-jenderal-pajak-kep-59pj-2000"
+
+pdf_isi: "https://drive.google.com/file/d/1PT9VNi1aR6OAlXt6AgNa2_YTw96cmtRv/view"
 ---
 
 PERATURAN DIREKTUR JENDERAL PAJAK  

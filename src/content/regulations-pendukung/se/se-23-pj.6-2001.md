@@ -12,6 +12,8 @@ tahun: 2001
 tanggal_berlaku: "2001-08-13"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1H7c4qsPftgoDCqaq5HQKWGQqc5HtnT-Y/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

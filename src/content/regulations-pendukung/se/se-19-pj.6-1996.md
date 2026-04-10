@@ -18,6 +18,9 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-18/PJ.6/1997"
     prefix: "SE-18/PJ.6/1997"
     slug: "surat-edaran-direktur-jenderal-pajak-se-18pj-61997"
+
+pdf_isi: "https://drive.google.com/file/d/1wh4wQ5YeG2zYfAJQ-xG2NtWszPQekoZE/view"
+pdf_lampiran: "https://drive.google.com/file/d/1e0z927VRUqv9aHHWVQKElRc50lbWUgC3/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

@@ -12,6 +12,8 @@ tahun: 1997
 tanggal_berlaku: "1997-06-06"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1Bgopvdi8AW1ZQFcEBkghDXyjm0-Jxkl_/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

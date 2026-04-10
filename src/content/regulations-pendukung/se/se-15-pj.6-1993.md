@@ -12,6 +12,8 @@ tahun: 1993
 tanggal_berlaku: "1993-03-27"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1CErqewKjvzEYnu5VWglepneH0-CJ0Lwx/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

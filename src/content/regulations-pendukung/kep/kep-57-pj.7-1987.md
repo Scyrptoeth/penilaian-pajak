@@ -12,6 +12,8 @@ tahun: 1987
 tanggal_berlaku: "1986-01-01"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1ECwct3QdoS3A6rU13Gg9QUduXsRAmK5k/view"
 ---
 
 KEPUTUSAN DIREKTUR JENDERAL PAJAK  

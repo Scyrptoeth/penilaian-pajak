@@ -12,6 +12,8 @@ tahun: 2008
 tanggal_berlaku: "2008-01-09"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/170YsajD-VgmONua0W169eYjbkkn_DJ6T/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

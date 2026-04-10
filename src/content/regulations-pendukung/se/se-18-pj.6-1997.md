@@ -27,6 +27,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-19/PJ.6/1996"
     prefix: "SE-19/PJ.6/1996"
     slug: "surat-edaran-direktur-jenderal-pajak-se-19pj-61996"
+
+pdf_isi: "https://drive.google.com/file/d/1RC_qjcIero0cmljLjmyqcjIAat_lNXkd/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

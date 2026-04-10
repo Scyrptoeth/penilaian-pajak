@@ -27,6 +27,9 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 110/PMK.03/2009"
     prefix: "110/PMK.03/2009"
     slug: "peraturan-menteri-keuangan-110pmk-032009"
+
+pdf_isi: "https://drive.google.com/file/d/1U5wD87SAWLFQRuz-HL6qFkiPRTROuSQg/view"
+pdf_lampiran: "https://drive.google.com/file/d/10md6jTVlrm0nKkMmXUOQVReGT6yBeehj/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

@@ -22,6 +22,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-28/PJ.6/1999"
     prefix: "SE-28/PJ.6/1999"
     slug: "surat-edaran-direktur-jenderal-pajak-se-28pj-61999"
+
+pdf_isi: "https://drive.google.com/file/d/1dHBk5ZHtUGwgQguJ-_ZhYEEfOroKTdXA/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

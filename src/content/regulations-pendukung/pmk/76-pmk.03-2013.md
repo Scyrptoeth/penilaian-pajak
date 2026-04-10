@@ -39,6 +39,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 15/PMK.03/2012"
     prefix: "15/PMK.03/2012"
     slug: "peraturan-menteri-keuangan-15pmk-032012"
+
+pdf_isi: "https://drive.google.com/file/d/11Qm-5JGFTU9iL_nf2D2WnserO3XQ8kuH/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

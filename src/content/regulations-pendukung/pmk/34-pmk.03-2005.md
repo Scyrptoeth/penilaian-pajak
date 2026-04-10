@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Peraturan Menteri Keuangan Nomor: 04/PMK.07/2008"
     prefix: "04/PMK.07/2008"
     slug: "peraturan-menteri-keuangan-04pmk-072008"
+
+pdf_isi: "https://drive.google.com/file/d/1dKwwWwjlS4MQG3pQ1NUvsGWwuJAiJnkN/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

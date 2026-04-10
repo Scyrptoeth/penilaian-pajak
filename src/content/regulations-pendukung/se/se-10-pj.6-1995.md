@@ -12,6 +12,8 @@ tahun: 1995
 tanggal_berlaku: "1995-02-24"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1zaci3Iq5LdO9nswhEidW4mFSuRNry0VE/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

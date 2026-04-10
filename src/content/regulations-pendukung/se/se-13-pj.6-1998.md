@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-07/PJ.6/1995"
     prefix: "SE-07/PJ.6/1995"
     slug: "surat-edaran-direktur-jenderal-pajak-se-07pj-61995"
+
+pdf_isi: "https://drive.google.com/file/d/1vZRYf7MSZqiKNR-aaq7F3gPzuFwiCmti/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

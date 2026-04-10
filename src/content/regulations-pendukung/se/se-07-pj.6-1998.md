@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-38/PJ/2010"
     prefix: "SE-38/PJ/2010"
     slug: "surat-edaran-direktur-jenderal-pajak-se-38pj2010"
+
+pdf_isi: "https://drive.google.com/file/d/1Q5bvW6PHmVkrU9GIo7ggwEKfAz9Vpyml/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-25/PJ.6/2000"
     prefix: "SE-25/PJ.6/2000"
     slug: "surat-edaran-direktur-jenderal-pajak-se-25pj-62000"
+
+pdf_isi: "https://drive.google.com/file/d/1cqSLxanXYbjAxar6TxZ0g3wNKSqU3S0n/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

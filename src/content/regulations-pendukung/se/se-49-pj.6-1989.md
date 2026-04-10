@@ -12,6 +12,8 @@ tahun: 1989
 tanggal_berlaku: "1989-06-22"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1_0_ArQGktEjAvIQv7xCQRcg9TOOsOMtk/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

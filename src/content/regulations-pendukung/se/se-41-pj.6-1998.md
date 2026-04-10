@@ -18,6 +18,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-20/PJ.6/1998"
     prefix: "SE-20/PJ.6/1998"
     slug: "surat-edaran-direktur-jenderal-pajak-se-20pj-61998"
+
+pdf_isi: "https://drive.google.com/file/d/1W-sOzOcQImB3e4U3jtK6y3ufy3hiTmFw/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

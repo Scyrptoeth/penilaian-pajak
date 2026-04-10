@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-64/PJ/2012"
     prefix: "SE-64/PJ/2012"
     slug: "surat-edaran-direktur-jenderal-pajak-se-64pj2012"
+
+pdf_isi: "https://drive.google.com/file/d/1elAktJbBke5qKNj-xa6ySGQnlwEkl63g/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-14/PJ.6/2000"
     prefix: "SE-14/PJ.6/2000"
     slug: "surat-edaran-direktur-jenderal-pajak-se-14pj-62000"
+
+pdf_isi: "https://drive.google.com/file/d/1xfJdHGJNOIAcTRJRvMUCXNUM3vyr9_PI/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

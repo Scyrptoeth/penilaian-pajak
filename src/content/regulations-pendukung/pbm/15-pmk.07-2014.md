@@ -12,6 +12,8 @@ tahun: 2014
 tanggal_berlaku: "2014-01-24"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/17zBFiKdTTwDcT-SPWUaQPa5yTTylTRq7/view"
 ---
 
 MENTERI KEUANGAN DAN MENTERI DALAM NEGERI  

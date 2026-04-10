@@ -12,6 +12,8 @@ tahun: 2007
 tanggal_berlaku: "2007-01-25"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1P-hZMtGgaqpS706FmdHnd2NYpIv2pgBb/view"
 ---
 
 PERATURAN MENTERI KEUANGAN  

@@ -18,6 +18,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 67/PMK.03/2011"
     prefix: "67/PMK.03/2011"
     slug: "peraturan-menteri-keuangan-67pmk-032011"
+
+pdf_isi: "https://drive.google.com/file/d/186pEwzi7-oZoCJHU90hUUD009Q0qXi_6/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

@@ -18,6 +18,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-44/PJ.6/1991"
     prefix: "SE-44/PJ.6/1991"
     slug: "surat-edaran-direktur-jenderal-pajak-se-44pj-61991"
+
+pdf_isi: "https://drive.google.com/file/d/1okmob8GjHx5Wo3R23ppJEICffbNE5A0p/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

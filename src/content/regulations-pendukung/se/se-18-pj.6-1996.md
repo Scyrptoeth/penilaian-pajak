@@ -12,6 +12,8 @@ tahun: 1996
 tanggal_berlaku: "1996-05-21"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1rhfiay866jDbGazvTHRc3Z1S3mMVGsDF/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

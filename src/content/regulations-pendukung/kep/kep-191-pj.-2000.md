@@ -12,6 +12,8 @@ tahun: 2000
 tanggal_berlaku: "2000-07-07"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1sAOldQQxaJAZ0Az5J2MwfwYc8-qtj4ue/view"
 ---
 
 KEPUTUSAN DIREKTUR JENDERAL PAJAK  

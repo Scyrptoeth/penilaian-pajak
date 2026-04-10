@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Keputusan Direktur Jenderal Pajak Nomor: KEP-268/PJ./2001"
     prefix: "KEP-268/PJ./2001"
     slug: "keputusan-direktur-jenderal-pajak-kep-268pj-2001"
+
+pdf_isi: "https://drive.google.com/file/d/1pUJ6bAewvjvFe2AVJkzINl3L40QfYwc9/view"
 ---
 
 KEPUTUSAN DIREKTUR JENDERAL PAJAK  

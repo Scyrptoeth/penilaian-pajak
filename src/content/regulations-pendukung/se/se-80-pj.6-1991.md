@@ -12,6 +12,8 @@ tahun: 1991
 tanggal_berlaku: "1991-11-01"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/15eC7Lp0BDrrbnAZE3MI5enb7B7u2KzKc/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

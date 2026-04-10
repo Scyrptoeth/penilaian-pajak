@@ -27,6 +27,8 @@ peraturan_terkait_sebelumnya:
     title: "Keputusan Menteri Keuangan Nomor: 84/KMK.04/2000"
     prefix: "84/KMK.04/2000"
     slug: "keputusan-menteri-keuangan-84kmk-042000"
+
+pdf_isi: "https://drive.google.com/file/d/1x5dhGyhyvOrmnC8D4vFdgpXXJum5g1Yb/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

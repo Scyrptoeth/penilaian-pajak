@@ -27,6 +27,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 35/PMK.03/2005"
     prefix: "35/PMK.03/2005"
     slug: "peraturan-menteri-keuangan-35pmk-032005"
+
+pdf_isi: "https://drive.google.com/file/d/18y_Z5a8RGTQ3qCQCdxyjmweskRT3k4ru/view"
 ---
 
 PERATURAN MENTERI KEUANGAN  

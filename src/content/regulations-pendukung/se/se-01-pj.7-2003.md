@@ -47,6 +47,8 @@ peraturan_terkait_sebelumnya:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-04/PJ.7/2000"
     prefix: "SE-04/PJ.7/2000"
     slug: "surat-edaran-direktur-jenderal-pajak-se-04pj-72000"
+
+pdf_isi: "https://drive.google.com/file/d/1TfFEJVolYpjjA4a_bzKXVrXzf9mpNq1j/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

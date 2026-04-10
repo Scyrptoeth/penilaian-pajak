@@ -12,6 +12,8 @@ tahun: 2007
 tanggal_berlaku: "2007-11-01"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1KfKXpO40dQX6SyeS-82rQiGyGQ1L9bos/view"
 ---
 
 SURAT DIREKTUR JENDERAL PAJAK  

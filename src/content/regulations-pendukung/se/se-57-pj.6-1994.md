@@ -12,6 +12,8 @@ tahun: 1994
 tanggal_berlaku: "1994-09-02"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1cAPAWkbyMLY-WyMZv2RBuxV0xM3ZBedM/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

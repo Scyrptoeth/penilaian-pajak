@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 253/PMK.03/2014"
     prefix: "253/PMK.03/2014"
     slug: "peraturan-menteri-keuangan-253pmk-032014"
+
+pdf_isi: "https://drive.google.com/file/d/1lW6_ZAAhoamqXUVrZhaEv55Qz0hMl2Cc/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

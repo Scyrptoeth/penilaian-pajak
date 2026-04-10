@@ -12,6 +12,8 @@ tahun: 2000
 tanggal_berlaku: "2000-03-24"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1x1emwlXfjiqxm1fS0dm4JgHZrk_AkcrI/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-73/PJ.6/1999"
     prefix: "SE-73/PJ.6/1999"
     slug: "surat-edaran-direktur-jenderal-pajak-se-73pj-61999"
+
+pdf_isi: "https://drive.google.com/file/d/1KRHvTIWJDAisMtJBNF6o8DbMNeX9_Y1n/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

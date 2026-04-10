@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Keputusan Menteri Keuangan Nomor: 639/KMK.04/1997"
     prefix: "639/KMK.04/1997"
     slug: "keputusan-menteri-keuangan-639kmk-041997"
+
+pdf_isi: "https://drive.google.com/file/d/1epffVKvU8-JH2mG9lwp1Szk9437VyYM7/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

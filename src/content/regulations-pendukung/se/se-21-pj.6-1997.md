@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-54/PJ.6/1999"
     prefix: "SE-54/PJ.6/1999"
     slug: "surat-edaran-direktur-jenderal-pajak-se-54pj-61999"
+
+pdf_isi: "https://drive.google.com/file/d/11SjamaXk1j9mr0ZBPSwjXmytNjvfrNHU/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

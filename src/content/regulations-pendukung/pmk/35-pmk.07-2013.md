@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 205/PMK.07/2012"
     prefix: "205/PMK.07/2012"
     slug: "peraturan-menteri-keuangan-205pmk-072012"
+
+pdf_isi: "https://drive.google.com/file/d/1-bA0FY8wZhqR7gcaMMzn4SlJwuO-_LsO/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  

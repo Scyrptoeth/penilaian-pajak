@@ -12,6 +12,8 @@ tahun: 1995
 tanggal_berlaku: "1995-02-10"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/162J_q5BeU3gAdFUJkIelryF1k80FvHFi/view"
 ---
 
 KEPUTUSAN BERSAMA DIREKTUR JENDERAL PAJAK DAN DIREKTUR JENDERAL PEMERINTAHAN UMUM DAN OTONOMI DAERAH  

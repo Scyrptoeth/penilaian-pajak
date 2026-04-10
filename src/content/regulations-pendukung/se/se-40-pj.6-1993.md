@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-66/PJ.6/1993"
     prefix: "SE-66/PJ.6/1993"
     slug: "surat-edaran-direktur-jenderal-pajak-se-66pj-61993"
+
+pdf_isi: "https://drive.google.com/file/d/1bHI2Rz2Q8bfs_q6FHB57A43HVIBl04h3/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

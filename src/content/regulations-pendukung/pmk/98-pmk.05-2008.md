@@ -23,6 +23,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 42/PMK.05/2007"
     prefix: "42/PMK.05/2007"
     slug: "peraturan-menteri-keuangan-42pmk-052007"
+
+pdf_isi: "https://drive.google.com/file/d/1Vqcb9sg1VppWnaQHQdR14jCRHp_pcA01/view"
 ---
 
 PERATURAN MENTERI KEUANGAN  

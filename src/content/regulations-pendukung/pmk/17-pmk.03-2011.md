@@ -12,6 +12,8 @@ tahun: 2011
 tanggal_berlaku: "2011-01-24"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1lCKUIGQjxi9eHr-66dUS_0ik_5nuCPkT/view"
 ---
 
 PERATURAN MENTERI KEUANGAN  

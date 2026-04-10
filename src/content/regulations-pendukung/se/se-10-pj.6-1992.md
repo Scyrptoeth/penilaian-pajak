@@ -12,6 +12,8 @@ tahun: 1992
 tanggal_berlaku: "1992-03-04"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1LwH9z3WKqRgQK2O43Wc7zaOpxJjW0Dj9/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

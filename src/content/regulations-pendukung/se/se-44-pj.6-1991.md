@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Surat Edaran Direktur Jenderal Pajak Nomor: SE-74/PJ.6/1991"
     prefix: "SE-74/PJ.6/1991"
     slug: "surat-edaran-direktur-jenderal-pajak-se-74pj-61991"
+
+pdf_isi: "https://drive.google.com/file/d/14rfhM0SdpGY53eXuPt0B5A1hUTz39evv/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

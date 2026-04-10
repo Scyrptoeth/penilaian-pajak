@@ -12,6 +12,8 @@ tahun: 1999
 tanggal_berlaku: "1999-11-26"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/1TnP8phkGdBNLLDu9C9ma5qpzE3EzpuMP/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

@@ -18,6 +18,8 @@ peraturan_terkait_terbaru:
     title: "Keputusan Direktur Jenderal Pajak Nomor: KEP-10/PJ.6/1999"
     prefix: "KEP-10/PJ.6/1999"
     slug: "keputusan-direktur-jenderal-pajak-kep-10pj-61999"
+
+pdf_isi: "https://drive.google.com/file/d/1QV5ZNUittAGOa9IG2fk4H8E46eIche8b/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

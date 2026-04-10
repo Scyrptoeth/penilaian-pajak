@@ -12,6 +12,8 @@ tahun: 1998
 tanggal_berlaku: "1998-08-10"
 topik:
   - "PBB"
+
+pdf_isi: "https://drive.google.com/file/d/17sicqu7uzcYriiSifZbURP0js2EBGXKs/view"
 ---
 
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  

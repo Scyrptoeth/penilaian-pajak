@@ -27,6 +27,8 @@ peraturan_terkait_sebelumnya:
     title: "Peraturan Menteri Keuangan Nomor: 76/PMK.03/2013"
     prefix: "76/PMK.03/2013"
     slug: "peraturan-menteri-keuangan-76pmk-032013"
+
+pdf_isi: "https://drive.google.com/file/d/1DJlkergrowvynx4cwolS1BzNgHw0KO9I/view"
 ---
 
 PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA  
