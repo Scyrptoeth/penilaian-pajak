@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   ReactFlow,
   Background,
@@ -66,9 +66,9 @@ const statusBgDark: Record<string, string> = {
 // --- Node sizes ---
 
 const NODE_SIZES = {
-  root: { width: 300, height: 70 },
+  root: { width: 280, height: 70 },
   category: { width: 240, height: 60 },
-  regulation: { width: 260, height: 80 },
+  regulation: { width: 240, height: 90 },
 };
 
 // --- Dagre layout ---
@@ -79,7 +79,7 @@ function getLayoutedElements(
 ): { nodes: Node<MindMapNodeData>[]; edges: Edge[] } {
   const g = new dagre.graphlib.Graph();
   g.setDefaultEdgeLabel(() => ({}));
-  g.setGraph({ rankdir: 'LR', nodesep: 40, ranksep: 200, marginx: 60, marginy: 60 });
+  g.setGraph({ rankdir: 'LR', nodesep: 60, ranksep: 220, marginx: 60, marginy: 60 });
 
   const nodeSet = new Set(nodes.map((n) => n.id));
 
@@ -127,10 +127,10 @@ function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
 
 function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
   return (
-    <div style={{ background: '#02275d', color: '#fff', padding: '12px 20px', fontFamily: "'Space Grotesk', system-ui", fontWeight: 600, fontSize: 13, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: '2px solid #1a5090', cursor: 'pointer' }}>
+    <div style={{ background: '#02275d', color: '#fff', padding: '12px 20px', fontFamily: "'Space Grotesk', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: '2px solid #1a5090', cursor: 'pointer' }}>
       <Handle type="target" position={Position.Left} style={{ background: '#1a5090' }} />
       <div>{data.label}</div>
-      <div style={{ fontSize: 11, color: '#c9a84c', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
+      <div style={{ fontSize: 11, color: '#ffca19', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan — klik untuk expand</div>
       <Handle type="source" position={Position.Right} style={{ background: '#1a5090' }} />
     </div>
   );
@@ -140,25 +140,25 @@ function RegulationNode({ data }: NodeProps<Node<RegulationNodeData>>) {
   const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   const borderColor = statusBorder[data.status] || '#6b7280';
   const bgColor = isDark ? (statusBgDark[data.status] || '#1e293b') : (statusBg[data.status] || '#f8fafc');
-  const textColor = isDark ? '#e7e5e4' : '#1e3a5f';
 
   return (
     <div
       style={{ background: bgColor, border: `2px solid ${borderColor}`, borderLeftWidth: 5, padding: '10px 14px', minWidth: NODE_SIZES.regulation.width, maxWidth: 280, cursor: 'pointer' }}
-      onClick={() => window.open(`/peraturan-pendukung/${data.jenis.toLowerCase()}/${data.slug}`, '_self')}
+      onClick={() => { window.location.href = `/peraturan-pendukung/${data.jenis.toLowerCase()}/${data.slug}`; }}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.open(`/peraturan-pendukung/${data.jenis.toLowerCase()}/${data.slug}`, '_self'); }}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.href = `/peraturan-pendukung/${data.jenis.toLowerCase()}/${data.slug}`; }}
     >
       <Handle type="target" position={Position.Left} style={{ background: borderColor }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
         <span style={{ fontSize: 10, fontWeight: 600, fontFamily: 'monospace', padding: '1px 5px', background: '#02275d', color: '#fff' }}>{data.jenis}</span>
         <span style={{ fontSize: 10, fontWeight: 500, textTransform: 'capitalize', color: borderColor }}>{data.status}</span>
       </div>
-      <div style={{ fontWeight: 600, fontSize: 12, fontFamily: 'monospace', color: textColor }}>{data.label}</div>
+      <div style={{ fontWeight: 600, fontSize: 13, fontFamily: 'monospace', color: isDark ? '#e7e5e4' : '#052240' }}>{data.label}</div>
       <div style={{ fontSize: 11, color: isDark ? '#a8a29e' : '#475569', marginTop: 4, lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
-        {data.title.length > 60 ? data.title.slice(0, 60) + '…' : data.title}
+        {data.title.length > 50 ? data.title.slice(0, 50) + '…' : data.title}
       </div>
+      <Handle type="source" position={Position.Right} style={{ background: borderColor }} />
     </div>
   );
 }
@@ -167,59 +167,51 @@ const nodeTypes = { root: RootNode, category: CategoryNode, regulation: Regulati
 
 // --- Inner component ---
 
-interface MindMapInnerProps {
-  allNodes: Node<MindMapNodeData>[];
-  allEdges: Edge[];
-}
-
-function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
+function MindMapInner({ allNodes, allEdges }: { allNodes: Node<MindMapNodeData>[]; allEdges: Edge[] }) {
   const { fitView } = useReactFlow();
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
-  // Filter visible nodes based on expanded state
+  // Filter visible nodes and compute layout
   const { visibleNodes, visibleEdges } = useMemo(() => {
     const filtered = allNodes.filter((node) => {
       if (node.data.nodeType === 'root' || node.data.nodeType === 'category') {
-        // Category nodes: show if parent is root (always) or parent category is expanded
         const parentEdge = allEdges.find((e) => e.target === node.id);
-        if (!parentEdge) return true; // root has no parent edge
-        if (parentEdge.source === 'root') return true; // top-level categories always visible
-        // Sub-categories: visible if parent category is expanded
+        if (!parentEdge) return true;
+        if (parentEdge.source === 'root') return true;
         const parentCatId = parentEdge.source.replace('cat-', '');
         return expanded.has(parentCatId);
       }
-      // Regulation nodes: visible if parent category is expanded
-      const parentEdge = allEdges.find((e) => e.target === node.id);
+      const parentEdge = allEdges.find((e) => e.target === node.id && e.source.startsWith('cat-'));
       if (!parentEdge) return false;
-      const parentCatId = parentEdge.source.replace('cat-', '');
-      return expanded.has(parentCatId);
+      const catId = parentEdge.source.replace('cat-', '');
+      return expanded.has(catId);
     });
-    return getLayoutedElements(filtered, allEdges);
+    return { visibleNodes: filtered, visibleEdges: allEdges };
   }, [allNodes, allEdges, expanded]);
 
-  const [nodes, setNodes, onNodesChange] = useNodesState(visibleNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(visibleEdges);
+  const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(
+    () => getLayoutedElements(visibleNodes, visibleEdges),
+    [visibleNodes, visibleEdges],
+  );
 
-  // Sync nodes/edges when layout changes — useEffect, NOT useMemo
-  const layoutKey = useMemo(() => visibleNodes.map((n) => n.id).join(','), [visibleNodes]);
+  const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 
-  useEffect(() => {
-    setNodes(visibleNodes);
-    setEdges(visibleEdges);
-    const timer = setTimeout(() => fitView({ padding: 0.3, duration: 300 }), 50);
-    return () => clearTimeout(timer);
-  }, [layoutKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Sync layout — match proven inti pattern exactly
+  const prevLayout = useMemo(() => JSON.stringify(layoutedNodes.map((n) => n.id)), [layoutedNodes]);
+  useMemo(() => {
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
+    setTimeout(() => fitView({ padding: 0.3, duration: 300 }), 50);
+  }, [prevLayout]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
+  const handleNodeClick = useCallback((_: React.MouseEvent, node: Node<MindMapNodeData>) => {
     if (node.data.nodeType === 'category') {
       const catData = node.data as CategoryNodeData;
       setExpanded((prev) => {
         const next = new Set(prev);
-        if (next.has(catData.categoryId)) {
-          next.delete(catData.categoryId);
-        } else {
-          next.add(catData.categoryId);
-        }
+        if (next.has(catData.categoryId)) next.delete(catData.categoryId);
+        else next.add(catData.categoryId);
         return next;
       });
     }
@@ -240,7 +232,7 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
       edges={edges}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
-      onNodeClick={onNodeClick}
+      onNodeClick={handleNodeClick}
       nodeTypes={nodeTypes}
       fitView
       fitViewOptions={{ padding: 0.3, maxZoom: 1 }}
@@ -261,37 +253,42 @@ function MindMapInner({ allNodes, allEdges }: MindMapInnerProps) {
       />
       <Panel position="top-right">
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={expandAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#ffca19', color: '#052240', border: 'none', cursor: 'pointer' }}>
-            Tampilkan Semua
-          </button>
-          <button onClick={collapseAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#02275d', color: '#fff', border: '1px solid #1a5090', cursor: 'pointer' }}>
-            Sembunyikan Semua
-          </button>
+          <button onClick={expandAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#ffca19', color: '#052240', border: 'none', cursor: 'pointer' }}>Tampilkan Semua</button>
+          <button onClick={collapseAll} style={{ padding: '6px 12px', fontSize: 12, fontWeight: 600, background: '#02275d', color: '#fff', border: '1px solid #1a5090', cursor: 'pointer' }}>Sembunyikan Semua</button>
         </div>
       </Panel>
     </ReactFlow>
   );
 }
 
-// --- Main export ---
+// --- Main: reads data from DOM script tag ---
 
-interface MindMapPendukungProps {
-  initialNodes: Node<MindMapNodeData>[];
-  initialEdges: Edge[];
-}
+export default function MindMapPendukung() {
+  const { allNodes, allEdges } = useMemo(() => {
+    const nodesEl = document.getElementById('mindmap-nodes');
+    const edgesEl = document.getElementById('mindmap-edges');
+    if (!nodesEl || !edgesEl) return { allNodes: [], allEdges: [] };
+    try {
+      return {
+        allNodes: JSON.parse(nodesEl.textContent || '[]') as Node<MindMapNodeData>[],
+        allEdges: JSON.parse(edgesEl.textContent || '[]') as Edge[],
+      };
+    } catch {
+      return { allNodes: [], allEdges: [] };
+    }
+  }, []);
 
-export default function MindMapPendukung({ initialNodes, initialEdges }: MindMapPendukungProps) {
-  if (initialNodes.length === 0) {
+  if (allNodes.length === 0) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#64748b' }}>
-        <p>Mind map akan ditampilkan setelah data peraturan diisi.</p>
+        <p>Mind map data tidak ditemukan.</p>
       </div>
     );
   }
 
   return (
     <ReactFlowProvider>
-      <MindMapInner allNodes={initialNodes} allEdges={initialEdges} />
+      <MindMapInner allNodes={allNodes} allEdges={allEdges} />
     </ReactFlowProvider>
   );
 }

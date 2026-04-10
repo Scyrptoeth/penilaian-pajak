@@ -255,13 +255,13 @@ const statusColors: Record<string, string> = {
     </div>
   </section>
 
+  <!-- Data for React Flow (embedded as JSON, not as props) -->
+  <script id="mindmap-nodes" type="application/json" set:html={JSON.stringify(nodes)} />
+  <script id="mindmap-edges" type="application/json" set:html={JSON.stringify(edges)} />
+
   <!-- Desktop: React Flow mind map -->
   <div class="hidden border-t-2 border-navy-100 bg-white dark:border-navy-800 dark:bg-navy-900 md:block" style="height: calc(100vh - 200px); min-height: 500px;">
-    <MindMapPendukung
-      client:only="react"
-      initialNodes={nodes}
-      initialEdges={edges}
-    />
+    <MindMapPendukung client:only="react" />
   </div>
 
   <!-- Mobile: Accordion fallback -->
