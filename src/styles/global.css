@@ -143,14 +143,15 @@
   --color-nav-accent-light: #093b6e;
   --color-nav-accent-dark: #ffc91b;
 
-  --font-heading: 'Montserrat', system-ui, sans-serif;
-  --font-body: 'Montserrat', system-ui, sans-serif;
-  --font-secondary: 'Poppins', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-secondary: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
   html {
     font-family: var(--font-body);
+    letter-spacing: -0.04em;
     /* scroll-behavior handled by JS for reliability on long pages */
     -webkit-font-smoothing: antialiased;
     text-size-adjust: 100%;
@@ -164,6 +165,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    letter-spacing: -0.04em;
   }
 
   code, pre, .font-mono {

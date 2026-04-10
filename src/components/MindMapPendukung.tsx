@@ -221,7 +221,7 @@ function RootNode({ data }: NodeProps<Node<RootNodeData>>) {
   const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   const handleStyle = { background: isDark ? '#000000' : '#ffffff' };
   return (
-    <div style={{ background: isDark ? '#ffffff' : '#000000', color: isDark ? '#000000' : '#ffffff', padding: '16px 24px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.root.width, border: `2px solid ${isDark ? '#ffffff' : '#000000'}` }}>
+    <div style={{ background: isDark ? '#ffffff' : '#000000', color: isDark ? '#000000' : '#ffffff', padding: '16px 24px', fontFamily: "'Inter', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.root.width, border: `2px solid ${isDark ? '#ffffff' : '#000000'}` }}>
       <Handle type="source" position={Position.Left} id="source-left" style={handleStyle} />
       {data.label}
       <Handle type="source" position={Position.Right} id="source-right" style={handleStyle} />
@@ -234,7 +234,7 @@ function CategoryNode({ data }: NodeProps<Node<CategoryNodeData>>) {
   const side = (data as CategoryNodeData & { side?: string }).side || 'right';
   const handleColor = isDark ? '#a3a3a3' : '#525252';
   return (
-    <div style={{ background: isDark ? '#e5e5e5' : '#262626', color: isDark ? '#000000' : '#ffffff', padding: '12px 20px', fontFamily: "'Montserrat', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: `2px solid ${isDark ? '#d4d4d4' : '#525252'}`, cursor: 'pointer' }}>
+    <div style={{ background: isDark ? '#e5e5e5' : '#262626', color: isDark ? '#000000' : '#ffffff', padding: '12px 20px', fontFamily: "'Inter', system-ui", fontWeight: 700, fontSize: 14, textAlign: 'center', minWidth: NODE_SIZES.category.width, border: `2px solid ${isDark ? '#d4d4d4' : '#525252'}`, cursor: 'pointer' }}>
       <Handle type="target" position={side === 'left' ? Position.Right : Position.Left} id={side === 'left' ? 'target-right' : 'target-left'} style={{ background: handleColor }} />
       <div>{data.label}</div>
       <div style={{ fontSize: 11, color: isDark ? '#525252' : '#a3a3a3', marginTop: 4, fontWeight: 400 }}>{data.count} peraturan, klik untuk expand</div>
