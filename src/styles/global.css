@@ -2,27 +2,70 @@
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Nav hover pill outline animation */
-.nav-pill-hover {
+/* Nav stabilo highlight effect on hover */
+.nav-stabilo {
+  position: relative;
+  z-index: 0;
+}
+
+.nav-stabilo::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  height: 40%;
+  background-color: var(--color-nav-accent-light);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: opacity 0.25s ease, transform 0.3s ease;
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.nav-stabilo:hover::before,
+.nav-stabilo:focus-visible::before {
+  opacity: 0.25;
+  transform: scaleX(1);
+}
+
+:where(.dark) .nav-stabilo::before {
+  background-color: var(--color-nav-accent-dark);
+}
+
+:where(.dark) .nav-stabilo:hover::before,
+:where(.dark) .nav-stabilo:focus-visible::before {
+  opacity: 0.3;
+}
+
+/* Nav active underline indicator (desktop top bar) */
+.nav-active {
   position: relative;
 }
 
-.nav-pill-hover::after {
+.nav-active::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border: 1.5px solid currentColor;
-  border-radius: 9999px;
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
+  left: 4px;
+  right: 4px;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--color-nav-accent-light);
+  border-radius: 1px;
 }
 
-.nav-pill-hover:hover::after,
-.nav-pill-hover:focus-visible::after {
-  opacity: 1;
-  transform: scale(1);
+:where(.dark) .nav-active::after {
+  background-color: var(--color-nav-accent-dark);
+}
+
+/* Nav active left-border indicator (dropdown + mobile items) */
+.nav-active-item {
+  border-left: 3px solid var(--color-nav-accent-light);
+}
+
+:where(.dark) .nav-active-item {
+  border-left-color: var(--color-nav-accent-dark);
 }
 
 @theme {
@@ -52,6 +95,10 @@
 
   --color-surface-light: #fafdff;
   --color-surface-dark: #000004;
+
+  /* Nav accent colors (pajak.go.id reference) */
+  --color-nav-accent-light: #093b6e;
+  --color-nav-accent-dark: #ffc91b;
 
   --font-heading: 'Montserrat', system-ui, sans-serif;
   --font-body: 'Montserrat', system-ui, sans-serif;

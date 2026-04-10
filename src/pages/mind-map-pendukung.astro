@@ -219,62 +219,120 @@ const statusColors: Record<string, string> = {
     <MindMapPendukung client:only="react" />
   </div>
 
-  <!-- Mobile: Accordion fallback -->
-  <div class="border-t-2 border-neutral-100 dark:border-neutral-800 md:hidden">
+  <!-- Accordion: 2-column on desktop, single column on mobile -->
+  <div class="border-t-2 border-neutral-100 dark:border-neutral-800">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-      <p class="mb-4 text-sm text-neutral-500 dark:text-neutral-400">
+      <p class="mb-4 text-sm text-neutral-500 dark:text-neutral-400 md:hidden">
         Gunakan perangkat desktop untuk melihat mind map interaktif. Di bawah ini daftar peraturan per tema.
       </p>
-      {categorizedData.map((cat) => {
-        const subGroups = getEraGroups(cat.id, cat.regulations);
-        return (
-          <details class="group border-b border-neutral-100 dark:border-neutral-800">
-            <summary class="flex cursor-pointer items-center justify-between py-4 font-heading font-semibold text-neutral-800 dark:text-white">
-              <span>{cat.label} <span class="ml-2 text-sm font-normal text-neutral-400 dark:text-neutral-500">({cat.regulations.length})</span></span>
-              <svg class="h-5 w-5 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
-              </svg>
-            </summary>
-            {subGroups.length > 0 ? (
-              <div class="pb-4 pl-2">
-                {subGroups.map((sub) => (
-                  <details class="group/sub border-l-2 border-neutral-200 pl-4 dark:border-neutral-700">
-                    <summary class="flex cursor-pointer items-center justify-between py-2 text-sm font-medium text-neutral-700 dark:text-neutral-200">
-                      <span>{sub.label} <span class="text-neutral-400 dark:text-neutral-500">({sub.regulations.length})</span></span>
-                      <svg class="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open/sub:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
-                      </svg>
-                    </summary>
-                    <ul class="space-y-2 py-2 pl-2">
-                      {sub.regulations.map((reg) => (
-                        <li>
-                          <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
-                            <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
-                            <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
-                            <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                ))}
-              </div>
-            ) : (
-              <ul class="space-y-2 pb-4 pl-2">
-                {cat.regulations.map((reg) => (
-                  <li>
-                    <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
-                      <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
-                      <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
-                      <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </details>
-        );
-      })}
+      <div class="grid gap-6 md:grid-cols-2">
+        {/* Left column: first 7 themes */}
+        <div>
+          {categorizedData.slice(0, 7).map((cat) => {
+            const subGroups = getEraGroups(cat.id, cat.regulations);
+            return (
+              <details class="group border-b border-neutral-100 dark:border-neutral-800">
+                <summary class="flex cursor-pointer items-center justify-between py-4 font-heading font-semibold text-neutral-800 dark:text-white">
+                  <span>{cat.label} <span class="ml-2 text-sm font-normal text-neutral-400 dark:text-neutral-500">({cat.regulations.length})</span></span>
+                  <svg class="h-5 w-5 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                  </svg>
+                </summary>
+                {subGroups.length > 0 ? (
+                  <div class="pb-4 pl-2">
+                    {subGroups.map((sub) => (
+                      <details class="group/sub border-l-2 border-neutral-200 pl-4 dark:border-neutral-700">
+                        <summary class="flex cursor-pointer items-center justify-between py-2 text-sm font-medium text-neutral-700 dark:text-neutral-200">
+                          <span>{sub.label} <span class="text-neutral-400 dark:text-neutral-500">({sub.regulations.length})</span></span>
+                          <svg class="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open/sub:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                          </svg>
+                        </summary>
+                        <ul class="space-y-2 py-2 pl-2">
+                          {sub.regulations.map((reg) => (
+                            <li>
+                              <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                                <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
+                                <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
+                                <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
+                ) : (
+                  <ul class="space-y-2 pb-4 pl-2">
+                    {cat.regulations.map((reg) => (
+                      <li>
+                        <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                          <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
+                          <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
+                          <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </details>
+            );
+          })}
+        </div>
+        {/* Right column: remaining themes */}
+        <div>
+          {categorizedData.slice(7).map((cat) => {
+            const subGroups = getEraGroups(cat.id, cat.regulations);
+            return (
+              <details class="group border-b border-neutral-100 dark:border-neutral-800">
+                <summary class="flex cursor-pointer items-center justify-between py-4 font-heading font-semibold text-neutral-800 dark:text-white">
+                  <span>{cat.label} <span class="ml-2 text-sm font-normal text-neutral-400 dark:text-neutral-500">({cat.regulations.length})</span></span>
+                  <svg class="h-5 w-5 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                  </svg>
+                </summary>
+                {subGroups.length > 0 ? (
+                  <div class="pb-4 pl-2">
+                    {subGroups.map((sub) => (
+                      <details class="group/sub border-l-2 border-neutral-200 pl-4 dark:border-neutral-700">
+                        <summary class="flex cursor-pointer items-center justify-between py-2 text-sm font-medium text-neutral-700 dark:text-neutral-200">
+                          <span>{sub.label} <span class="text-neutral-400 dark:text-neutral-500">({sub.regulations.length})</span></span>
+                          <svg class="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open/sub:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                          </svg>
+                        </summary>
+                        <ul class="space-y-2 py-2 pl-2">
+                          {sub.regulations.map((reg) => (
+                            <li>
+                              <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                                <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
+                                <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
+                                <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
+                ) : (
+                  <ul class="space-y-2 pb-4 pl-2">
+                    {cat.regulations.map((reg) => (
+                      <li>
+                        <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                          <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>{reg.data.status}</span>
+                          <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
+                          <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </details>
+            );
+          })}
+        </div>
+      </div>
     </div>
   </div>
 </BaseLayout>

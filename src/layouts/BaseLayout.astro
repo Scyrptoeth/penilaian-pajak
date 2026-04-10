@@ -12,17 +12,19 @@ const currentPath = Astro.url.pathname;
 
 // Dropdown items for "Peraturan"
 const peraturanItems = [
+  { href: '/peraturan-seluruhnya', label: 'Peraturan Seluruhnya' },
   { href: '/perpustakaan', label: 'Peraturan Inti' },
   { href: '/peraturan-pendukung', label: 'Peraturan Pendukung' },
 ];
 
 // Dropdown items for "Mind Map"
 const mindMapItems = [
+  { href: '/mind-map-seluruhnya', label: 'Peraturan Seluruhnya' },
   { href: '/mind-map', label: 'Peraturan Inti' },
   { href: '/mind-map-pendukung', label: 'Peraturan Pendukung' },
 ];
 
-const isPeraturanActive = currentPath.startsWith('/perpustakaan') || currentPath.startsWith('/peraturan-pendukung');
+const isPeraturanActive = currentPath.startsWith('/perpustakaan') || currentPath.startsWith('/peraturan-pendukung') || currentPath.startsWith('/peraturan-seluruhnya');
 const isMindMapActive = currentPath.startsWith('/mind-map');
 ---
 
@@ -98,9 +100,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
             <a
               href="/"
               class:list={[
-                'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
+                'nav-stabilo px-3 py-2 text-sm font-medium transition-colors',
                 currentPath === '/'
-                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
@@ -112,9 +114,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
             <a
               href="/pencarian"
               class:list={[
-                'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
+                'nav-stabilo px-3 py-2 text-sm font-medium transition-colors',
                 currentPath === '/pencarian'
-                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
@@ -127,9 +129,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               id="peraturan-dropdown-btn"
               type="button"
               class:list={[
-                'nav-pill-hover flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
+                'nav-stabilo flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
                 isPeraturanActive
-                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
               aria-expanded="false"
@@ -149,7 +151,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                     class:list={[
                       'block px-4 py-2.5 text-sm font-medium transition-colors',
                       isActive
-                        ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                        ? 'nav-active-item text-neutral-900 dark:text-white'
                         : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                     ]}
                   >
@@ -165,9 +167,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               id="mindmap-dropdown-btn"
               type="button"
               class:list={[
-                'nav-pill-hover flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
+                'nav-stabilo flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
                 isMindMapActive
-                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
               aria-expanded="false"
@@ -187,7 +189,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                     class:list={[
                       'block px-4 py-2.5 text-sm font-medium transition-colors',
                       isActive
-                        ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                        ? 'nav-active-item text-neutral-900 dark:text-white'
                         : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                     ]}
                   >
@@ -202,9 +204,9 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
             <a
               href="/tentang"
               class:list={[
-                'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
+                'nav-stabilo px-3 py-2 text-sm font-medium transition-colors',
                 currentPath === '/tentang'
-                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  ? 'nav-active text-neutral-900 dark:text-white'
                   : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
@@ -250,13 +252,13 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
         <ul class="space-y-1 px-4 py-3">
           {/* Beranda */}
           <li>
-            <a href="/" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/' ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
+            <a href="/" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Beranda
             </a>
           </li>
           {/* Cari */}
           <li>
-            <a href="/pencarian" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian' ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
+            <a href="/pencarian" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Cari
             </a>
           </li>
@@ -273,7 +275,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                   class:list={[
                     'block rounded-md px-3 py-2 pl-6 text-sm font-medium',
                     isActive
-                      ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                      ? 'nav-active-item text-neutral-900 dark:text-white'
                       : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                   ]}
                 >
@@ -295,7 +297,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                   class:list={[
                     'block rounded-md px-3 py-2 pl-6 text-sm font-medium',
                     isActive
-                      ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                      ? 'nav-active-item text-neutral-900 dark:text-white'
                       : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                   ]}
                 >
@@ -306,7 +308,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
           })}
           {/* Tentang */}
           <li>
-            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
+            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' ? 'nav-active-item text-neutral-900 dark:text-white' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Tentang
             </a>
           </li>

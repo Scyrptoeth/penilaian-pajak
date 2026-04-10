@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const intiRegs = await getCollection('regulations');
+const pendukungRegs = await getCollection('regulations-pendukung');
+
+// Normalize both collections to a common shape
+interface NormalizedReg {
+  href: string;
+  jenis: string;
+  status: string;
+  statusLabel: string;
+  tahun: number;
+  nomor: string;
+  title: string;
+  description: string;
+  searchText: string;
+}
+
+const normalizedInti: NormalizedReg[] = intiRegs.map((r) => ({
+  href: `/perpustakaan/${r.id}`,
+  jenis: r.data.jenis,
+  status: r.data.status,
+  statusLabel: r.data.status,
+  tahun: r.data.tahun,
+  nomor: r.data.nomor,
+  title: r.data.title,
+  description: r.data.ringkasan,
+  searchText: `${r.data.nomor} ${r.data.title} ${r.data.ringkasan}`.toLowerCase(),
+}));
+
+const statusLabels: Record<string, string> = {
+  berlaku: 'Berlaku',
+  dicabut: 'Tidak Berlaku',
+  diubah: 'Perubahan',
+};
+
+const normalizedPendukung: NormalizedReg[] = pendukungRegs.map((r) => ({
+  href: `/peraturan-pendukung/${r.id}`,
+  jenis: r.data.jenis,
+  status: r.data.status,
+  statusLabel: r.data.status_label || statusLabels[r.data.status] || r.data.status,
+  tahun: r.data.tahun,
+  nomor: r.data.nomor,
+  title: r.data.title,
+  description: r.data.deskripsi,
+  searchText: `${r.data.nomor} ${r.data.title} ${r.data.deskripsi}`.toLowerCase(),
+}));
+
+const allRegs = [...normalizedInti, ...normalizedPendukung];
+
+// Sort by year (newest first), then by nomor
+const sorted = allRegs.sort((a, b) => {
+  if (b.tahun !== a.tahun) return b.tahun - a.tahun;
+  return a.nomor.localeCompare(b.nomor);
+});
+
+// Extract unique filter values from combined set
+const jenisOptions = [...new Set(allRegs.map((r) => r.jenis))].sort();
+const tahunOptions = [...new Set(allRegs.map((r) => r.tahun))].sort((a, b) => b - a);
+const statusOptions = ['berlaku', 'dicabut', 'diubah'];
+
+const statusColors: Record<string, string> = {
+  berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  diubah: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+};
+
+const jenisColors: Record<string, string> = {
+  UU: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+  PP: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+  PMK: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
+  PER: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400',
+  SE: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400',
+  KEP: 'bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-400',
+  KMK: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400',
+  KEPPRES: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400',
+  PBM: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400',
+  SDIRJEN: 'bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-400',
+  KEBDJ: 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-400',
+  INSTRUKSI: 'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900/30 dark:text-fuchsia-400',
+  PENGUMUMAN: 'bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-400',
+  PERPRES: 'bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-400',
+};
+---
+
+<BaseLayout title="Peraturan Seluruhnya" description="Daftar lengkap seluruh peraturan penilaian pajak — peraturan inti dan pendukung.">
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-start">
+      <!-- Sidebar filters -->
+      <aside class="w-full shrink-0 border-2 border-neutral-100 dark:border-neutral-800 lg:w-64">
+        <details class="group lg:open" open>
+          <summary class="flex cursor-pointer items-center justify-between p-5 font-heading text-sm font-semibold tracking-widest text-neutral-800 uppercase dark:text-white lg:pointer-events-none lg:cursor-default">
+            Filter
+            <svg class="h-5 w-5 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500 lg:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+            </svg>
+          </summary>
+          <div class="space-y-5 px-5 pb-5" id="filters">
+            <!-- Search within results -->
+            <div>
+              <label for="search-within" class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Cari Peraturan</label>
+              <input
+                id="search-within"
+                type="text"
+                placeholder="Ketik kata kunci..."
+                class="mt-2 w-full border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-black dark:border-white focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:placeholder:text-neutral-500"
+              />
+            </div>
+
+            <!-- Status -->
+            <fieldset>
+              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Status</legend>
+              <div class="mt-2 space-y-1.5">
+                {statusOptions.map((status) => (
+                  <label class="flex cursor-pointer items-center gap-2 text-sm capitalize text-neutral-700 dark:text-neutral-300">
+                    <input type="checkbox" value={status} data-filter="status" class="accent-neutral-900" />
+                    {status}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <!-- Jenis -->
+            <fieldset>
+              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Jenis Peraturan</legend>
+              <div class="mt-2 space-y-1.5">
+                {jenisOptions.map((jenis) => (
+                  <label class="flex cursor-pointer items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+                    <input type="checkbox" value={jenis} data-filter="jenis" class="accent-neutral-900" />
+                    {jenis}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <!-- Tahun -->
+            <fieldset>
+              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Tahun</legend>
+              <div class="mt-2 space-y-1.5 max-h-40 overflow-y-auto">
+                {tahunOptions.map((tahun) => (
+                  <label class="flex cursor-pointer items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+                    <input type="checkbox" value={tahun.toString()} data-filter="tahun" class="accent-neutral-900" />
+                    {tahun}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <button id="reset-filters" class="w-full border border-neutral-200 py-2 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800">
+              Reset Filter
+            </button>
+          </div>
+        </details>
+      </aside>
+
+      <!-- Regulation list -->
+      <div class="flex-1">
+        <div class="flex items-center justify-between">
+          <h1 class="font-heading text-3xl font-bold tracking-tight text-neutral-800 dark:text-white">
+            Peraturan Seluruhnya
+          </h1>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span id="visible-count">{sorted.length}</span> peraturan
+          </p>
+        </div>
+        <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+          Gabungan seluruh peraturan inti ({intiRegs.length}) dan pendukung ({pendukungRegs.length}).
+        </p>
+
+        <div class="mt-6 space-y-3" id="regulation-list">
+          {sorted.map((reg) => (
+            <a
+              href={reg.href}
+              class="regulation-item block border-2 border-neutral-100 p-5 transition-all hover:border-black dark:border-white dark:border-neutral-800 dark:hover:border-black dark:border-white"
+              data-jenis={reg.jenis}
+              data-status={reg.status}
+              data-tahun={reg.tahun}
+              data-search={reg.searchText}
+            >
+              <div class="flex flex-wrap items-start gap-2">
+                <span class={`inline-block px-2 py-0.5 font-mono text-xs font-medium ${jenisColors[reg.jenis] || ''}`}>
+                  {reg.jenis}
+                </span>
+                <span class={`inline-block px-2 py-0.5 text-xs font-medium capitalize ${statusColors[reg.status] || ''}`}>
+                  {reg.statusLabel}
+                </span>
+                <span class="ml-auto font-mono text-xs text-neutral-400 dark:text-neutral-500">{reg.tahun}</span>
+              </div>
+              <h3 class="mt-2 font-heading text-base font-semibold text-neutral-800 dark:text-white">
+                {reg.nomor}
+              </h3>
+              <p class="mt-1 text-sm font-medium text-neutral-700 dark:text-neutral-200">
+                {reg.title}
+              </p>
+              <p class="mt-2 line-clamp-2 text-sm text-neutral-500 dark:text-neutral-400">
+                {reg.description}
+              </p>
+            </a>
+          ))}
+        </div>
+
+        {sorted.length === 0 && (
+          <div class="mt-12 text-center">
+            <p class="text-neutral-500 dark:text-neutral-400">Belum ada peraturan yang ditambahkan.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkboxes = document.querySelectorAll('[data-filter]');
+      const items = document.querySelectorAll('.regulation-item');
+      const countEl = document.getElementById('visible-count');
+      const resetBtn = document.getElementById('reset-filters');
+      const searchInput = document.getElementById('search-within');
+
+      function applyFilters() {
+        const filters = {};
+        checkboxes.forEach((cb) => {
+          const key = cb.dataset.filter;
+          if (cb.checked) {
+            if (!filters[key]) filters[key] = [];
+            filters[key].push(cb.value);
+          }
+        });
+
+        const searchTerm = (searchInput?.value || '').toLowerCase().trim();
+
+        let visible = 0;
+        items.forEach((item) => {
+          let show = true;
+
+          // Apply checkbox filters
+          for (const [key, values] of Object.entries(filters)) {
+            if (!values.includes(item.dataset[key]?.toString())) {
+              show = false;
+              break;
+            }
+          }
+
+          // Apply search filter
+          if (show && searchTerm) {
+            const searchData = item.dataset.search || '';
+            if (!searchData.includes(searchTerm)) {
+              show = false;
+            }
+          }
+
+          item.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (countEl) countEl.textContent = visible.toString();
+      }
+
+      checkboxes.forEach((cb) => cb.addEventListener('change', applyFilters));
+      searchInput?.addEventListener('input', applyFilters);
+      resetBtn?.addEventListener('click', () => {
+        checkboxes.forEach((cb) => (cb.checked = false));
+        if (searchInput) searchInput.value = '';
+        applyFilters();
+      });
+    });
+  </script>
+
+  <style>
+    @media (min-width: 1024px) {
+      aside details {
+        pointer-events: auto;
+      }
+      aside details > summary {
+        list-style: none;
+      }
+      aside details > summary::-webkit-details-marker {
+        display: none;
+      }
+    }
+  </style>
+</BaseLayout>

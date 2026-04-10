@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// --- Inti categories ---
+
+const intiRegs = await getCollection('regulations');
+
+interface IntiCategory {
+  id: string;
+  label: string;
+  match: (topik: string[], jenis: string) => boolean;
+}
+
+const intiCategories: IntiCategory[] = [
+  { id: 'klasifikasi', label: 'Klasifikasi Objek Pajak', match: (topik) => topik.some((t) => /klasifikasi|NJOP|NJKP|NJOPTKP|nilai bumi|permukaan bumi|tubuh bumi|dasar pengenaan/i.test(t)) },
+  { id: 'pendaftaran', label: 'Pendaftaran & Pendataan', match: (topik) => topik.some((t) => /pendaftaran|pendataan|SPOP|NOP|nomor objek pajak|pemetaan|geotagging/i.test(t)) },
+  { id: 'penilaian', label: 'Penilaian', match: (topik, jenis) => topik.some((t) => /^penilaian$/i.test(t)) && !(jenis === 'PMK' && topik.some((t) => /perpajakan/i.test(t))) },
+  { id: 'pembayaran', label: 'Pembayaran', match: (topik) => topik.some((t) => /pembayaran|penyetoran|restitusi|kelebihan pembayaran|pengembalian|SPPT|SKP|SKPLB/i.test(t)) },
+  { id: 'penagihan', label: 'Penagihan', match: (topik) => topik.some((t) => /penagihan|STP|surat tagihan|surat paksa|denda|PPSP/i.test(t)) },
+  { id: 'pemeriksaan', label: 'Pemeriksaan', match: (topik) => topik.some((t) => /pemeriksaan|penelitian/i.test(t)) },
+  { id: 'keberatan', label: 'Keberatan & Pengurangan', match: (topik) => topik.some((t) => /keberatan|pengurangan|pembetulan|pembatalan|banding|gugatan|peninjauan kembali/i.test(t)) },
+  { id: 'fasilitas', label: 'Fasilitas', match: (topik) => topik.some((t) => /fasilitas/i.test(t)) },
+  { id: 'perpajakan', label: 'Penilaian Tujuan Perpajakan', match: (topik, jenis) => (jenis === 'PMK' && topik.some((t) => /perpajakan/i.test(t))) || topik.some((t) => /harta berwujud|harta tidak berwujud|bisnis/i.test(t)) },
+  { id: 'sektoral', label: 'PBB Sektoral', match: (topik) => topik.some((t) => /pertambangan|perkebunan|perhutanan|kehutanan|migas|mineral|batubara|panas bumi|perikanan|sektor lainnya|minyak|gas bumi|hulu|cost recovery|minerba|kelapa sawit/i.test(t)) },
+  { id: 'dasar_hukum', label: 'Dasar Hukum & Kebijakan', match: (topik, jenis) => ['UU', 'PP', 'KEPPRES'].includes(jenis) || topik.some((t) => /undang-undang|dasar hukum|pengalihan PBB|biaya pemungutan|pembagian/i.test(t)) },
+];
+
+const intiCategoryMap = new Map<string, typeof intiRegs>();
+for (const cat of intiCategories) intiCategoryMap.set(cat.id, []);
+intiCategoryMap.set('lainnya_inti', []);
+
+for (const reg of intiRegs) {
+  let assigned = false;
+  for (const cat of intiCategories) {
+    if (cat.match(reg.data.topik || [], reg.data.jenis)) {
+      intiCategoryMap.get(cat.id)!.push(reg);
+      assigned = true;
+      break;
+    }
+  }
+  if (!assigned) intiCategoryMap.get('lainnya_inti')!.push(reg);
+}
+
+const intiData = [
+  ...intiCategories.map((cat) => ({ id: cat.id, label: cat.label, regulations: intiCategoryMap.get(cat.id) || [] })),
+  { id: 'lainnya_inti', label: 'Lainnya', regulations: intiCategoryMap.get('lainnya_inti') || [] },
+].filter((cat) => cat.regulations.length > 0);
+
+// --- Pendukung categories ---
+
+const pendukungRegs = await getCollection('regulations-pendukung');
+
+interface PendukungCategory {
+  id: string;
+  label: string;
+  match: (topik: string[]) => boolean;
+}
+
+const pendukungCategories: PendukungCategory[] = [
+  { id: 'penerimaan_alokasi', label: 'Penerimaan & Alokasi Dana', match: (topik) => topik.includes('penerimaan_alokasi') },
+  { id: 'pendataan_pendaftaran', label: 'Pendataan & Pendaftaran', match: (topik) => topik.includes('pendataan_pendaftaran') },
+  { id: 'pengurangan_keberatan', label: 'Keberatan & Pengurangan', match: (topik) => topik.includes('pengurangan_keberatan') },
+  { id: 'pengenaan_sektoral', label: 'Pengenaan PBB Sektoral', match: (topik) => topik.includes('pengenaan_sektoral') },
+  { id: 'klasifikasi_njop', label: 'Klasifikasi & Penetapan NJOP', match: (topik) => topik.includes('klasifikasi_njop') },
+  { id: 'pembayaran_penagihan', label: 'Pembayaran & Penagihan', match: (topik) => topik.includes('pembayaran_penagihan') },
+  { id: 'pengenaan_objek_khusus', label: 'Pengenaan Objek Khusus', match: (topik) => topik.includes('pengenaan_objek_khusus') },
+  { id: 'penerbitan_dokumen', label: 'Penerbitan Dokumen & Formulir', match: (topik) => topik.includes('penerbitan_dokumen') },
+  { id: 'dasar_hukum_kebijakan', label: 'Dasar Hukum & Kebijakan', match: (topik) => topik.includes('dasar_hukum_kebijakan') },
+  { id: 'penilaian_teknis', label: 'Penilaian & Parameter Teknis', match: (topik) => topik.includes('penilaian_teknis') },
+  { id: 'petunjuk_sektoral', label: 'Petunjuk Teknis Sektoral', match: (topik) => topik.includes('petunjuk_sektoral') },
+  { id: 'organisasi_pelayanan', label: 'Organisasi & Pelayanan', match: (topik) => topik.includes('organisasi_pelayanan') },
+  { id: 'p2_perkotaan', label: 'PBB P2 (Perdesaan & Perkotaan)', match: (topik) => topik.includes('p2_perkotaan') },
+];
+
+const pendukungCategoryMap = new Map<string, typeof pendukungRegs>();
+for (const cat of pendukungCategories) pendukungCategoryMap.set(cat.id, []);
+pendukungCategoryMap.set('lainnya_pendukung', []);
+
+for (const reg of pendukungRegs) {
+  let assigned = false;
+  for (const cat of pendukungCategories) {
+    if (cat.match(reg.data.topik || [])) {
+      pendukungCategoryMap.get(cat.id)!.push(reg);
+      assigned = true;
+      break;
+    }
+  }
+  if (!assigned) pendukungCategoryMap.get('lainnya_pendukung')!.push(reg);
+}
+
+const pendukungData = [
+  ...pendukungCategories.map((cat) => ({ id: cat.id, label: cat.label, regulations: pendukungCategoryMap.get(cat.id) || [] })),
+  { id: 'lainnya_pendukung', label: 'Lainnya', regulations: pendukungCategoryMap.get('lainnya_pendukung') || [] },
+].filter((cat) => cat.regulations.length > 0);
+
+const statusColors: Record<string, string> = {
+  berlaku: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  dicabut: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  diubah: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+};
+---
+
+<BaseLayout title="Mind Map Peraturan Seluruhnya" description="Visualisasi hubungan antar seluruh peraturan penilaian pajak dalam bentuk mind map interaktif.">
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <h1 class="font-heading text-3xl font-bold tracking-tight text-neutral-800 dark:text-white">
+      Peta Peraturan Seluruhnya
+    </h1>
+    <p class="mt-2 text-neutral-500 dark:text-neutral-400">
+      Gabungan {intiRegs.length} peraturan inti dan {pendukungRegs.length} peraturan pendukung dikelompokkan berdasarkan tema.
+    </p>
+
+    <!-- Legend -->
+    <div class="mt-6 flex flex-wrap gap-3 text-xs sm:gap-4 sm:text-sm">
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-3 bg-green-500"></span>
+        <span class="text-neutral-600 dark:text-neutral-400">Berlaku</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-3 bg-red-500"></span>
+        <span class="text-neutral-600 dark:text-neutral-400">Dicabut</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="h-3 w-3 bg-amber-500"></span>
+        <span class="text-neutral-600 dark:text-neutral-400">Diubah</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t-2 border-neutral-100 dark:border-neutral-800">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Left column: Peraturan Inti -->
+        <div>
+          <h2 class="mb-4 font-heading text-lg font-bold tracking-tight text-neutral-800 dark:text-white">
+            Peraturan Inti <span class="text-sm font-normal text-neutral-400 dark:text-neutral-500">({intiRegs.length})</span>
+          </h2>
+          {intiData.map((cat) => (
+            <details class="group border-b border-neutral-100 dark:border-neutral-800">
+              <summary class="flex cursor-pointer items-center justify-between py-3 font-heading text-sm font-semibold text-neutral-800 dark:text-white">
+                <span>{cat.label} <span class="ml-1 text-xs font-normal text-neutral-400 dark:text-neutral-500">({cat.regulations.length})</span></span>
+                <svg class="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                </svg>
+              </summary>
+              <ul class="space-y-1.5 pb-3 pl-2">
+                {cat.regulations.map((reg) => (
+                  <li>
+                    <a href={`/perpustakaan/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                      <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>
+                        {reg.data.status}
+                      </span>
+                      <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
+                      <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+
+        <!-- Right column: Peraturan Pendukung -->
+        <div>
+          <h2 class="mb-4 font-heading text-lg font-bold tracking-tight text-neutral-800 dark:text-white">
+            Peraturan Pendukung <span class="text-sm font-normal text-neutral-400 dark:text-neutral-500">({pendukungRegs.length})</span>
+          </h2>
+          {pendukungData.map((cat) => (
+            <details class="group border-b border-neutral-100 dark:border-neutral-800">
+              <summary class="flex cursor-pointer items-center justify-between py-3 font-heading text-sm font-semibold text-neutral-800 dark:text-white">
+                <span>{cat.label} <span class="ml-1 text-xs font-normal text-neutral-400 dark:text-neutral-500">({cat.regulations.length})</span></span>
+                <svg class="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                </svg>
+              </summary>
+              <ul class="space-y-1.5 pb-3 pl-2">
+                {cat.regulations.map((reg) => (
+                  <li>
+                    <a href={`/peraturan-pendukung/${reg.id}`} class="flex items-center gap-2 py-1 text-sm">
+                      <span class={`shrink-0 px-1.5 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status]}`}>
+                        {reg.data.status}
+                      </span>
+                      <span class="font-mono text-xs font-medium text-neutral-700 dark:text-neutral-300">{reg.data.nomor}</span>
+                      <span class="truncate text-neutral-500 dark:text-neutral-400">{reg.data.deskripsi || reg.data.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
