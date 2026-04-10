@@ -10,20 +10,20 @@ interface Props {
 const { title, description = 'Perpustakaan digital peraturan Penilaian Pajak Indonesia untuk Penilai Pajak — dengan pencarian full-text ke dalam isi peraturan.' } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-// Simple nav items (no dropdown)
-const simpleNavItems = [
-  { href: '/', label: 'Beranda' },
-  { href: '/pencarian', label: 'Pencarian' },
+// Dropdown items for "Peraturan"
+const peraturanItems = [
   { href: '/perpustakaan', label: 'Peraturan Inti' },
   { href: '/peraturan-pendukung', label: 'Peraturan Pendukung' },
-  { href: '/tentang', label: 'Tentang' },
 ];
 
-// Mind Map dropdown items
+// Dropdown items for "Mind Map"
 const mindMapItems = [
   { href: '/mind-map', label: 'Peraturan Inti' },
   { href: '/mind-map-pendukung', label: 'Peraturan Pendukung' },
 ];
+
+const isPeraturanActive = currentPath.startsWith('/perpustakaan') || currentPath.startsWith('/peraturan-pendukung');
+const isMindMapActive = currentPath.startsWith('/mind-map');
 ---
 
 <!doctype html>
@@ -93,34 +93,82 @@ const mindMapItems = [
 
         <!-- Desktop nav -->
         <ul class="hidden items-center gap-1 md:flex">
-          {simpleNavItems.map(({ href, label }) => {
-            const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
-            return (
-              <li>
-                <a
-                  href={href}
-                  class:list={[
-                    'rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
-                      : 'text-navy-600 hover:bg-navy-50 hover:text-navy-900 dark:text-stone-400 dark:hover:bg-navy-800 dark:hover:text-stone-100',
-                  ]}
-                >
-                  {label}
-                </a>
-              </li>
-            );
-          })}
+          {/* Beranda */}
+          <li>
+            <a
+              href="/"
+              class:list={[
+                'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
+                currentPath === '/'
+                  ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                  : 'text-navy-600 hover:text-navy-900 dark:text-stone-400 dark:hover:text-stone-100',
+              ]}
+            >
+              Beranda
+            </a>
+          </li>
+          {/* Cari */}
+          <li>
+            <a
+              href="/pencarian"
+              class:list={[
+                'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
+                currentPath === '/pencarian'
+                  ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                  : 'text-navy-600 hover:text-navy-900 dark:text-stone-400 dark:hover:text-stone-100',
+              ]}
+            >
+              Cari
+            </a>
+          </li>
+          {/* Peraturan dropdown */}
+          <li class="relative">
+            <button
+              id="peraturan-dropdown-btn"
+              type="button"
+              class:list={[
+                'nav-pill-hover flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
+                isPeraturanActive
+                  ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                  : 'text-navy-600 hover:text-navy-900 dark:text-stone-400 dark:hover:text-stone-100',
+              ]}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              Peraturan
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <div id="peraturan-dropdown" class="absolute left-0 top-full z-50 mt-1 hidden w-52 border-2 border-navy-100 bg-white shadow-lg dark:border-navy-800 dark:bg-navy-900">
+              {peraturanItems.map(({ href, label }) => {
+                const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+                return (
+                  <a
+                    href={href}
+                    class:list={[
+                      'block px-4 py-2.5 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                        : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800',
+                    ]}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
+            </div>
+          </li>
           {/* Mind Map dropdown */}
           <li class="relative">
             <button
               id="mindmap-dropdown-btn"
               type="button"
               class:list={[
-                'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                currentPath.startsWith('/mind-map')
+                'nav-pill-hover flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
+                isMindMapActive
                   ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
-                  : 'text-navy-600 hover:bg-navy-50 hover:text-navy-900 dark:text-stone-400 dark:hover:bg-navy-800 dark:hover:text-stone-100',
+                  : 'text-navy-600 hover:text-navy-900 dark:text-stone-400 dark:hover:text-stone-100',
               ]}
               aria-expanded="false"
               aria-haspopup="true"
@@ -130,7 +178,7 @@ const mindMapItems = [
                 <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
               </svg>
             </button>
-            <div id="mindmap-dropdown" class="absolute right-0 top-full z-50 mt-1 hidden w-52 border-2 border-navy-100 bg-white shadow-lg dark:border-navy-800 dark:bg-navy-900">
+            <div id="mindmap-dropdown" class="absolute left-0 top-full z-50 mt-1 hidden w-52 border-2 border-navy-100 bg-white shadow-lg dark:border-navy-800 dark:bg-navy-900">
               {mindMapItems.map(({ href, label }) => {
                 const isActive = currentPath === href;
                 return (
@@ -148,6 +196,20 @@ const mindMapItems = [
                 );
               })}
             </div>
+          </li>
+          {/* Tentang */}
+          <li>
+            <a
+              href="/tentang"
+              class:list={[
+                'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
+                currentPath === '/tentang'
+                  ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
+                  : 'text-navy-600 hover:text-navy-900 dark:text-stone-400 dark:hover:text-stone-100',
+              ]}
+            >
+              Tentang
+            </a>
           </li>
         </ul>
 
@@ -186,14 +248,30 @@ const mindMapItems = [
       <!-- Mobile menu -->
       <div id="mobile-menu" role="navigation" aria-label="Menu mobile" class="hidden border-t border-navy-100 dark:border-navy-800 md:hidden">
         <ul class="space-y-1 px-4 py-3">
-          {simpleNavItems.map(({ href, label }) => {
+          {/* Beranda */}
+          <li>
+            <a href="/" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/' ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300' : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800']}>
+              Beranda
+            </a>
+          </li>
+          {/* Cari */}
+          <li>
+            <a href="/pencarian" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian' ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300' : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800']}>
+              Cari
+            </a>
+          </li>
+          {/* Peraturan section */}
+          <li>
+            <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Peraturan</p>
+          </li>
+          {peraturanItems.map(({ href, label }) => {
             const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
             return (
               <li>
                 <a
                   href={href}
                   class:list={[
-                    'block rounded-md px-3 py-2 text-sm font-medium',
+                    'block rounded-md px-3 py-2 pl-6 text-sm font-medium',
                     isActive
                       ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300'
                       : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800',
@@ -204,7 +282,7 @@ const mindMapItems = [
               </li>
             );
           })}
-          {/* Mind Map section in mobile menu */}
+          {/* Mind Map section */}
           <li>
             <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-navy-400 uppercase dark:text-stone-500">Mind Map</p>
           </li>
@@ -226,6 +304,12 @@ const mindMapItems = [
               </li>
             );
           })}
+          {/* Tentang */}
+          <li>
+            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' ? 'bg-navy-800 text-white dark:bg-gold-400/20 dark:text-gold-300' : 'text-navy-600 hover:bg-navy-50 dark:text-stone-400 dark:hover:bg-navy-800']}>
+              Tentang
+            </a>
+          </li>
         </ul>
       </div>
     </header>
@@ -272,22 +356,46 @@ const mindMapItems = [
         this.setAttribute('aria-label', isExpanded ? 'Tutup menu navigasi' : 'Buka menu navigasi');
       });
 
-      // Mind Map dropdown toggle
+      // Dropdown toggle logic (Peraturan + Mind Map)
       (function() {
-        var btn = document.getElementById('mindmap-dropdown-btn');
-        var dropdown = document.getElementById('mindmap-dropdown');
-        if (!btn || !dropdown) return;
-        btn.addEventListener('click', function() {
-          var isOpen = !dropdown.classList.contains('hidden');
-          dropdown.classList.toggle('hidden');
-          btn.setAttribute('aria-expanded', (!isOpen).toString());
+        var dropdowns = [
+          { btn: document.getElementById('peraturan-dropdown-btn'), panel: document.getElementById('peraturan-dropdown') },
+          { btn: document.getElementById('mindmap-dropdown-btn'), panel: document.getElementById('mindmap-dropdown') },
+        ];
+
+        dropdowns.forEach(function(d) {
+          if (!d.btn || !d.panel) return;
+          d.btn.addEventListener('click', function() {
+            var isOpen = !d.panel.classList.contains('hidden');
+            // Close all other dropdowns first
+            dropdowns.forEach(function(other) {
+              if (other !== d && other.panel) {
+                other.panel.classList.add('hidden');
+                other.btn.setAttribute('aria-expanded', 'false');
+              }
+            });
+            d.panel.classList.toggle('hidden');
+            d.btn.setAttribute('aria-expanded', (!isOpen).toString());
+          });
+
+          // Keyboard: Escape closes dropdown
+          d.btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              d.panel.classList.add('hidden');
+              d.btn.setAttribute('aria-expanded', 'false');
+            }
+          });
         });
-        // Close dropdown when clicking outside
+
+        // Close all dropdowns when clicking outside
         document.addEventListener('click', function(e) {
-          if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.add('hidden');
-            btn.setAttribute('aria-expanded', 'false');
-          }
+          dropdowns.forEach(function(d) {
+            if (!d.btn || !d.panel) return;
+            if (!d.btn.contains(e.target) && !d.panel.contains(e.target)) {
+              d.panel.classList.add('hidden');
+              d.btn.setAttribute('aria-expanded', 'false');
+            }
+          });
         });
       })();
 

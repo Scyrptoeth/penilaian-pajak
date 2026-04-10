@@ -39,7 +39,7 @@ const jenisColors: Record<string, string> = {
 };
 ---
 
-<BaseLayout title="Peraturan Pendukung" description="Daftar peraturan pendukung PBB — 337 peraturan dengan filter status, jenis, dan pencarian.">
+<BaseLayout title="Peraturan Pendukung" description={`Daftar peraturan pendukung PBB — ${regulations.length} peraturan dengan filter status, jenis, dan pencarian.`}>
   <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="flex flex-col gap-6 lg:flex-row lg:items-start">
       <!-- Sidebar filters -->

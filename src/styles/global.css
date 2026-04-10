@@ -2,6 +2,29 @@
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Nav hover pill outline animation */
+.nav-pill-hover {
+  position: relative;
+}
+
+.nav-pill-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid currentColor;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.nav-pill-hover:hover::after,
+.nav-pill-hover:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @theme {
   /* DJP-standardized navy palette (4 core shades + tints) */
   --color-navy-50: #e8f0f7;

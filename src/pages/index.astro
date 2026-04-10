@@ -3,9 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const regulations = await getCollection('regulations');
-const activeCount = regulations.filter((r) => r.data.status === 'berlaku').length;
-const jenisSet = new Set(regulations.map((r) => r.data.jenis));
-const tahunSet = new Set(regulations.map((r) => r.data.tahun));
+const regulationsPendukung = await getCollection('regulations-pendukung');
+const allRegulations = [...regulations, ...regulationsPendukung];
+const activeCount = allRegulations.filter((r) => r.data.status === 'berlaku').length;
+const jenisSet = new Set(allRegulations.map((r) => r.data.jenis));
+const tahunSet = new Set(allRegulations.map((r) => r.data.tahun));
 const minTahun = tahunSet.size > 0 ? Math.min(...tahunSet) : 0;
 const maxTahun = tahunSet.size > 0 ? Math.max(...tahunSet) : 0;
 
@@ -72,7 +74,7 @@ const statusColorsPopular: Record<string, string> = {
   <section class="border-b border-navy-100 bg-white dark:border-navy-800 dark:bg-navy-900/50">
     <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px sm:grid-cols-4">
       {[
-        { value: regulations.length.toString(), label: 'Total Peraturan' },
+        { value: allRegulations.length.toString(), label: 'Total Peraturan' },
         { value: activeCount.toString(), label: 'Masih Berlaku' },
         { value: jenisSet.size.toString(), label: 'Jenis Peraturan' },
         { value: tahunSet.size > 0 ? `${minTahun}\u2013${maxTahun}` : '-', label: 'Rentang Tahun' },
