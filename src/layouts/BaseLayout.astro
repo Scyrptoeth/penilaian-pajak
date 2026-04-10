@@ -78,14 +78,14 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
       })();
     </script>
   </head>
-  <body class="min-h-dvh flex flex-col bg-surface-light text-neutral-900 dark:bg-surface-dark dark:text-stone-100 antialiased">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-accent-400 focus:px-4 focus:py-2 focus:text-neutral-900 focus:font-semibold">
+  <body class="min-h-dvh flex flex-col bg-surface-light text-neutral-900 dark:bg-surface-dark dark:text-white antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-black dark:bg-white focus:px-4 focus:py-2 focus:text-neutral-900 focus:font-semibold">
       Langsung ke konten utama
     </a>
     <header class="sticky top-0 z-50 border-b border-neutral-100 bg-white/80 backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-900/80">
       <nav aria-label="Navigasi utama" class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="/" class="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-neutral-800 dark:text-accent-400">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-accent-400">
+        <a href="/" class="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-neutral-800 dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-black dark:text-white">
             <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
           </svg>
           Penilaian Pajak
@@ -100,8 +100,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               class:list={[
                 'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
                 currentPath === '/'
-                  ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                  : 'text-neutral-600 hover:text-neutral-900 dark:text-stone-400 dark:hover:text-stone-100',
+                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
               Beranda
@@ -114,8 +114,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               class:list={[
                 'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
                 currentPath === '/pencarian'
-                  ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                  : 'text-neutral-600 hover:text-neutral-900 dark:text-stone-400 dark:hover:text-stone-100',
+                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
               Cari
@@ -129,8 +129,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               class:list={[
                 'nav-pill-hover flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
                 isPeraturanActive
-                  ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                  : 'text-neutral-600 hover:text-neutral-900 dark:text-stone-400 dark:hover:text-stone-100',
+                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
               aria-expanded="false"
               aria-haspopup="true"
@@ -149,8 +149,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                     class:list={[
                       'block px-4 py-2.5 text-sm font-medium transition-colors',
                       isActive
-                        ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                        : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800',
+                        ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                        : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                     ]}
                   >
                     {label}
@@ -167,8 +167,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               class:list={[
                 'nav-pill-hover flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors',
                 isMindMapActive
-                  ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                  : 'text-neutral-600 hover:text-neutral-900 dark:text-stone-400 dark:hover:text-stone-100',
+                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
               aria-expanded="false"
               aria-haspopup="true"
@@ -187,8 +187,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                     class:list={[
                       'block px-4 py-2.5 text-sm font-medium transition-colors',
                       isActive
-                        ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                        : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800',
+                        ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                        : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                     ]}
                   >
                     {label}
@@ -204,8 +204,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
               class:list={[
                 'nav-pill-hover px-3 py-2 text-sm font-medium transition-colors',
                 currentPath === '/tentang'
-                  ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                  : 'text-neutral-600 hover:text-neutral-900 dark:text-stone-400 dark:hover:text-stone-100',
+                  ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
               ]}
             >
               Tentang
@@ -219,7 +219,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
             id="theme-toggle"
             type="button"
             aria-label="Toggle dark mode"
-            class="rounded-md p-2 text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2"
+            class="rounded-md p-2 text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-neutral-900 dark:focus-visible:ring-neutral-100 focus-visible:ring-offset-2"
           >
             <svg class="h-5 w-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" />
@@ -236,7 +236,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
             aria-label="Toggle menu navigasi"
             aria-expanded="false"
             aria-controls="mobile-menu"
-            class="rounded-md p-2 text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800 md:hidden focus-visible:ring-2 focus-visible:ring-accent-400"
+            class="rounded-md p-2 text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800 md:hidden focus-visible:ring-2 focus-visible:ring-neutral-900 dark:focus-visible:ring-neutral-100"
           >
             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 012 10z" clip-rule="evenodd" />
@@ -250,19 +250,19 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
         <ul class="space-y-1 px-4 py-3">
           {/* Beranda */}
           <li>
-            <a href="/" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/' ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300' : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800']}>
+            <a href="/" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/' ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Beranda
             </a>
           </li>
           {/* Cari */}
           <li>
-            <a href="/pencarian" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian' ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300' : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800']}>
+            <a href="/pencarian" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/pencarian' ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Cari
             </a>
           </li>
           {/* Peraturan section */}
           <li>
-            <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-neutral-400 uppercase dark:text-stone-500">Peraturan</p>
+            <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-neutral-400 uppercase dark:text-neutral-500">Peraturan</p>
           </li>
           {peraturanItems.map(({ href, label }) => {
             const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
@@ -273,8 +273,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                   class:list={[
                     'block rounded-md px-3 py-2 pl-6 text-sm font-medium',
                     isActive
-                      ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                      : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800',
+                      ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                      : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                   ]}
                 >
                   {label}
@@ -284,7 +284,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
           })}
           {/* Mind Map section */}
           <li>
-            <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-neutral-400 uppercase dark:text-stone-500">Mind Map</p>
+            <p class="px-3 pt-3 pb-1 text-xs font-semibold tracking-wide text-neutral-400 uppercase dark:text-neutral-500">Mind Map</p>
           </li>
           {mindMapItems.map(({ href, label }) => {
             const isActive = currentPath === href;
@@ -295,8 +295,8 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
                   class:list={[
                     'block rounded-md px-3 py-2 pl-6 text-sm font-medium',
                     isActive
-                      ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300'
-                      : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800',
+                      ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200'
+                      : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800',
                   ]}
                 >
                   {label}
@@ -306,7 +306,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
           })}
           {/* Tentang */}
           <li>
-            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' ? 'bg-neutral-800 text-white dark:bg-accent-400/20 dark:text-accent-300' : 'text-neutral-600 hover:bg-neutral-50 dark:text-stone-400 dark:hover:bg-neutral-800']}>
+            <a href="/tentang" class:list={['block rounded-md px-3 py-2 text-sm font-medium', currentPath === '/tentang' ? 'bg-neutral-800 text-white dark:bg-black dark:bg-white/20 dark:text-neutral-200' : 'text-neutral-600 hover:bg-neutral-50 dark:text-neutral-400 dark:hover:bg-neutral-800']}>
               Tentang
             </a>
           </li>
@@ -323,7 +323,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
       id="scroll-top-btn"
       type="button"
       aria-label="Kembali ke atas"
-      class="fixed bottom-6 right-6 z-40 hidden h-11 w-11 items-center justify-center border-2 border-neutral-200 bg-white/90 text-neutral-600 shadow-lg backdrop-blur-sm transition-all hover:border-accent-400 hover:text-accent-600 dark:border-neutral-700 dark:bg-neutral-900/90 dark:text-stone-400 dark:hover:border-accent-400 dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-accent-400"
+      class="fixed bottom-6 right-6 z-40 hidden h-11 w-11 items-center justify-center border-2 border-neutral-200 bg-white/90 text-neutral-600 shadow-lg backdrop-blur-sm transition-all hover:border-black dark:border-white hover:text-black dark:border-neutral-700 dark:bg-neutral-900/90 dark:text-neutral-400 dark:hover:border-black dark:border-white dark:hover:text-black dark:text-white focus-visible:ring-2 focus-visible:ring-neutral-900 dark:focus-visible:ring-neutral-100"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
         <path fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z" clip-rule="evenodd" />
@@ -332,7 +332,7 @@ const isMindMapActive = currentPath.startsWith('/mind-map');
 
     <footer class="border-t border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-900">
       <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="flex flex-col items-center gap-2 text-center text-sm text-neutral-500 dark:text-stone-500">
+        <div class="flex flex-col items-center gap-2 text-center text-sm text-neutral-500 dark:text-neutral-500">
           <p>Perpustakaan Digital Peraturan Penilaian Pajak Indonesia</p>
           <p>Bukan website resmi Direktorat Jenderal Pajak.</p>
           <p class="font-mono text-xs">&copy; {new Date().getFullYear()} Penilaian Pajak</p>

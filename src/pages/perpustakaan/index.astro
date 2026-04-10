@@ -39,20 +39,20 @@ const jenisColors: Record<string, string> = {
       <!-- Sidebar filters -->
       <aside class="w-full shrink-0 border-2 border-neutral-100 dark:border-neutral-800 lg:w-64">
         <details class="group lg:open" open>
-          <summary class="flex cursor-pointer items-center justify-between p-5 font-heading text-sm font-semibold tracking-widest text-neutral-800 uppercase dark:text-stone-100 lg:pointer-events-none lg:cursor-default">
+          <summary class="flex cursor-pointer items-center justify-between p-5 font-heading text-sm font-semibold tracking-widest text-neutral-800 uppercase dark:text-white lg:pointer-events-none lg:cursor-default">
             Filter
-            <svg class="h-5 w-5 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-stone-500 lg:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <svg class="h-5 w-5 shrink-0 text-neutral-400 transition-transform group-open:rotate-180 dark:text-neutral-500 lg:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
             </svg>
           </summary>
           <div class="space-y-5 px-5 pb-5" id="filters">
             <!-- Jenis -->
             <fieldset>
-              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-stone-400">Jenis Peraturan</legend>
+              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Jenis Peraturan</legend>
               <div class="mt-2 space-y-1.5">
                 {jenisOptions.map((jenis) => (
-                  <label class="flex cursor-pointer items-center gap-2 text-sm text-neutral-700 dark:text-stone-300">
-                    <input type="checkbox" value={jenis} data-filter="jenis" class="accent-accent-400" />
+                  <label class="flex cursor-pointer items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+                    <input type="checkbox" value={jenis} data-filter="jenis" class="accent-neutral-900" />
                     {jenis}
                   </label>
                 ))}
@@ -61,11 +61,11 @@ const jenisColors: Record<string, string> = {
 
             <!-- Status -->
             <fieldset>
-              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-stone-400">Status</legend>
+              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Status</legend>
               <div class="mt-2 space-y-1.5">
                 {statusOptions.map((status) => (
-                  <label class="flex cursor-pointer items-center gap-2 text-sm capitalize text-neutral-700 dark:text-stone-300">
-                    <input type="checkbox" value={status} data-filter="status" class="accent-accent-400" />
+                  <label class="flex cursor-pointer items-center gap-2 text-sm capitalize text-neutral-700 dark:text-neutral-300">
+                    <input type="checkbox" value={status} data-filter="status" class="accent-neutral-900" />
                     {status}
                   </label>
                 ))}
@@ -74,18 +74,18 @@ const jenisColors: Record<string, string> = {
 
             <!-- Tahun -->
             <fieldset>
-              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-stone-400">Tahun</legend>
+              <legend class="text-xs font-medium tracking-wide text-neutral-500 uppercase dark:text-neutral-400">Tahun</legend>
               <div class="mt-2 space-y-1.5 max-h-40 overflow-y-auto">
                 {tahunOptions.map((tahun) => (
-                  <label class="flex cursor-pointer items-center gap-2 text-sm text-neutral-700 dark:text-stone-300">
-                    <input type="checkbox" value={tahun.toString()} data-filter="tahun" class="accent-accent-400" />
+                  <label class="flex cursor-pointer items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+                    <input type="checkbox" value={tahun.toString()} data-filter="tahun" class="accent-neutral-900" />
                     {tahun}
                   </label>
                 ))}
               </div>
             </fieldset>
 
-            <button id="reset-filters" class="w-full border border-neutral-200 py-2 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:text-stone-400 dark:hover:bg-neutral-800">
+            <button id="reset-filters" class="w-full border border-neutral-200 py-2 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800">
               Reset Filter
             </button>
           </div>
@@ -95,10 +95,10 @@ const jenisColors: Record<string, string> = {
       <!-- Regulation list -->
       <div class="flex-1">
         <div class="flex items-center justify-between">
-          <h1 class="font-heading text-3xl font-bold tracking-tight text-neutral-800 dark:text-stone-100">
+          <h1 class="font-heading text-3xl font-bold tracking-tight text-neutral-800 dark:text-white">
             Peraturan Inti
           </h1>
-          <p class="text-sm text-neutral-500 dark:text-stone-400">
+          <p class="text-sm text-neutral-500 dark:text-neutral-400">
             <span id="visible-count">{sorted.length}</span> peraturan
           </p>
         </div>
@@ -107,7 +107,7 @@ const jenisColors: Record<string, string> = {
           {sorted.map((reg) => (
             <a
               href={`/perpustakaan/${reg.id}`}
-              class="regulation-item block border-2 border-neutral-100 p-5 transition-all hover:border-accent-400 dark:border-neutral-800 dark:hover:border-accent-400"
+              class="regulation-item block border-2 border-neutral-100 p-5 transition-all hover:border-black dark:border-white dark:border-neutral-800 dark:hover:border-black dark:border-white"
               data-jenis={reg.data.jenis}
               data-status={reg.data.status}
               data-tahun={reg.data.tahun}
@@ -119,15 +119,15 @@ const jenisColors: Record<string, string> = {
                 <span class={`inline-block px-2 py-0.5 text-xs font-medium capitalize ${statusColors[reg.data.status] || ''}`}>
                   {reg.data.status}
                 </span>
-                <span class="ml-auto font-mono text-xs text-neutral-400 dark:text-stone-500">{reg.data.tahun}</span>
+                <span class="ml-auto font-mono text-xs text-neutral-400 dark:text-neutral-500">{reg.data.tahun}</span>
               </div>
-              <h3 class="mt-2 font-heading text-base font-semibold text-neutral-800 dark:text-stone-100">
+              <h3 class="mt-2 font-heading text-base font-semibold text-neutral-800 dark:text-white">
                 {reg.data.nomor}
               </h3>
-              <p class="mt-1 text-sm font-medium text-neutral-700 dark:text-stone-200">
+              <p class="mt-1 text-sm font-medium text-neutral-700 dark:text-neutral-200">
                 {reg.data.title}
               </p>
-              <p class="mt-2 line-clamp-2 text-sm text-neutral-500 dark:text-stone-400">
+              <p class="mt-2 line-clamp-2 text-sm text-neutral-500 dark:text-neutral-400">
                 {reg.data.ringkasan}
               </p>
             </a>
@@ -136,7 +136,7 @@ const jenisColors: Record<string, string> = {
 
         {sorted.length === 0 && (
           <div class="mt-12 text-center">
-            <p class="text-neutral-500 dark:text-stone-400">Belum ada peraturan yang ditambahkan.</p>
+            <p class="text-neutral-500 dark:text-neutral-400">Belum ada peraturan yang ditambahkan.</p>
           </div>
         )}
       </div>
