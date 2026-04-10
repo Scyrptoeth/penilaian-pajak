@@ -17,11 +17,7 @@ topik:
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  
 NOMOR SE-11/PJ.6/1993   TENTANG   PENYAMPAIAN SURAT KEPUTUSAN MENTERI KEUANGAN R.I NOMOR 249/KMK.04/1993   DIREKTUR JENDERAL PAJAK,  
 ---  
-   
 Bersama ini disampaikan Surat Keputusan Menteri Keuangan R.I Nomor: 249/KMK.04/1993 tanggal 27 Pebruari 1993 tentang Penunjukan Tempat dan Tata Cara Pembayaran Pajak Bumi dan Bangunan, sebagai pengganti Keputusan Menteri Keuangan R.I Nomor: 1005/KMK.04/1993 tentang Penyetoran Pajak Bumi dan Bangunan.  
-   
 Seterimanya Surat Keputusan ini diminta kepada para Kepala KP PBB untuk menghubungi dan memberitahukan Keputusan tersebut kepada Pemerintah Daerah Tk. II, KPKN setempat serta Bank Operasional V dan Persepsi yang ada di wilayah kerjanya.  
-   
 Demikian untuk dilaksanakan seperlunya.  
-   
 11 Maret 1993 A.n. DIREKTUR JENDERAL PAJAK DIREKTUR PAJAK BUMI DAN BANGUNAN, ttd. Drs. KARSONO SURJO WIBOWO

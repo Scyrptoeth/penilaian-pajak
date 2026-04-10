@@ -17,12 +17,9 @@ topik:
 SURAT DIREKTUR JENDERAL PAJAK  
 NOMOR S-60/PJ.13/2007   TENTANG   PERMINTAAN DATA PEMBAYARAN PBB MELALUI ATM   DIREKTUR JENDERAL PAJAK,  
 ---  
-  |     
 Sehubungan dengan adanya permintaan data Pembayaran PBB melalui ATM dari KPPBB/KPP Pratama dengan ini disampaikan hal-hal sebagai berikut:  
-1. |  Sampai dengan tersedianya jaringan komunikasi data antara Kantor Pusat DJP dengan KPPBB/KPP Pratama, maka bagi KPPBB/KPP Pratama yang belum memiliki koneksi dengan Kantor Pusat DJP diberitahukan bahwa data pembayaran PBB melalui ATM untuk masing-masing wilayah KPPBB/KPP Pratama dapat diperoleh dari Direktorat Teknologi Informasi Perpajakan melalui email.  
-2. |  Sehubungan dengan hal tersebut, Saudara dapat mengirimkan alamat email untuk menerima data pembayaran PBB melalui ATM kepada Direktorat Teknologi Informasi Perpajakan.  
-  |     
+1. Sampai dengan tersedianya jaringan komunikasi data antara Kantor Pusat DJP dengan KPPBB/KPP Pratama, maka bagi KPPBB/KPP Pratama yang belum memiliki koneksi dengan Kantor Pusat DJP diberitahukan bahwa data pembayaran PBB melalui ATM untuk masing-masing wilayah KPPBB/KPP Pratama dapat diperoleh dari Direktorat Teknologi Informasi Perpajakan melalui email.  
+2. Sehubungan dengan hal tersebut, Saudara dapat mengirimkan alamat email untuk menerima data pembayaran PBB melalui ATM kepada Direktorat Teknologi Informasi Perpajakan.  
 Demikian disampaikan untuk diketahui.  
-  |     
 1 November 2007 DIREKTUR JENDERAL PAJAK,  
 ROBERT PAKPAHAN

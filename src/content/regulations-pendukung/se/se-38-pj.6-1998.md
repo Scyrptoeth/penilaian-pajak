@@ -17,13 +17,10 @@ topik:
 SURAT EDARAN DIREKTUR JENDERAL PAJAK  
 NOMOR SE-38/PJ.6/1998   TENTANG   PEMBAYARAN PBB DALAM MATA UANG SELAIN RUPIAH BAGI WAJIB PAJAK DALAM RANGKA PENANAMAN MODAL ASING, KONTRAK KARYA, KONTRAK BAGI HASIL, DAN KEGIATAN USAHA ATAU BADAN LAIN   DIREKTUR JENDERAL PAJAK  
 ---  
-   
 Sehubungan dengan pelaksanaan pembayaran PBB dalam mata uang selain Rupiah bagi Wajib Pajak Dalam Rangka Penanaman Modal Asing, Kontrak Karya, Kontrak Bagi Hasil, dan kegiatan usaha badan lain, dengan ini disampaikan hal-hal sebagai berikut:  
-1. |  Pembayaran PBB terutang oleh Wajib Pajak harus dilakukan dalam mata uang Rupiah.  
-2. |  Ketetapan PBB bagi Wajib Pajak Dalam Rangka Penanaman Modal Asing, Kontrak Karya, Kontrak Hasil, dan kegiatan usaha badan lain diperhitungkan dalam mata uang Rupiah dengan menggunakan kurs yang berlaku sebagaimana ditetapkan dalam Keputusan Menteri Keuangan pada saat SPPT diterbitkan.  
-3. |  Keputusan Menteri Keuangan tentang penentuan nilai kurs tersebut pada saat ini ditetapkan untuk jangka waktu satu minggu.  
-4. |  Dalam hal terdapat perbedaan antara kurs saat penerbitan SPPT dan kurs pada saat pembayaran, maka PBB tetap dibayar sesuai dengan ketetapan yang tercantum dalam SPPT.  
-  |     
+1. Pembayaran PBB terutang oleh Wajib Pajak harus dilakukan dalam mata uang Rupiah.  
+2. Ketetapan PBB bagi Wajib Pajak Dalam Rangka Penanaman Modal Asing, Kontrak Karya, Kontrak Hasil, dan kegiatan usaha badan lain diperhitungkan dalam mata uang Rupiah dengan menggunakan kurs yang berlaku sebagaimana ditetapkan dalam Keputusan Menteri Keuangan pada saat SPPT diterbitkan.  
+3. Keputusan Menteri Keuangan tentang penentuan nilai kurs tersebut pada saat ini ditetapkan untuk jangka waktu satu minggu.  
+4. Dalam hal terdapat perbedaan antara kurs saat penerbitan SPPT dan kurs pada saat pembayaran, maka PBB tetap dibayar sesuai dengan ketetapan yang tercantum dalam SPPT.  
 Demikian disampaikan untuk dilaksanakan sebagaimana mestinya.  
-   
 18 September 1998 A.n. DIREKTUR JENDERAL PAJAK DIREKTUR PAJAK BUMI DAN BANGUNAN, ttd. HASAN RACHMANY
