@@ -2,6 +2,49 @@
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Hero stabilo animated highlight */
+.hero-stabilo {
+  background: linear-gradient(to right, #000000 100%, transparent 0%);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  color: transparent;
+  padding: 0.05em 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  animation: stabilo-reveal 1s ease-out 0.3s forwards;
+}
+
+:where(.dark) .hero-stabilo {
+  background: linear-gradient(to right, #ffffff 100%, transparent 0%);
+}
+
+@keyframes stabilo-reveal {
+  from {
+    background-size: 0% 100%;
+    color: transparent;
+  }
+  to {
+    background-size: 100% 100%;
+    color: #ffffff;
+  }
+}
+
+:where(.dark) .hero-stabilo {
+  animation: stabilo-reveal-dark 1s ease-out 0.3s forwards;
+}
+
+@keyframes stabilo-reveal-dark {
+  from {
+    background-size: 0% 100%;
+    color: transparent;
+  }
+  to {
+    background-size: 100% 100%;
+    color: #000000;
+  }
+}
+
 /* Nav stabilo highlight effect on hover */
 .nav-stabilo {
   position: relative;
